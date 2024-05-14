@@ -8,7 +8,7 @@ app.get('/',(req, res) => {
     res.send('Hello World!');
 })
 
-app.use("/scopus",require(`./publicationRoute`));
+app.use("/scopus", publicationRoute);
 app.use("/researcher", researcherRoute);
 
 app.listen(port, ()=> {
