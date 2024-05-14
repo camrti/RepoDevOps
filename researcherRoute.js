@@ -14,6 +14,16 @@ router
             console.log(err);
             res.status(500).json({ status: "error", message: "Internal Server Error" });
         }
+    })
+    .get('/researcherId=:id', async (req, res)=>{
+        try{
+            let researcherId = req.params.id;
+            let data = await researcherLib.getPublication(researcherId);
+            res.send(data);
+        }catch (err){
+            console.log(err);
+            res.status(500).json({ status: "error", message: "Internal Server Error" });
+        }
     });
 
     module.exports = router;

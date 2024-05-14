@@ -25,6 +25,31 @@ function getScopusData(researcherName, researcherLastName){
     });
 }
 
+function getPublication(researcherId){
+    return new Promise((resolve, reject) => {
+        https.request({
+            hostname: "api.elsevier.com",
+            path: '/content/search/scopus?query=authid('+researcherId+')&apiKey='+apiKey,
+            method: 'GET',
+            headers: {
+                Accept: 'application/json'
+            }
+        }, res => {
+            let data = '';
+            res.on('data', chunk => {
+                data += chunk;
+            });
+            res.on('end', () => {
+                console.log(data);
+                resolve(JSON.parse(data));
+            });
+        }).on('error', err => {
+            reject(err);
+        }).end();
+    });
+}
+
 module.exports = {
-    getScopusData
+    getScopusData,
+    getPublication
 }
