@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 router.use(express.json());
-const researcherLib = require('./researcherLib');
+const researcherLib = require('./publicationLib');
 
 router
     .get('/researcher=:name', async (req, res)=>{
