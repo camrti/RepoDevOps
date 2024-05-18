@@ -7,12 +7,12 @@
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Include your custom CSS file -->
-    <link rel="stylesheet" type="text/css" href="public/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
     <div class="container">
         <h1 class="text-center mb-4">Ricerca Ricercatori</h1>
-        <form action="/search" method="post">
+        <form action="/search" method="get">
             <div class="form-group">
                 <label for="researcherName">Nome del ricercatore:</label>
                 <input type="text" class="form-control" id="researcherName" name="researcherName" placeholder="Inserisci il nome del ricercatore">
