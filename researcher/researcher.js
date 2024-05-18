@@ -34,6 +34,7 @@ async function getCinecaData(name) {
                 });
             }
         });
+        console.log('Data parsed from Cineca by Researcher');
         return data;
     } catch (error) {
         console.error('Error:', error);

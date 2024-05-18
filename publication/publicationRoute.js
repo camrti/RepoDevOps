@@ -10,8 +10,9 @@ router
             const [name, lastName] = researcher.split('_');
             let data = await publication.getScopusData(name, lastName);
             res.send(data);
+            console.log('Name from Scopus by PublicationRoute');
         }catch (err){
-            console.log(err);
+            console.error(err);
             res.status(500).json({ status: "error", message: "Internal Server Error" });
         }
     })
@@ -20,8 +21,9 @@ router
             let researcherId = req.params.id;
             let data = await publication.getPublication(researcherId);
             res.send(data);
+            console.log('ID from Scopus by PublicationRoute');
         }catch (err){
-            console.log(err);
+            console.error(err);
             res.status(500).json({ status: "error", message: "Internal Server Error" });
         }
     });

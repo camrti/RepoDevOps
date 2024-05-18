@@ -17,6 +17,7 @@ router.post('/search', async (req, res) => {
     const researchers = await researcher.getCinecaData(researcherName);
 
     res.render('search', { researchers });
+    console.log('Data from Cineca by ResearcherRoute');
   } catch (error) {
     console.error('Error:', error);
     res.render('error');

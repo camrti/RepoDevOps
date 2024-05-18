@@ -18,6 +18,7 @@ function getScopusData(researcherName, researcherLastName){
             res.on('end', () => {
                 console.log(data);
                 resolve(JSON.parse(data));
+                console.log('Data parsed from Scopus by Publication');
             });
         }).on('error', err => {
             reject(err);
@@ -42,6 +43,7 @@ function getPublication(researcherId){
             res.on('end', () => {
                 console.log(data);
                 resolve(JSON.parse(data));
+                console.log('Publication parsed from Scopus by Publication');
             });
         }).on('error', err => {
             reject(err);
