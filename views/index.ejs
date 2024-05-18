@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ricerca Ricercatori</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Include your custom CSS file -->
+</head>
+<body>
+    <div class="container"> <!-- Use Bootstrap container for better layout -->
+        <h1 class="text-center mb-4">Ricerca Ricercatori</h1> <!-- Center the heading -->
+        <form action="/search" method="post">
+            <div class="form-group"> <!-- Use Bootstrap form-group for better styling -->
+                <label for="researcherName">Nome del ricercatore:</label>
+                <!-- Use Bootstrap form-control classes to style the input -->
+                <input type="text" class="form-control form-control-lg" id="researcherName" name="researcherName" required>
+            </div>
+            <button class="btn btn-primary" type="submit">Cerca</button> <!-- Use Bootstrap btn classes -->
+        </form>
+    </div>
+</body>
+</html>
