@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 const port = 8000;
-const researcherRoute = require('./researcherRoute');
-const publicationRoute = require('./publicationRoute');
+const researcherRoute = require('./researcher/researcherRoute');
+const publicationRoute = require('./publication/publicationRoute');
 
 app.get('/',(req, res) => {
     res.send('Hello World!');

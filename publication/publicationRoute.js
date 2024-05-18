@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
 router.use(express.json());
-const publicationLib = require('./publicationLib');
+const publication = require('./publication/publication.js');
 
 router
     .get('/researcher=:name', async (req, res)=>{
         try{
             let researcher = req.params.name;
             const [name, lastName] = researcher.split('_');
-            let data = await publicationLib.getScopusData(name, lastName);
+            let data = await publication.getScopusData(name, lastName);
             res.send(data);
         }catch (err){
             console.log(err);
@@ -18,7 +18,7 @@ router
     .get('/researcherId=:id', async (req, res)=>{
         try{
             let researcherId = req.params.id;
-            let data = await publicationLib.getPublication(researcherId);
+            let data = await publication.getPublication(researcherId);
             res.send(data);
         }catch (err){
             console.log(err);

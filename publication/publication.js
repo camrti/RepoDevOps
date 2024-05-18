@@ -1,5 +1,5 @@
 const https = require('https');
-apiKey = "30aa24ac07654554de0733cc0dd6a789";
+apiKey = "30aa24ac07654554de0733cc0dd6a789"; // ATTENTION TO SECURITY: NEVER STORE API KEYS IN PLAIN TEXT
 
 function getScopusData(researcherName, researcherLastName){
     return new Promise((resolve, reject) => {

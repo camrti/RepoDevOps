@@ -1,6 +1,6 @@
 // routes.js
 const express = require('express');
-const obtainData = require('./researcher.js');
+const researcher = require('./researcher/researcher.js');
 const router = express.Router();
 
 // Pagina iniziale
@@ -14,7 +14,7 @@ router.post('/search', async (req, res) => {
 
   try {
     // Obtain researchers data
-    const researchers = await obtainData(researcherName);
+    const researchers = await researcher.getCinecaData(researcherName);
 
     res.render('search', { researchers });
   } catch (error) {

@@ -1,7 +1,7 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-async function obtainData(name) {
+async function getCinecaData(name) {
     const url = 
 `https://cercauniversita.mur.gov.it/php5/docenti/vis_docenti.php?docinput=${encodeURIComponent(name)}&docsubmit=cerca`;
 
@@ -40,4 +40,4 @@ async function obtainData(name) {
         return [];
     }
 }
-module.exports = obtainData; 
+module.exports = getCinecaData; 
