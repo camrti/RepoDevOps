@@ -1,6 +1,6 @@
 // routes.js
 const express = require('express');
-const researcher = require('./researcher/researcher.js');
+const researcher = require('./researcher.js');
 const router = express.Router();
 
 // Pagina iniziale
