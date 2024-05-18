@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ricerca ricercatori</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Include your custom CSS file -->
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">Ricerca Ricercatori</h1>
+        <form action="/search" method="post">
+            <div class="form-group">
+                <label for="researcherName">Nome del ricercatore:</label>
+                <input type="text" class="form-control" id="researcherName" name="researcherName" placeholder="Inserisci il nome del ricercatore">
+            </div>
+            <button class="btn btn-primary" type="submit">Cerca</button>
+        </form>
+        <% if (researchers && researchers.length > 0) { %>
+            <h2>Risultati della ricerca:</h2>
+            <ul class="list-group">
+                <% researchers.forEach(researcher => { %>
+                    <li class="list-group-item">
+                        <strong>Fascia:</strong> <%= researcher.fascia %><br>
+                        <strong>Cognome e Nome:</strong> <%= researcher.cognome_nome %><br>
+                        <strong>Genere:</strong> <%= researcher.genere %><br>
+                        <strong>Ateneo:</strong> <%= researcher.ateneo %><br>
+                        <strong>Facoltà:</strong> <%= researcher.facolta %><br>
+                        <strong>S.S.D.:</strong> <%= researcher.ssd %><br>
+                        <strong>S.C.:</strong> <%= researcher.sc %><br>
+                        <strong>Struttura di afferenza:</strong> <%= researcher.struttura %><br>
+                        <strong>Servizio prestato in altro ateneo:</strong> <%= researcher.servizio_altro_ateneo %><br>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } else if (researchers && researchers.length === 0) { %>
+            <p>Nessun ricercatore trovato.</p>
+        <% } %>
+    </div>
+</body>
+</html>
