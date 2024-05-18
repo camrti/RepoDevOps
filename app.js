@@ -1,6 +1,8 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const researcherRoute = require('./src/researcher/researcherRoute.js');
+const publicationRoute = require('./src/publication/publicationRoute.js');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,6 +22,9 @@ app.use(express.static('public'));
 
 // Usa le route definite in researcherRoute
 app.use('/', researcherRoute);
+
+// Usa le route definite in publicationRoute
+app.use('/scopus/', publicationRoute);
 
 // Avvia il server
 app.listen(PORT, () => {
