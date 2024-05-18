@@ -40,4 +40,6 @@ async function getCinecaData(name) {
         return [];
     }
 }
-module.exports = getCinecaData; 
+module.exports = {
+    getCinecaData
+}; 
