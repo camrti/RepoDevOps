@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const getCinecaData = require('./researcher/researcher.js'); // Modifica 
-il percorso per importare il modulo researchers
+const getCinecaData = require('./researcher/researcher.js'); 
 
 const app = express();
 const PORT = process.env.PORT || 3000;
