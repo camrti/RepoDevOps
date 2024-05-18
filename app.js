@@ -1,10 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const researcherRoute = require('./researcher/researcherRoute.js');
+const researcherRoute = require('./src/researcher/researcherRoute.js');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Set the views directory
+app.set('views', 'src/views');
+
+// Set the view engine to ejs
 app.set('view engine', 'ejs');
 
 // Middleware per il parsing del corpo della richiesta
