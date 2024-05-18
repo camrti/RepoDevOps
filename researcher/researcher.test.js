@@ -1,8 +1,6 @@
 const path = require('path')
 const researcher = require('./researcher.js');
 
-const csvFilePath = path.join(__dirname, './testCases/researcher.csv'); 
-
 describe('Testing getCinecaData function', () => {
     let testCases = [
         { name: 'Francesco_Moscato', expectedResult: [{ "ateneo":"SALERNO",
