@@ -21,7 +21,6 @@ describe('Testing getCinecaData function', () => {
 
     it(`should return the Francesco Moscato information`, async () => {
         const data = await researcher.getCinecaData(testCases[0].name);
-        console.log(data)
         expect(data.ateneo).toEqual(testCases[0].expectedResult.ateneo);
         expect(data.cognome).toEqual(testCases[0].expectedResult.cognome);
         expect(data.nome).toEqual(testCases[0].expectedResult.nome);
