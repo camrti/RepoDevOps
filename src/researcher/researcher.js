@@ -2,21 +2,18 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 
 function cleanString(value, isName=false, isSurname=false ) {
-    str = value.text()
+    let str = value.text().replace(/\s+/g, ' ').trim();
 
-    if (isSurname)
-        str = str.split(" ")[0];
-    if (isName)
-        str = str.split(" ")[1];
+    if (isSurname==true)
+        str = str.split(' ')[0];
+    if (isName==true)
+        str = str.split(' ')[1];
 
-    str = str.replace(/\s+/g, ' ').trim().toLowerCase();
-
-    return str;
+    return str.toLowerCase();
 }
 
 async function getCinecaData(name) {
-    const url = 
-`https://cercauniversita.mur.gov.it/php5/docenti/vis_docenti.php?docinput=${encodeURIComponent(name)}&docsubmit=cerca`;
+    const url = `https://cercauniversita.mur.gov.it/php5/docenti/vis_docenti.php?docinput=${encodeURIComponent(name)}&docsubmit=cerca`;
 
     try {
         // Make a GET request to the page
@@ -37,8 +34,8 @@ async function getCinecaData(name) {
                 const cells = $(row).find('td');
                 data ={
                     fascia: cleanString(cells.eq(0)),
-                    cognome: cleanString(cells.eq(1),isSurname=true),
-                    nome: cleanString(cells.eq(1), isName=true),
+                    cognome: cleanString(cells.eq(1),false, true),
+                    nome: cleanString(cells.eq(1), true),
                     genere: cleanString(cells.eq(2)),
                     ateneo: cleanString(cells.eq(3)),
                     facolta: cleanString(cells.eq(4)),
@@ -59,5 +56,3 @@ async function getCinecaData(name) {
 module.exports = {
     getCinecaData
 }; 
-
-getCinecaData("Francesco_Moscato")
