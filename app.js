@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const researcherRoute = require('./src/researcher/researcherRoute.js');
 const publicationRoute = require('./src/publication/publicationRoute.js');
+//const researcher = require('./src/database/researcherModel'); decommentare se si vuole usare la funzione in fondo
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -30,3 +31,23 @@ app.use('/scopus/', publicationRoute);
 app.listen(PORT, () => {
   console.log(`Server avviato sulla porta ${PORT}`);
 });
+
+/* Funzione che parte quando viene avviata l'app per inserire a mano un researcher con i parametridel modello attuale
+async function funzione(){
+    let x = {
+        fascia: "baba",
+        nome: "ciccio",
+        cognome: "sasiccio",
+        genere: "maschio",
+        ateneo: "unisa",
+        facolta: "agaga",
+        ssd: "ssd",
+        sc: "scsc",
+        struttura: "macheneso",
+        servizio_altro_ateneo: "boh"
+    };
+    const r = await researcher.create(x).catch((err) => { return reject(err); });
+    console.log(r);
+}
+funzione();
+*/

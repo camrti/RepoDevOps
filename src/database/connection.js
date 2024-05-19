@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 
 function connect(dbName) {
-    //const uri = process.env.MONGO_URI + dbName;
-    const uri = mongoose.connect('mongodb://127.0.0.1:27017/'+dbName);
+    const uri = process.env.MONGO_URI + dbName;
     mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
     const connection = mongoose.connection;
     connection.once('open', () => {
@@ -14,8 +13,7 @@ function connect(dbName) {
 }
 
 
-//const dbName = process.env.MONGO_DB;
-const dbName = researcherDB
+const dbName = process.env.MONGO_DB;
 console.log(dbName);
 const main = connect(dbName);
 module.exports = {

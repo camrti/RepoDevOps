@@ -1,12 +1,16 @@
 const mongoose = require('mongoose');
-const db = require('../conn').main;
+const db = require('./connection').main;
 
 const researcherSchema = new mongoose.Schema({
     fascia: {
         type: String,
         required: true
     },
-    cognome_nome: {
+    cognome : {
+        type: String,
+        required: true
+    },
+    nome: {
         type: String,
         required: true
     },
