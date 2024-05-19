@@ -1,4 +1,3 @@
-// routes.js
 const express = require('express');
 const researcher = require('./researcher.js');
 const router = express.Router();
@@ -21,20 +20,6 @@ router.get('/search', async (req, res) => {
     res.render('error');
   }
 });
-// router.post('/search', async (req, res) => {
-//   const { researcherName } = req.body;
-
-//   try {
-//     // Obtain researchers data
-//     const researchers = await researcher.getCinecaData(researcherName);
-
-//     res.render('search', { researchers });
-//     console.log('Data from Cineca by ResearcherRoute');
-//   } catch (error) {
-//     console.error('Error:', error);
-//     res.render('error');
-//   }
-// });
 
 module.exports = router;
 
