@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const publicationRoute2 = require('./publicationRoute2.js');
+const publicationRoute2 = require('./publicationRoute.js');
 
 const app = express();
 

@@ -23,7 +23,8 @@ router.get('/search_researchers', async (req, res) => {
         researchers = await search.getResearchers(researcherName)
     }
     res.status(200);
-    res.render('search', {researchers});    
+    res.render('search', {researchers});
+    console.log('Researchers Data retrieved from getReserarchers by SearchRoute')    
   } catch (error) {
       console.error('Error:', error);
       res.status(500);
@@ -53,7 +54,8 @@ router.get('/search_publications', async (req, res) => {
     res.render('publications',{ 
       researcherName: researcherName, 
       publications: data.publications
-    });  
+    });
+    console.log('Publication Data retrieved from getPublication by SearchRoute')      
     } catch (error) {
         console.error('Error:', error);
         res.status(500);

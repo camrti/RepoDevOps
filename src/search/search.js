@@ -6,9 +6,8 @@ const cheerio = require('cheerio');
 async function getResearchers(researcherName) {
   try {
     // Get the data from Cineca
-    console.log(researcherName);
     const response = await axios.get(`http://localhost:8001/search?researcherName=${encodeURIComponent(researcherName)}`);
-    console.log('Data retrieved from ResearcherRoute by Search');
+    console.log('Data retrieved from Researcher Service by Search');
     return response.data;
   } catch (error) {
     console.error('Error:', error);
@@ -22,7 +21,7 @@ async function getPublications(searchQuery) {
   try {
     // Get the data from Cineca
     const response = await axios.get(`http://localhost:8002/parse?value=${encodeURIComponent(searchQuery)}`);
-    console.log('Data retrieved from PublicationRoute2 by Search');
+    console.log('Data retrieved from Publication Service by Search');
     return response.data;
   } catch (error) {
     console.error('Error:', error);
