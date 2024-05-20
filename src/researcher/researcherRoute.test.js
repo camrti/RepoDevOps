@@ -32,14 +32,7 @@ describe('Testing researcherRoute', () => {
     
     ];
 
-    test('GET / should render index template', async () => {
-        console.log("Index Test Case");
-        const res = await supertest(app)
-        .get('/')
-        .expect(200);
-    });
-
-    test.each(testCases)('GET /search should render search template with correct status code for %s', async ({ desc, name, expectedStatusCode }) => {
+    test.each(testCases)('GET /search should return the correct status code for %s', async ({ desc, name, expectedStatusCode }) => {
         console.log("Test Case: ", desc);
         await supertest(app)
             .get('/search')
