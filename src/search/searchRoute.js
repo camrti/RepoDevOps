@@ -22,7 +22,6 @@ router.get('/search_researchers', async (req, res) => {
     if (data.length === 0){
         researchers = await search.getResearchers(researcherName)
     }
-    console.log(researchers,'DIO')
     res.status(200);
     res.render('search', {researchers});    
   } catch (error) {
@@ -33,23 +32,28 @@ router.get('/search_researchers', async (req, res) => {
 
 // Route to search researchers
 router.get('/search_publications', async (req, res) => {
-    const { researcherName } = req.query.name + ' ' + req.query.surname;
-    const { searchQuery } = req.query.value;
+    const researcherName = req.query.name + ' ' + req.query.surname;
+    const searchQuery = req.query.value;
     try {
     let data = [];
-    let publications = [];
     // Try to retrieve data from DB
     // data = search.getPublicationFromDB(researcherName)
     
     if (data.length === 0){
-        publications = search.getPublications(searchQuery)
+        data = await search.getPublications(searchQuery)
     }
+
+    // If no data found
+    if (!data.publications) {
+        res.status(404).send('No publication found');
+        return;
+    }
+
     res.status(200);
     res.render('publications',{ 
-    researcherName: researcherName, 
-    publications: publications
+      researcherName: researcherName, 
+      publications: data.publications
     });  
-
     } catch (error) {
         console.error('Error:', error);
         res.status(500);

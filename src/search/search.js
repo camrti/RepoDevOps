@@ -8,14 +8,7 @@ async function getResearchers(researcherName) {
     // Get the data from Cineca
     console.log(researcherName);
     const response = await axios.get(`http://localhost:8001/search?researcherName=${encodeURIComponent(researcherName)}`);
-    // const $ = cheerio.load(response.data);
-    // let researchers = [];
-    // $('li').each((i, element) => {
-    //   const name = $(element).text();
-    //   researchers.push(name);
-    // });
-    console.log('Data retrieved from ResearcherRoute by SearchRoute');
-    console.log(response.data);
+    console.log('Data retrieved from ResearcherRoute by Search');
     return response.data;
   } catch (error) {
     console.error('Error:', error);
@@ -28,8 +21,8 @@ async function getResearchers(researcherName) {
 async function getPublications(searchQuery) {
   try {
     // Get the data from Cineca
-    const response = await axios.get(`http://localhost:8002/publication2/parse?name=${searchQuery}`);
-    console.log('Data retrieved from PublicationRoute2 by SearchRoute');
+    const response = await axios.get(`http://localhost:8002/parse?value=${encodeURIComponent(searchQuery)}`);
+    console.log('Data retrieved from PublicationRoute2 by Search');
     return response.data;
   } catch (error) {
     console.error('Error:', error);
@@ -40,6 +33,7 @@ async function getPublications(searchQuery) {
 
 
 // Function to get the data from Database
+// getPublicationFromDB(researcherName) TO WRITE
 
 module.exports = {
   getResearchers,

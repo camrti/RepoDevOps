@@ -28,7 +28,8 @@ async function getCinecaData(name) {
         // Extract data from the table
         let data = [];
 
-        table.find('tr').each((index, row) => {
+        // Find the tbody of the table
+        table.find('tbody').find('tr').each((index, row) => {
             // Ignore the table header
             if ($(row).find('th').length === 0) {
                 const cells = $(row).find('td');
