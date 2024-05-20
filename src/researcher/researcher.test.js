@@ -2,7 +2,7 @@ const researcher = require('./researcher.js');
 
 describe('Testing getCinecaData function', () => {
     let testCases = [
-        { name: 'Francesco_Moscato', expectedResult: { "ateneo":"salerno",
+        { name: 'Francesco_Moscato', expectedResult: [{ "ateneo":"salerno",
                                                         "cognome":"moscato",
                                                         "nome": "francesco",
                                                         "facolta":"",
@@ -11,8 +11,8 @@ describe('Testing getCinecaData function', () => {
                                                         "sc":"09/h1",
                                                         "servizio_altro_ateneo":"",
                                                         "ssd":"ing-inf/05",
-                                                        "struttura":"ingegneria dell'informazione ed elettrica e matematica applicata"}},
-        { name: 'Pasquale_Caggiano', expectedResult: {}}
+                                                        "struttura":"ingegneria dell'informazione ed elettrica e matematica applicata"}]},
+        { name: 'Pasquale_Caggiano', expectedResult: []}
     ];
 
     it('should have test cases loaded', () => {
@@ -21,29 +21,29 @@ describe('Testing getCinecaData function', () => {
 
     it(`should return the Francesco Moscato information`, async () => {
         const data = await researcher.getCinecaData(testCases[0].name);
-        expect(data.ateneo).toEqual(testCases[0].expectedResult.ateneo);
-        expect(data.cognome).toEqual(testCases[0].expectedResult.cognome);
-        expect(data.nome).toEqual(testCases[0].expectedResult.nome);
-        expect(data.facolta).toEqual(testCases[0].expectedResult.facolta);
-        expect(data.genere).toEqual(testCases[0].expectedResult.genere);
-        expect(data.sc).toEqual(testCases[0].expectedResult.sc);
-        expect(data.servizio_altro_ateneo).toEqual(testCases[0].expectedResult.servizio_altro_ateneo);
-        expect(data.ssd).toEqual(testCases[0].expectedResult.ssd);
-        expect(data.struttura).toEqual(testCases[0].expectedResult.struttura);
+        expect(data[0].ateneo).toEqual(testCases[0].expectedResult[0].ateneo);
+        expect(data[0].cognome).toEqual(testCases[0].expectedResult[0].cognome);
+        expect(data[0].nome).toEqual(testCases[0].expectedResult[0].nome);
+        expect(data[0].facolta).toEqual(testCases[0].expectedResult[0].facolta);
+        expect(data[0].genere).toEqual(testCases[0].expectedResult[0].genere);
+        expect(data[0].sc).toEqual(testCases[0].expectedResult[0].sc);
+        expect(data[0].servizio_altro_ateneo).toEqual(testCases[0].expectedResult[0].servizio_altro_ateneo);
+        expect(data[0].ssd).toEqual(testCases[0].expectedResult[0].ssd);
+        expect(data[0].struttura).toEqual(testCases[0].expectedResult[0].struttura);
     });
 
     it(`should return the correct type for each researcher field`, async () => {
         const data = await researcher.getCinecaData(testCases[0].name);
-        expect(typeof data.ateneo).toBe('string');
-        expect(typeof data.ateneo).toBe('string');
-        expect(typeof data.cognome).toBe('string');
-        expect(typeof data.nome).toBe('string');
-        expect(typeof data.facolta).toBe('string');
-        expect(typeof data.genere).toBe('string');
-        expect(typeof data.sc).toBe('string');
-        expect(typeof data.servizio_altro_ateneo).toBe('string');
-        expect(typeof data.ssd).toBe('string');
-        expect(typeof data.struttura).toBe('string');
+        expect(typeof data[0].ateneo).toBe('string');
+        expect(typeof data[0].ateneo).toBe('string');
+        expect(typeof data[0].cognome).toBe('string');
+        expect(typeof data[0].nome).toBe('string');
+        expect(typeof data[0].facolta).toBe('string');
+        expect(typeof data[0].genere).toBe('string');
+        expect(typeof data[0].sc).toBe('string');
+        expect(typeof data[0].servizio_altro_ateneo).toBe('string');
+        expect(typeof data[0].ssd).toBe('string');
+        expect(typeof data[0].struttura).toBe('string');
     });
 
     it(`should return an empty object`, async () => {

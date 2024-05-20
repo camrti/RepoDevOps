@@ -16,7 +16,7 @@ router.get('/search', async (req, res) => {
     // Obtain researchers data
     const researchers = await researcher.getCinecaData(researcherName);
 
-    if (Object.keys(researchers).length === 0)
+    if (researchers.length === 0)
       res.status(404); 
     else 
       res.status(200);

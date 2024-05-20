@@ -26,13 +26,13 @@ async function getCinecaData(name) {
         const table = $('table.risultati');
 
         // Extract data from the table
-        let data = {};
+        let data = [];
 
         table.find('tr').each((index, row) => {
             // Ignore the table header
             if ($(row).find('th').length === 0) {
                 const cells = $(row).find('td');
-                data ={
+                data.push({
                     fascia: cleanString(cells.eq(0)),
                     cognome: cleanString(cells.eq(1),false, true),
                     nome: cleanString(cells.eq(1), true),
@@ -43,14 +43,14 @@ async function getCinecaData(name) {
                     sc: cleanString(cells.eq(6)),
                     struttura: cleanString(cells.eq(7)),
                     servizio_altro_ateneo: cleanString(cells.eq(8))
-                };
+                });
             }
         });
         console.log('Data parsed from Cineca by Researcher');
         return data;
     } catch (error) {
         console.error('Error:', error);
-        return {};
+        return [];
     }
 }
 module.exports = {
