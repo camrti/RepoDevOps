@@ -4,6 +4,7 @@ const router = express.Router();
 
 router.get('/parse', async (req, res) => {
   const { query } = req;
+  const researcherName= query.name+" "+query.surname;
   const searchQuery = query.value;
 
   if (!searchQuery) {
@@ -15,7 +16,10 @@ router.get('/parse', async (req, res) => {
     if (profileLink) {
       const publications = await publication2.parsePublications(profileLink);
       console.log('Data parsed from Google Scholar by PublicationRoute2');
-      res.json({ profileLink, publications });
+      res.render('publications', {
+        researcherName: researcherName,
+        publications: publications
+      });
     } else {
       res.status(404).send('No publication found');
     }
