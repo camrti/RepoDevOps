@@ -80,7 +80,7 @@ describe('Testing parsePublications function', () => {
                     authors: "F Amato, L Coppolino, G Cozzolino, G Mazzeo, F Moscato, R Nardone",
                     paperType: "Neurocomputing 444, 79-91, 2021",
                     year: "2021",
-                    citations: "15",
+                    citationCount: "15",
                     publicationLink: "https://scholar.google.it/citations?view_op=view_citation&hl=it&oe=ASCII&user=brSCK-YAAAAJ&sortby=pubdate&citation_for_view=brSCK-YAAAAJ:mvPsJ3kp5DgC"
                   },
                   {
@@ -88,7 +88,7 @@ describe('Testing parsePublications function', () => {
                     authors: "F Amato, V Casola, G Cozzolino, A De Benedictis, N Mazzocca, ...",
                     paperType: "ACM Transactions on Multimedia Computing, Communications, and Applications…, 2021",
                     year: "2021",
-                    citations: "15",
+                    citationCount: "15",
                     publicationLink: "https://scholar.google.it/citations?view_op=view_citation&hl=it&oe=ASCII&user=brSCK-YAAAAJ&sortby=pubdate&citation_for_view=brSCK-YAAAAJ:J-pR_7NvFogC"
                   },
                   {
@@ -96,7 +96,7 @@ describe('Testing parsePublications function', () => {
                     authors: "F Amato, G Cozzolino, F Moscato, V Moscato, F Xhafa",
                     paperType: "IEEE Transactions on Industrial Informatics 17 (11), 7752-7759, 2021",
                     year: "2021",
-                    citations: "22",
+                    citationCount: "22",
                     publicationLink: "https://scholar.google.it/citations?view_op=view_citation&hl=it&oe=ASCII&user=brSCK-YAAAAJ&sortby=pubdate&citation_for_view=brSCK-YAAAAJ:V3AGJWp-ZtQC"
                   },
                   {
@@ -104,7 +104,7 @@ describe('Testing parsePublications function', () => {
                     authors: "F Amato, L Coppolino, F Mercaldo, F Moscato, R Nardone, A Santone",
                     paperType: "IEEE Transactions on Intelligent Transportation Systems 22 (8), 5081-5090, 2021",
                     year: "2021",
-                    citations: "51",
+                    citationCount: "51",
                     publicationLink: "https://scholar.google.it/citations?view_op=view_citation&hl=it&oe=ASCII&user=brSCK-YAAAAJ&sortby=pubdate&citation_for_view=brSCK-YAAAAJ:kRWSkSYxWN8C"
                   },
                   {
@@ -112,7 +112,7 @@ describe('Testing parsePublications function', () => {
                     authors: "F Amato, F Moscato, V Moscato, G Sperl�",
                     paperType: "CEUR Workshop Proceedings, 2994, 2021",
                     year: "2021",
-                    citations: "1",
+                    citationCount: "1",
                     publicationLink: "https://scholar.google.it/citations?view_op=view_citation&hl=it&oe=ASCII&user=brSCK-YAAAAJ&sortby=pubdate&citation_for_view=brSCK-YAAAAJ:XiVPGOgt02cC"
                   },
                   {
@@ -120,7 +120,7 @@ describe('Testing parsePublications function', () => {
                     authors: "A Castiglione, G Cozzolino, F Moscato, V Moscato",
                     paperType: "IEEE Transactions on Industrial Informatics 17 (9), 6162-6169, 2020",
                     year: "2020",
-                    citations: "19",
+                    citationCount: "19",
                     publicationLink: "https://scholar.google.it/citations?view_op=view_citation&hl=it&oe=ASCII&user=brSCK-YAAAAJ&sortby=pubdate&citation_for_view=brSCK-YAAAAJ:eflP2zaiRacC"
                   },
                   {
@@ -128,7 +128,7 @@ describe('Testing parsePublications function', () => {
                     authors: "F Amato, L Coppolino, S D’Antonio, N Mazzocca, F Moscato, L Sgaglione",
                     paperType: "Future Generation Computer Systems 106, 393-400, 2020",
                     year: "2020",
-                    citations: "6",
+                    citationCount: "6",
                     publicationLink: "https://scholar.google.it/citations?view_op=view_citation&hl=it&oe=ASCII&user=brSCK-YAAAAJ&sortby=pubdate&citation_for_view=brSCK-YAAAAJ:5Ul4iDaHHb8C"
                   },
                   {
@@ -136,7 +136,7 @@ describe('Testing parsePublications function', () => {
                     authors: "L Barolli, F Amato, F Moscato, T Enokido, M Takizawa",
                     paperType: "Springer Nature, 2020",
                     year: "2020",
-                    citations: "4",
+                    citationCount: "4",
                     publicationLink: "https://scholar.google.it/citations?view_op=view_citation&hl=it&oe=ASCII&user=brSCK-YAAAAJ&sortby=pubdate&citation_for_view=brSCK-YAAAAJ:BrmTIyaxlBUC"
                   },
                   {
@@ -144,7 +144,7 @@ describe('Testing parsePublications function', () => {
                     authors: "F Amato, F Moscato, V Moscato, F Pascale, A Picariello",
                     paperType: "Pattern Recognition Letters 131, 341-347, 2020",
                     year: "2020",
-                    citations: "30",
+                    citationCount: "30",
                     publicationLink:"https://scholar.google.it/citations?view_op=view_citation&hl=it&oe=ASCII&user=brSCK-YAAAAJ&sortby=pubdate&citation_for_view=brSCK-YAAAAJ:8AbLer7MMksC"
                   },
                   {
@@ -152,7 +152,7 @@ describe('Testing parsePublications function', () => {
                     authors: "F Amato, G Cozzolino, F Moscato, V Moscato, A Picariello, G Sperl�",
                     paperType: "SEBD, 175-185, 2020",
                     year: "2020",
-                    citations: "0",
+                    citationCount: "0",
                     publicationLink:"https://scholar.google.it/citations?view_op=view_citation&hl=it&oe=ASCII&user=brSCK-YAAAAJ&sortby=pubdate&citation_for_view=brSCK-YAAAAJ:D_sINldO8mEC"
                   },
                   {
@@ -160,7 +160,7 @@ describe('Testing parsePublications function', () => {
                     authors: "F Amato, P Femia, F Moscato",
                     aperType: "Complex, Intelligent, and Software Intensive Systems: Proceedings of the…, 2020",
                     year: "2020",
-                    citations: "2",
+                    citationCount: "2",
                     publicationLink:"https://scholar.google.it/citations?view_op=view_citation&hl=it&oe=ASCII&user=brSCK-YAAAAJ&sortby=pubdate&citation_for_view=brSCK-YAAAAJ:l7t_Zn2s7bgC"
                   },
                   {
@@ -168,7 +168,7 @@ describe('Testing parsePublications function', () => {
                     authors: "A Amato, W Balzano, G Cozzolino, F Moscato",
                     paperType: "Advanced Information Networking and Applications: Proceedings of the 33rd…, 2020",
                     year: "2020",
-                    citations: "14",
+                    citationCount: "14",
                     publicationLink:"https://scholar.google.it/citations?view_op=view_citation&hl=it&oe=ASCII&user=brSCK-YAAAAJ&sortby=pubdate&citation_for_view=brSCK-YAAAAJ:Tiz5es2fbqcC"
                   },
                   {
@@ -176,7 +176,7 @@ describe('Testing parsePublications function', () => {
                     authors: "F Amato, V Casola, G Cozzolino, A De Benedictis, F Moscato",
                     paperType: "IEEE Internet of Things Journal 7 (5), 4655-4665, 2019",
                     year: "2019",
-                    citations: "18",
+                    citationCount: "18",
                     publicationLink: "https://scholar.google.it/citations?view_op=view_citation&hl=it&oe=ASCII&user=brSCK-YAAAAJ&sortby=pubdate&citation_for_view=brSCK-YAAAAJ:geHnlv5EZngC"
                   },
                   {
@@ -184,7 +184,7 @@ describe('Testing parsePublications function', () => {
                     authors: "F Amato, F Moscato, F Xhafa",
                     paperType: "Computers in Human Behavior 100, 286-294, 2019",
                     year: "2019",
-                    citations: "5",
+                    citationCount: "5",
                     publicationLink:"https://scholar.google.it/citations?view_op=view_citation&hl=it&oe=ASCII&user=brSCK-YAAAAJ&sortby=pubdate&citation_for_view=brSCK-YAAAAJ:XiSMed-E-HIC"
                   }
             ],
