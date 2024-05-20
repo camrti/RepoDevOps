@@ -6,15 +6,17 @@ const cheerio = require('cheerio');
 async function getResearchers(researcherName) {
   try {
     // Get the data from Cineca
-    const response = await axios.get(`http://localhost:8001/search/researcher=${researcherName}`);
-    const $ = cheerio.load(response.data);
-    const researchers = [];
-    $('li').each((i, element) => {
-      const name = $(element).text();
-      researchers.push(name);
-    });
+    console.log(researcherName);
+    const response = await axios.get(`http://localhost:8001/search?researcherName=${encodeURIComponent(researcherName)}`);
+    // const $ = cheerio.load(response.data);
+    // let researchers = [];
+    // $('li').each((i, element) => {
+    //   const name = $(element).text();
+    //   researchers.push(name);
+    // });
     console.log('Data retrieved from ResearcherRoute by SearchRoute');
-    return researchers;
+    console.log(response.data);
+    return response.data;
   } catch (error) {
     console.error('Error:', error);
     return [];
@@ -23,10 +25,10 @@ async function getResearchers(researcherName) {
 
 
 // Function to get the data from PublicationRoute2
-async function getPublications(researcherName) {
+async function getPublications(searchQuery) {
   try {
     // Get the data from Cineca
-    const response = await axios.get(`http://localhost:8002/publication2/parse?name=${researcherName}`);
+    const response = await axios.get(`http://localhost:8002/publication2/parse?name=${searchQuery}`);
     console.log('Data retrieved from PublicationRoute2 by SearchRoute');
     return response.data;
   } catch (error) {
@@ -39,3 +41,7 @@ async function getPublications(researcherName) {
 
 // Function to get the data from Database
 
+module.exports = {
+  getResearchers,
+  getPublications
+}; 

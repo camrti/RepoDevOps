@@ -12,7 +12,7 @@
 <body>
     <div class="container">
         <h1 class="text-center mb-4">Ricerca Ricercatori</h1>
-        <form action="/search" method="get">
+        <form action="/search_researchers" method="get">
             <div class="form-group">
                 <label for="researcherName">Nome del ricercatore:</label>
                 <input type="text" class="form-control" id="researcherName" name="researcherName" placeholder="Inserisci il nome del ricercatore">
@@ -34,7 +34,7 @@
                         <strong>S.C.:</strong> <%= researcher.sc %><br>
                         <strong>Struttura di afferenza:</strong> <%= researcher.struttura %><br>
                         <strong>Servizio prestato in altro ateneo:</strong> <%= researcher.servizio_altro_ateneo %><br>
-                        <a href="/scholar/parse?value=<%= encodeURIComponent(researcher.ateneo) %>+<%= encodeURIComponent(researcher.cognome) %>+<%= encodeURIComponent(researcher.nome) %>&name=<%= encodeURIComponent(researcher.nome) %>&surname=<%= encodeURIComponent(researcher.cognome) %>" class="btn btn-info mt-2">Visualizza Pubblicazioni</a>
+                        <a href="/search_publications?value=<%= encodeURIComponent(researcher.ateneo) %>+<%= encodeURIComponent(researcher.cognome) %>+<%= encodeURIComponent(researcher.nome) %>&name=<%= encodeURIComponent(researcher.nome) %>&surname=<%= encodeURIComponent(researcher.cognome) %>" class="btn btn-info mt-2">Visualizza Pubblicazioni</a>
                     </li>
                 <% }) %>
             </ul>

@@ -1,7 +1,8 @@
 require('dotenv').config();
 const express = require('express');
+const bodyParser = require('body-parser');
 const path = require('path');
-
+const searchRoute = require('./searchRoute.js');
 
 const app = express();
 const PORT = process.env.SEARCH_PORT || 8000;
@@ -17,6 +18,12 @@ app.use(express.static('public'));
 
 // Middleware for parsing the request body
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Use the search module
 app.use('/', searchRoute);
+
+// Avvia il server
+app.listen(PORT, () => {
+    console.log(`Server avviato sulla porta ${PORT}`);
+  });
