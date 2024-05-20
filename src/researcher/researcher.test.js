@@ -2,17 +2,25 @@ const researcher = require('./researcher.js');
 
 describe('Testing getCinecaData function', () => {
     let testCases = [
-        { name: 'Francesco_Moscato', expectedResult: [{ "ateneo":"salerno",
-                                                        "cognome":"moscato",
-                                                        "nome": "francesco",
-                                                        "facolta":"",
-                                                        "fascia":"associato",
-                                                        "genere":"m",
-                                                        "sc":"09/h1",
-                                                        "servizio_altro_ateneo":"",
-                                                        "ssd":"ing-inf/05",
-                                                        "struttura":"ingegneria dell'informazione ed elettrica e matematica applicata"}]},
-        { name: 'Pasquale_Caggiano', expectedResult: []}
+        { 
+            name: 'Francesco_Moscato', 
+            expectedResult:[{ 
+                                "ateneo": "SALERNO",
+                                "cognome": "MOSCATO",
+                                "nome": "FRANCESCO",
+                                "facolta": "",
+                                "fascia": "ASSOCIATO",
+                                "genere": "M",
+                                "sc": "09/H1",
+                                "servizio_altro_ateneo": "",
+                                "ssd": "ING-INF/05",
+                                "struttura": "INGEGNERIA DELL'INFORMAZIONE ED ELETTRICA E MATEMATICA APPLICATA"
+                            }]
+        },
+        {  
+            name: 'Pasquale_Caggiano', 
+            expectedResult: []
+        }
     ];
 
     it('should have test cases loaded', () => {

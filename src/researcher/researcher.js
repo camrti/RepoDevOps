@@ -9,7 +9,7 @@ function cleanString(value, isName=false, isSurname=false ) {
     if (isName==true)
         str = str.split(' ')[1];
 
-    return str.toLowerCase();
+    return str.toUpperCase();
 }
 
 async function getCinecaData(name) {
