@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const db = require('./connection').main;
+const db = require('../database/connection').main;
 
 const researcherSchema = new mongoose.Schema({
     fascia: {
