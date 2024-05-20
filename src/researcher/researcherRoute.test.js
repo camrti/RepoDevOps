@@ -10,16 +10,22 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '..', 'views'));
 app.use('/', researcherRoute);
 
-
-
 describe('Testing researcherRoute', () => {
     let testCases = [
         {   
+            desc: "/GET For a Single Researcher",
             name: 'Francesco_Moscato',
+            expectedStatusCode: 200
+        },
+
+        {   
+            desc: "/GET For a Multiple Researcher",
+            name: 'Giovanni_Russo',
             expectedStatusCode: 200
         },
         
         {   
+            desc: "/GET For a Invalid Researcher",
             name: 'Pasquale_Caggiano',
             expectedStatusCode: 404
         }
@@ -27,23 +33,18 @@ describe('Testing researcherRoute', () => {
     ];
 
     test('GET / should render index template', async () => {
+        console.log("Index Test Case");
         const res = await supertest(app)
         .get('/')
         .expect(200);
     });
 
-    test('GET /search should render search template with correct status code', async () => {
-        const res = await supertest(app)
-        .get('/search')
-        .query({ researcherName: testCases[0].name })
-        .expect(testCases[0].expectedStatusCode)
-    });
-
-    test('GET /search should render search template', async () => {
-        const res = await supertest(app)
-        .get('/search')
-        .query({ researcherName: testCases[1].name })
-        .expect(testCases[1].expectedStatusCode);
+    test.each(testCases)('GET /search should render search template with correct status code for %s', async ({ desc, name, expectedStatusCode }) => {
+        console.log("Test Case: ", desc);
+        await supertest(app)
+            .get('/search')
+            .query({ researcherName: name })
+            .expect(expectedStatusCode);
     });
 
 });
