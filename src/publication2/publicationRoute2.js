@@ -16,7 +16,7 @@ router.get('/parse', async (req, res) => {
     if (profileLink) {
       const publications = await publication2.parsePublications(profileLink);
       console.log('Data parsed from Google Scholar by PublicationRoute2');
-      res.render('publications', {
+      res.json({
         researcherName: researcherName,
         publications: publications
       });
