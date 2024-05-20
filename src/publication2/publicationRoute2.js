@@ -14,12 +14,13 @@ router.get('/parse', async (req, res) => {
     const profileLink = await publication2.parseLinkToProfile(searchQuery);
     if (profileLink) {
       const publications = await publication2.parsePublications(profileLink);
+      console.log('Data parsed from Google Scholar by PublicationRoute2');
       res.json({ profileLink, publications });
     } else {
-      res.status(404).send('No link found');
+      res.status(404).send('No publication found');
     }
   } catch (error) {
-    res.status(500).send('Error occurred while parsing the page');
+    res.status(500).send('Error occurred in PublicationRoute2 while parsing the page ');
   }
 });
 
