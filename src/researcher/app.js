@@ -5,7 +5,7 @@ const researcherRoute = require('./researcherRoute.js');
 const app = express();
 const PORT = process.env.RESEARCHER_PORT || 8001;
 
-app.use('/search', researcherRoute);
+app.use('/', researcherRoute);
 
 // Start server
 app.listen(PORT, () => {

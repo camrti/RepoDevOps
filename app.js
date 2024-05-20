@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const researcherRoute = require('./src/researcher/researcherRoute.js');
-const publicationRoute = require('./src/publication/publicationRoute.js');
+const scopusRoute = require('./src/scopus/scopusRoute.js');
 const publicationRoute2 = require('./src/publication2/publicationRoute2.js');
 //const researcher = require('./src/database/researcherModel'); decommentare se si vuole usare la funzione in fondo
 
@@ -26,7 +26,7 @@ app.use(express.static('public'));
 app.use('/', researcherRoute);
 
 // Usa le route definite in publicationRoute
-app.use('/scopus/', publicationRoute);
+app.use('/scopus/', scopusRoute);
 
 // Usa le route definite in publicationRoute
 app.use('/scholar/', publicationRoute2);
