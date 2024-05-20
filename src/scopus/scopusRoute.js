@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 router.use(express.json());
-const publication = require('./publication.js');
+const publication = require('./scopus.js');
 
 router
     .get('/researcher=:name', async (req, res)=>{
