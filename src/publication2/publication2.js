@@ -71,5 +71,3 @@ module.exports = {
   parseLinkToProfile,
   parsePublications
 };
-
-// To test the route http://localhost:3000/scholar/parse?value=BARI+RUSSO+GIOVANNI
