@@ -34,7 +34,7 @@
                         <strong>S.C.:</strong> <%= researcher.sc %><br>
                         <strong>Struttura di afferenza:</strong> <%= researcher.struttura %><br>
                         <strong>Servizio prestato in altro ateneo:</strong> <%= researcher.servizio_altro_ateneo %><br>
-                        <a href="/scholar/parse?value=<%= encodeURIComponent(researcher.ateneo) %>+<%= encodeURIComponent(researcher.cognome) %>+<%= encodeURIComponent(researcher.nome) %>" class="btn btn-info mt-2">Visualizza Pubblicazioni</a>
+                        <a href="/scholar/parse?value=<%= encodeURIComponent(researcher.ateneo) %>+<%= encodeURIComponent(researcher.cognome) %>+<%= encodeURIComponent(researcher.nome) %>&name=<%= encodeURIComponent(researcher.nome) %>&surname=<%= encodeURIComponent(researcher.cognome) %>" class="btn btn-info mt-2">Visualizza Pubblicazioni</a>
                     </li>
                 <% }) %>
             </ul>
