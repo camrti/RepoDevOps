@@ -3,6 +3,7 @@ const researcher = require('./researcher.js');
 describe('Testing getCinecaData function', () => {
     let testCases = [
         { 
+            desc: "Cineca Single Researcher Found",
             name: 'Francesco_Moscato', 
             expectedResult:[{ 
                                 "ateneo": "SALERNO",
@@ -15,48 +16,110 @@ describe('Testing getCinecaData function', () => {
                                 "servizio_altro_ateneo": "",
                                 "ssd": "ING-INF/05",
                                 "struttura": "INGEGNERIA DELL'INFORMAZIONE ED ELETTRICA E MATEMATICA APPLICATA"
-                            }]
+                            }],
+            expectedLength: 1
         },
+        { 
+            desc: "Cineca Multiple Researcher Found",
+            name: 'Giovanni_Russo', 
+            expectedResult:[
+                            {
+                                "fascia": "ORDINARIO",
+                                "cognome": "RUSSO",
+                                "nome": "GIOVANNI",
+                                "genere": "M",
+                                "ateneo": "CATANIA",
+                                "facolta": "",
+                                "ssd": "MAT/08",
+                                "sc": "01/A5",
+                                "struttura": "MATEMATICA E INFORMATICA",
+                                "servizio_altro_ateneo": ""
+                            },
+                            {
+                                "fascia": "ASSOCIATO",
+                                "cognome": "RUSSO",
+                                "nome": "GIOVANNI",
+                                "genere": "M",
+                                "ateneo": "SALERNO",
+                                "facolta": "",
+                                "ssd": "ING-INF/04",
+                                "sc": "09/G1",
+                                "struttura": "INGEGNERIA DELL'INFORMAZIONE ED ELETTRICA E MATEMATICA APPLICATA",
+                                "servizio_altro_ateneo": ""
+                            },
+                            {
+                                "fascia": "STRAORDINARIO TEMPO DETERMINATO",
+                                "cognome": "RUSSO",
+                                "nome": "GIOVANNI",
+                                "genere": "M",
+                                "ateneo": "UNIV. TELEMATICA \"E-CAMPUS\"",
+                                "facolta": "INGEGNERIA",
+                                "ssd": "ICAR/17",
+                                "sc": "08/E1",
+                                "struttura": "NON DISPONIBILE",
+                                "servizio_altro_ateneo": ""
+                            },
+                            {
+                                "fascia": "ASSOCIATO",
+                                "cognome": "RUSSO",
+                                "nome": "GIOVANNI",
+                                "genere": "M",
+                                "ateneo": "BARI",
+                                "facolta": "",
+                                "ssd": "AGR/10",
+                                "sc": "07/C1",
+                                "struttura": "SCIENZE DEL SUOLO, DELLA PIANTA E DEGLI ALIMENTI (DI.S.S.P.A.)",
+                                "servizio_altro_ateneo": ""
+                            }
+                            ],
+            expectedLength: 4
+        },       
         {  
+            desc: "Cineca No Researcher Found",
             name: 'Pasquale_Caggiano', 
-            expectedResult: []
+            expectedResult: [],
+            expectedLength: 0
         }
     ];
 
-    it('should have test cases loaded', () => {
-        expect(testCases.length).toBeGreaterThan(0);
+    test.each(testCases)('should return the correct number of reasearcher and the correct information for %s', async ({ desc, name, expectedResult, expectedLength }) => {
+        console.log("Test Case: ", desc);
+        
+        const data = await researcher.getCinecaData(name);
+        const minLength = Math.min(data.length, expectedResult.length);
+
+        expect(data.length).toEqual(expectedLength);
+
+        for (let i = 0; i < minLength; i++) {
+            expect(data[i].ateneo).toEqual(expectedResult[i].ateneo);
+            expect(data[i].cognome).toEqual(expectedResult[i].cognome);
+            expect(data[i].nome).toEqual(expectedResult[i].nome);
+            expect(data[i].facolta).toEqual(expectedResult[i].facolta);
+            expect(data[i].genere).toEqual(expectedResult[i].genere);
+            expect(data[i].sc).toEqual(expectedResult[i].sc);
+            expect(data[i].servizio_altro_ateneo).toEqual(expectedResult[i].servizio_altro_ateneo);
+            expect(data[i].ssd).toEqual(expectedResult[i].ssd);
+            expect(data[i].struttura).toEqual(expectedResult[i].struttura);
+        }
     });
 
-    it(`should return the Francesco Moscato information`, async () => {
-        const data = await researcher.getCinecaData(testCases[0].name);
-        expect(data[0].ateneo).toEqual(testCases[0].expectedResult[0].ateneo);
-        expect(data[0].cognome).toEqual(testCases[0].expectedResult[0].cognome);
-        expect(data[0].nome).toEqual(testCases[0].expectedResult[0].nome);
-        expect(data[0].facolta).toEqual(testCases[0].expectedResult[0].facolta);
-        expect(data[0].genere).toEqual(testCases[0].expectedResult[0].genere);
-        expect(data[0].sc).toEqual(testCases[0].expectedResult[0].sc);
-        expect(data[0].servizio_altro_ateneo).toEqual(testCases[0].expectedResult[0].servizio_altro_ateneo);
-        expect(data[0].ssd).toEqual(testCases[0].expectedResult[0].ssd);
-        expect(data[0].struttura).toEqual(testCases[0].expectedResult[0].struttura);
-    });
+    test.each(testCases)(`should return the correct type for each researcher field`, async ({ desc, name, expectedResult, expectedLength }) => {
+        console.log("Test Case Type: ", desc);
 
-    it(`should return the correct type for each researcher field`, async () => {
-        const data = await researcher.getCinecaData(testCases[0].name);
-        expect(typeof data[0].ateneo).toBe('string');
-        expect(typeof data[0].ateneo).toBe('string');
-        expect(typeof data[0].cognome).toBe('string');
-        expect(typeof data[0].nome).toBe('string');
-        expect(typeof data[0].facolta).toBe('string');
-        expect(typeof data[0].genere).toBe('string');
-        expect(typeof data[0].sc).toBe('string');
-        expect(typeof data[0].servizio_altro_ateneo).toBe('string');
-        expect(typeof data[0].ssd).toBe('string');
-        expect(typeof data[0].struttura).toBe('string');
-    });
+        const data = await researcher.getCinecaData(name);
+        const minLength = Math.min(data.length, expectedResult.length);
 
-    it(`should return an empty object`, async () => {
-        const data = await researcher.getCinecaData(testCases[1].name);
-        expect(data).toEqual(testCases[1].expectedResult);
+        for (let i = 0; i < minLength; i++) {
+            expect(typeof data[i].ateneo).toBe('string');
+            expect(typeof data[i].cognome).toBe('string');
+            expect(typeof data[i].nome).toBe('string');
+            expect(typeof data[i].facolta).toBe('string');
+            expect(typeof data[i].genere).toBe('string');
+            expect(typeof data[i].sc).toBe('string');
+            expect(typeof data[i].servizio_altro_ateneo).toBe('string');
+            expect(typeof data[i].ssd).toBe('string');
+            expect(typeof data[i].struttura).toBe('string');
+        }
     });
     
 });
