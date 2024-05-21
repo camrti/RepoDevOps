@@ -1,6 +1,10 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 
+const cleanText = (text) => {
+  return text.replace(/[^\x00-\x7F]/g, '');
+};
+
 async function parseLinkToProfile(searchQuery) {
   try {
     // Construct the URL with the search query
@@ -42,11 +46,11 @@ async function parsePublications(profileLink) {
 
     // Parse the table rows in the publication list
     $('#gsc_a_b .gsc_a_tr').each((index, element) => {
-      const title = $(element).find('.gsc_a_at').text() || 'N/A';
-      const authors = $(element).find('.gs_gray').first().text() || 'N/A';
-      const paperType = $(element).find('.gs_gray').eq(1).text()|| 'N/A'; // LE ULTIME 4 LETTERE RIPETE L'ANNO DI PUBBLICAZIONE 
-      const year = $(element).find('.gsc_a_y .gsc_a_h').text() || 'N/A';
-      const citationCount = $(element).find('.gsc_a_c a').text() || '0';
+      const title = cleanText($(element).find('.gsc_a_at').text() || 'N/A');
+      const authors = cleanText($(element).find('.gs_gray').first().text() || 'N/A');
+      const paperType = cleanText($(element).find('.gs_gray').eq(1).text() || 'N/A');
+      const year = cleanText($(element).find('.gsc_a_y .gsc_a_h').text() || 'N/A');
+      const citationCount = cleanText($(element).find('.gsc_a_c a').text() || '0');
       const publicationLink = $(element).find('.gsc_a_at').attr('href');
       const fullPublicationLink = publicationLink ? `https://scholar.google.it${publicationLink}` : 'N/A';
         
