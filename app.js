@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const researcherRoute = require('./src/researcher/researcherRoute.js');
 const scopusRoute = require('./src/scopus/scopusRoute.js');
-const publicationRoute2 = require('./src/publication2/publicationRoute2.js');
+const publicationRoute = require('./src/publication/publicationRoute.js');
 //const researcher = require('./src/database/researcherModel'); decommentare se si vuole usare la funzione in fondo
 
 const app = express();
@@ -29,7 +29,7 @@ app.use('/', researcherRoute);
 app.use('/scopus/', scopusRoute);
 
 // Usa le route definite in publicationRoute
-app.use('/scholar/', publicationRoute2);
+app.use('/scholar/', publicationRoute);
 
 // Avvia il server
 app.listen(PORT, () => {
