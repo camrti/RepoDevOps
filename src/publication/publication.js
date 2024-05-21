@@ -22,7 +22,7 @@ async function parseLinkToProfile(searchQuery) {
     // Get the href attribute of the a element within the h3
     const link = h3Element.find('a').attr('href');
     
-    console.log('Link parsed from Google Scholar by Publication');
+    console.log('Link parsed from Google Scholar by Publication2');
     // Return the link
     return link ? `https://scholar.google.it${link}` : null;
   } catch (error) {
@@ -63,7 +63,7 @@ async function parsePublications(profileLink) {
         publicationLink: fullPublicationLink,
       });
     });
-    console.log('Publications parsed from Google Scholar by Publication')
+    console.log('Publications parsed from Google Scholar by Publication2')
     return publications;
   } catch (error) {
     console.error('Error (parsePublications) fetching or parsing the page:', error);
