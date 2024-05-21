@@ -14,7 +14,8 @@ app.set('views', path.join(__dirname, '..', 'views'));
 app.set('view engine', 'ejs');
 
 // Serve static file of the public directory
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, '..','..', 'public')));
+
 
 // Middleware for parsing the request body
 app.use(bodyParser.json());

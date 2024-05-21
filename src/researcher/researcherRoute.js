@@ -16,7 +16,7 @@ router.get('/search', async (req, res) => {
       res.status(200);
     
     res.json(researchers);    
-    console.log('Data from Cineca by ResearcherRoute');
+    console.log('Data from getCinecaData by ResearcherRoute');
     return;
   } catch (error) {
       console.error('Error:', error);

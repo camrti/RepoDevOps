@@ -1,5 +1,5 @@
 const express = require('express');
-const publication2 = require('./publication2.js');
+const publication2 = require('./publication.js');
 const router = express.Router();
 
 router.get('/parse', async (req, res) => {
@@ -15,7 +15,7 @@ router.get('/parse', async (req, res) => {
     const profileLink = await publication2.parseLinkToProfile(searchQuery);
     if (profileLink) {
       const publications = await publication2.parsePublications(profileLink);
-      console.log('Data parsed from Google Scholar by PublicationRoute2');
+      console.log('Publications Data retrieved from parsePublications by PublicationRoute');
       res.json({
         researcherName: researcherName,
         publications: publications
