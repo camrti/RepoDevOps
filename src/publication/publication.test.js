@@ -15,7 +15,7 @@ describe('Testing parseLinkToProfile function', () => {
             expectedResult: null
         }
     ])('should return the correct profile link for $desc', async ({ desc, searchQuery, expectedResult }) => {
-        const result = await publication2.parseLinkToProfile(searchQuery);
+        const result = await publication.parseLinkToProfile(searchQuery);
         expect(result).toEqual(expectedResult);
     });
 })
