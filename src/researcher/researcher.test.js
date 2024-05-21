@@ -110,6 +110,23 @@ describe('Testing getCinecaData function', () => {
                             ],
             expectedLength: 2
         },
+        {
+            desc: "Cineca Search Researcher Only By Surname",
+            name: 'Del Vento',
+            expectedResult:[{
+                                "fascia": "ORDINARIO",
+                                "ateneo": "PAVIA",
+                                "cognome": "DEL VENTO",
+                                "nome": "CHRISTIAN",
+                                "genere": "M",
+                                "facolta": "",
+                                "ssd": "L-FIL-LET/10",
+                                "sc": "10/F1",
+                                "struttura": "STUDI UMANISTICI",
+                                "servizio_altro_ateneo": ""
+                            }],
+            expectedLength: 1
+        }
     ];
 
     test.each(testCases)('should return the correct number of reasearcher and the correct information for %s', async ({ desc, name, expectedResult, expectedLength }) => {
