@@ -24,7 +24,7 @@ router.get('/parse', async (req, res) => {
       res.status(404).send('No publication found');
     }
   } catch (error) {
-    res.status(500).send('Error occurred in PublicationRoute2 while parsing the page ');
+    res.status(500).send('Error occurred in PublicationRoute while parsing the page ');
   }
 });
 
