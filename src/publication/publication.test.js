@@ -1,5 +1,5 @@
 
-const publication2 = require('./publication');
+const publication = require('./publication');
 
 
 describe('Testing parseLinkToProfile function', () => {
