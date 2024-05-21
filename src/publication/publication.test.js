@@ -190,7 +190,7 @@ describe('Testing parsePublications function', () => {
             expectedLength: 20
         },
     ])('should return the correct number of publications and the correct information for $desc', async ({ desc, profileLink, expectedResult, expectedLength }) => {
-        const result = await publication2.parsePublications(profileLink);
+        const result = await publication.parsePublications(profileLink);
         
         expect(result.length).toBe(expectedResult.length);
         for (let i = 0; i < result.length; i++) {
