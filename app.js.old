@@ -7,7 +7,7 @@ const publicationRoute = require('./src/publication/publicationRoute.js');
 //const researcher = require('./src/database/researcherModel'); decommentare se si vuole usare la funzione in fondo
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 // Set the views directory
 app.set('views', 'src/views');
@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 
 // Serve i file statici dalla directory 'public'
 app.use(express.static('public'));
-
+process.env
 // Usa le route definite in researcherRoute
 app.use('/', researcherRoute);
 
