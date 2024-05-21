@@ -1,5 +1,5 @@
 const express = require('express');
-const publication2 = require('./publication.js');
+const publication = require('./publication.js');
 const router = express.Router();
 
 router.get('/parse', async (req, res) => {
@@ -12,9 +12,9 @@ router.get('/parse', async (req, res) => {
   }
 
   try {
-    const profileLink = await publication2.parseLinkToProfile(searchQuery);
+    const profileLink = await publication.parseLinkToProfile(searchQuery);
     if (profileLink) {
-      const publications = await publication2.parsePublications(profileLink);
+      const publications = await publication.parsePublications(profileLink);
       console.log('Publications Data retrieved from parsePublications by PublicationRoute');
       res.json({
         researcherName: researcherName,
