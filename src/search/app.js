@@ -26,5 +26,5 @@ app.use('/', searchRoute);
 
 // Avvia il server
 app.listen(PORT, () => {
-    console.log(`Server avviato sulla porta ${PORT}`);
+    console.log(`\nSearch service avviato sulla porta ${PORT}`);
   });
