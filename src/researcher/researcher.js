@@ -6,10 +6,11 @@ function cleanString(value, isName=false, isSurname=false ) {
 
     if (isSurname==true)
         str = str.split(' ')[0];
-    if (isName==true)
-        str = str.split(' ')[1];
 
-    return str.toUpperCase();
+    if (isName==true)
+        str = str.split(' ').slice(1).join(" ");
+
+    return str.toUpperCase(); 
 }
 
 async function getCinecaData(name) {
