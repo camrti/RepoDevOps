@@ -1,4 +1,5 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: require('find-config')('.env') })
 const express = require('express');
 const publicationRoute2 = require('./publicationRoute.js');
 
