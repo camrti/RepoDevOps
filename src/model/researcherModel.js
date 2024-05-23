@@ -34,7 +34,7 @@ const researcherSchema = new mongoose.Schema({
     },
     pubblicazioni: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Pubblication',
+        ref: 'Publication',
     }]
 });
 
