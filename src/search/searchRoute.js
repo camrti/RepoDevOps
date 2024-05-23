@@ -33,15 +33,16 @@ router.get('/search_researchers', async (req, res) => {
 
 // Route to search researchers
 router.get('/search_publications', async (req, res) => {
-    const researcherName = req.query.name + ' ' + req.query.surname;
-    const searchQuery = req.query.value;
+    const researcherName = req.query.name;
+    const researcherSurname = req.query.surname;
+    const researcherAteneo = req.query.ateneo; 
     try {
     let data = [];
     // Try to retrieve data from DB
     // data = search.getPublicationFromDB(researcherName)
     
     if (data.length === 0){
-        data = await search.getPublications(searchQuery)
+        data = await search.getPublications(researcherAteneo, researcherSurname, researcherName)
     }
 
     // If no data found
@@ -53,6 +54,7 @@ router.get('/search_publications', async (req, res) => {
     res.status(200);
     res.render('publications',{ 
       researcherName: researcherName, 
+      researcherSurname: researcherSurname,
       publications: data.publications
     });
     console.log('Publication Data retrieved from getPublication by SearchRoute')      

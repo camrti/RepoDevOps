@@ -40,7 +40,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center mb-4">Publications of <%= researcherName %></h1>
+        <h1 class="text-center mb-4">Publications of <%= researcherName + " " + researcherSurname%></h1>
         <div id="publications">
             <% if (publications.length > 0) { %>
                 <% publications.forEach(publication => { %>
