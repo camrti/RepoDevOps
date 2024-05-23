@@ -2,46 +2,40 @@ const mongoose = require('mongoose');
 const db = require('../database/connection').main;
 
 const researcherSchema = new mongoose.Schema({
-    fascia: {
+    grade: {
         type: String,
-        required: true
     },
-    cognome : {
+    lastName: {
         type: String,
-        required: true
     },
-    nome: {
+    firstName: {
         type: String,
-        required: true
     },
-    genere: {
+    gender: {
         type: String,
-        required: true
     },
-    ateneo: {
+    university: {
         type: String,
-        required: true
     },
-    facolta: {
+    faculty: {
         type: String,
-        required: true
     },
     ssd: {
         type: String,
-        required: true
     },
     sc: {
         type: String,
-        required: true
     },
-    struttura: {
+    structure: {
         type: String,
-        required: true
     },
-    servizio_altro_ateneo: {
+    otherUniversityService: {
         type: String,
-        required: true
-    }
+    },
+    publications: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Publication',
+    }]
 });
 
 const Researcher = mongoose.model('Researcher', researcherSchema);
