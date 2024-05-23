@@ -16,11 +16,11 @@ describe('Testing publicationRoute', () => {
             desc: "/GET with missing 'value' parameter",
             query: { name: 'Giovanni', surname: 'Russo' },
             expectedStatusCode: 400,
-            expectedResponse: 'Missing search query parameter "value"'
+            expectedResponse: 'Missing a query parameter'
         },
         {   
             desc: "/GET with no profile link found",
-            query: { name: 'Ettore', surname: 'Napoli', value: 'someSearchValue' },
+            query: { ateneo: 'Londra', name: 'Ettore', surname: 'Napoli'},
             expectedStatusCode: 404,
             expectedResponse: 'No publication found'
         }
@@ -31,6 +31,7 @@ describe('Testing publicationRoute', () => {
         await supertest(app)
             .get('/parse')
             .query(query)
-            .expect(expectedStatusCode, expectedResponse);
+            .expect(expectedResponse)
+            .expect(expectedStatusCode)   
     });
 });
