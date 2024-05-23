@@ -14,12 +14,10 @@ router.get('/', async (req, res) => {
 router.get('/search_researchers', async (req, res) => {
   const { researcherName } = req.query;
   try {
-    let data = [];
-    let researchers;
+    let researchers = [];
     // Try to retrieve data from DB
-    // data = search.getResearcherFromDB(researcherName)
-    
-    if (data.length === 0){
+    //researchers = await search.getResearcherFromDB(researcherName);
+    if (researchers.length === 0){
         researchers = await search.getResearchers(researcherName)
     }
     res.status(200);

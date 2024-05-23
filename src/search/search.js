@@ -1,6 +1,6 @@
 // the client app must interact only with the search module, see the architecture diagram
 const axios = require('axios');
-const cheerio = require('cheerio');
+//const Researcher = require('../model/researcherModel');
 
 // Function to get the data from ReseracherRoute
 async function getResearchers(researcherName) {
@@ -28,13 +28,22 @@ async function getPublications(researcherAteneo, researcherSurname, researcherNa
     return {};
   }
 }
-
-
-
+/*DA FINIRE
+async function getResearcherFromDB(researcherName) {
+  const researchers = await Researcher.find({
+    $or: [
+        { nome: new RegExp(researcherName, 'i') },
+        { cognome: new RegExp(researcherName, 'i') }
+      ]
+    });
+    return researchers;
+}
+*/
 // Function to get the data from Database
 // getPublicationFromDB(researcherName) TO WRITE
 
 module.exports = {
   getResearchers,
-  getPublications
+  getPublications,
+  //getResearcherFromDB
 }; 
