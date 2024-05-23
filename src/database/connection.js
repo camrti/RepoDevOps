@@ -2,8 +2,8 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 
-function connect(dbName) {
-    const uri = process.env.MONGO_URI + dbName;
+function connect(dbName, dbUri) {
+    const uri = dbUri + dbName;
     mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
     const connection = mongoose.connection;
     connection.once('open', () => {
@@ -14,8 +14,8 @@ function connect(dbName) {
 
 
 const dbName = process.env.MONGO_DB;
-console.log(dbName);
-const main = connect(dbName);
+const dbUri = process.env.MONGO_URI
+const main = connect(dbName, dbUri);
 module.exports = {
     connect,
     main
