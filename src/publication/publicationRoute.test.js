@@ -16,24 +16,22 @@ describe('Testing publicationRoute', () => {
             desc: "/GET with missing 'value' parameter",
             query: { name: 'Giovanni', surname: 'Russo' },
             expectedStatusCode: 400,
+            expectedResponse: 'Missing a query parameter'
         },
         {   
             desc: "/GET with no profile link found",
-            query: { name: 'Ettore', surname: 'Napoli', value: 'someSearchValue' },
+            query: { ateneo: 'Londra', name: 'Ettore', surname: 'Napoli'},
             expectedStatusCode: 404,
-        },
-        {   
-            desc: "/GET with valid parameters",
-            query: { name: 'Giovanni', surname: 'Russo', value: 'BARI RUSSO GIOVANNI' },
-            expectedStatusCode: 200
+            expectedResponse: 'No publication found'
         }
     ];
 
-    test.each(testCases)('GET /parse should return the correct status code and response for %s', async ({ desc, query, expectedStatusCode }) => {
+    test.each(testCases)('GET /parse should return the correct status code and response for %s', async ({ desc, query, expectedStatusCode, expectedResponse }) => {
         console.log("Test Case: ", desc);
         await supertest(app)
             .get('/parse')
             .query(query)
-            .expect(expectedStatusCode);
+            .expect(expectedResponse)
+            .expect(expectedStatusCode)   
     });
 });

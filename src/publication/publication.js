@@ -1,15 +1,30 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 
+// Create a map to store the Ateneo translation
+const translationMap = new Map();
+
+translationMap.set('NAPOLI', 'NAPLES');
+
 const cleanText = (text) => {
   return text.replace(/[^\x00-\x7F]/g, '');
 };
+
+function cleanAndExtractLastWord(input) {
+  // Remove all double quotes from the string
+  const cleanedString = input.replace(/"/g, '');
+
+  // Split the cleaned string into an array of words
+  const words = cleanedString.split(/\s+/);
+
+  // Return the last word
+  return words[words.length - 1];
+}
 
 async function parseLinkToProfile(searchQuery) {
   try {
     // Construct the URL with the search query
     const url = `https://scholar.google.it/citations?hl=it&view_op=search_authors&mauthors=${encodeURIComponent(searchQuery)}&btnG=`;
-
     // Fetch the HTML of the page
     const { data } = await axios.get(url);
 
@@ -73,5 +88,7 @@ async function parsePublications(profileLink) {
 
 module.exports = {
   parseLinkToProfile,
-  parsePublications
+  parsePublications,
+  cleanAndExtractLastWord,
+  translationMap
 };
