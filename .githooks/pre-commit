@@ -27,6 +27,7 @@ if ! npm test; then
     git stash pop -q
 
     echo "Unit tests failed."
+    exit 1
 fi
 
 # Optionally: Unstash changes after tests pass
