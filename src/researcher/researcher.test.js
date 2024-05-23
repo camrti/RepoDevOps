@@ -79,6 +79,53 @@ describe('Testing getCinecaData function', () => {
             name: 'Pasquale_Caggiano', 
             expectedResult: [],
             expectedLength: 0
+        },
+        { 
+            desc: "Cineca Search Researcher Only By Name",
+            name: 'Genoveffa', 
+            expectedResult:[{ 
+                                "fascia": "ASSOCIATO CONFERMATO",
+                                "ateneo": "ROMA \"LA SAPIENZA\"",
+                                "cognome": "BALDUCCI",
+                                "nome": "GENOVEFFA",
+                                "genere": "F",
+                                "facolta": "",
+                                "ssd": "MED/18",
+                                "sc": "06/C1",
+                                "struttura": "SCIENZE MEDICO-CHIRURGICHE E DI MEDICINA TRASLAZIONALE",
+                                "servizio_altro_ateneo": ""
+                            },
+                            {
+                                "fascia": "ORDINARIO",
+                                "ateneo": "SALERNO",
+                                "cognome": "TORTORA",
+                                "nome": "GENOVEFFA",
+                                "genere": "F",
+                                "facolta": "",
+                                "ssd": "INF/01",
+                                "sc": "01/B1",
+                                "struttura": "INFORMATICA",
+                                "servizio_altro_ateneo": ""
+                            }
+                            ],
+            expectedLength: 2
+        },
+        {
+            desc: "Cineca Search Researcher Only By Surname",
+            name: 'Del Vento',
+            expectedResult:[{
+                                "fascia": "ORDINARIO",
+                                "ateneo": "PAVIA",
+                                "cognome": "DEL VENTO",
+                                "nome": "CHRISTIAN",
+                                "genere": "M",
+                                "facolta": "",
+                                "ssd": "L-FIL-LET/10",
+                                "sc": "10/F1",
+                                "struttura": "STUDI UMANISTICI",
+                                "servizio_altro_ateneo": ""
+                            }],
+            expectedLength: 1
         }
     ];
 
