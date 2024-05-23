@@ -6,10 +6,10 @@ const publicationSchema = new mongoose.Schema({
         type: String
     },
     authors: [{
-        authorName: {
+        firstName: {
             type: String
         },
-        authorSurName: {
+        lastName: {
             type: String
         },
         id: {
