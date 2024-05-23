@@ -1,58 +1,92 @@
-const https = require('https');
+const axios = require('axios');
+require('dotenv').config({ path: require('find-config')('.env') })
 
 const apiKey = process.env.API_KEY_SCOPUS;
 
-function getScopusData(researcherName, researcherLastName){
-    return new Promise((resolve, reject) => {
-        https.request({
-            hostname: "api.elsevier.com",
-            path: '/content/search/author?query=authlast('+researcherLastName+')%20and%20authfirst('+researcherName+')&apiKey='+apiKey,
-            method: 'GET',
-            headers: {
-                Accept: 'application/json'
-            }
-        }, res => {
-            let data = '';
-            res.on('data', chunk => {
-                data += chunk;
-            });
-            res.on('end', () => {
-                console.log(data);
-                resolve(JSON.parse(data));
-                console.log('Data parsed from Scopus by Publication');
-            });
-        }).on('error', err => {
-            reject(err);
-        }).end();
-    });
-}
+const getAuthorId = async (authorName, authorSurname, affiliation) => {
+    const firstName = authorName
+    const lastName = authorSurname
+    const url = `https://api.elsevier.com/content/search/author?query=authlast(${lastName}) AND authfirst(${firstName}) AND affil(${affiliation})`;
 
-function getPublication(researcherId){
-    return new Promise((resolve, reject) => {
-        https.request({
-            hostname: "api.elsevier.com",
-            path: '/content/search/scopus?query=authid('+researcherId+')&apiKey='+apiKey,
-            method: 'GET',
-            headers: {
-                Accept: 'application/json'
-            }
-        }, res => {
-            let data = '';
-            res.on('data', chunk => {
-                data += chunk;
-            });
-            res.on('end', () => {
-                console.log(data);
-                resolve(JSON.parse(data));
-                console.log('Publication parsed from Scopus by Publication');
-            });
-        }).on('error', err => {
-            reject(err);
-        }).end();
-    });
-}
+    const headers = {
+        'Accept': 'application/json',
+        'X-ELS-APIKey': apiKey,
+    };
+
+    try {
+        const response = await axios.get(url, { headers });
+        const data = response.data;
+
+        if (data['search-results'].entry) {
+            const authorId = data['search-results'].entry[0]['dc:identifier'].split(':').pop();
+            return authorId;
+        } else {
+            throw new Error('Author not found');
+        }
+    } catch (error) {
+        console.error('Error retrieving author ID:', error.message);
+        throw error;
+    }
+};
+
+const getAuthorDetails = async (authorId) => {
+    const url = `https://api.elsevier.com/content/author/author_id/${authorId}`;
+    const headers = {
+        'Accept': 'application/json',
+        'X-ELS-APIKey': apiKey,
+    };
+
+    try {
+        const response = await axios.get(url, { headers });
+        const authorData = response.data['author-retrieval-response'][0];
+
+        const preferredName = authorData['author-profile']['preferred-name'];
+        const affiliation = authorData['author-profile']['affiliation-current']['affiliation']['ip-doc'];
+        const documents = authorData['coredata'];
+
+        const surname = (preferredName && preferredName['surname']) || undefined ;
+        const name = (preferredName && preferredName['given-name']) || undefined;
+        const uni_and_dep = (affiliation && affiliation['afdispname']) || undefined;
+        const numberOfPublications = (documents && documents['document-count']) || undefined;
+
+        return {
+            surname,
+            name,
+            uni_and_dep,
+            numberOfPublications,
+            authorId
+        };
+    } catch (error) {
+        console.error('Error retrieving author details:', error.message);
+        throw error;
+    }
+};
+
+// const getAuthorPublications = async (authorId) => {
+//     const url = `https://api.elsevier.com/content/search/scopus?query=au-id(${authorId})`;
+//     const headers = {
+//         'Accept': 'application/json',
+//         'X-ELS-APIKey': apiKey,
+//     };
+
+//     try {
+//         const response = await axios.get(url, { headers });
+//         const publicationData = response.data['search-results'];
+//         const publications = publicationData.entry || [];
+//         const publicationList = publications.map(pub => ({
+//             title: pub['dc:title'] || 'Title not available',
+//             url: pub['prism:url'] || 'URL not available'
+//         }));
+
+//         return publicationList;
+//     } catch (error) {
+//         console.error('Error retrieving author publications:', error.message);
+//         throw error;
+//     }
+// };
 
 module.exports = {
-    getScopusData,
-    getPublication
-}
+    getAuthorId,
+    getAuthorDetails,
+    // getAuthorPublications
+};
