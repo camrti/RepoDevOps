@@ -3,6 +3,7 @@ const cheerio = require('cheerio');
 
 function cleanField(field) {
     let str = field.text().replace(/\s+/g, ' ').trim();
+    if (str === 'Non disponibile') return "";
     return str.toUpperCase(); 
 }
 
@@ -45,16 +46,16 @@ async function getCinecaData(name) {
                 const cells = $(row).find('td');
                 let fullName = cleanNameSurnameField(cells.eq(1))
                 data.push({
-                    fascia: cleanField(cells.eq(0)),
-                    cognome: fullName.surname,
-                    nome: fullName.name,
-                    genere: cleanField(cells.eq(2)),
-                    ateneo: cleanField(cells.eq(3)),
-                    facolta: cleanField(cells.eq(4)),
+                    grade: cleanField(cells.eq(0)),
+                    lastName: fullName.surname,
+                    firstName: fullName.name,
+                    gender: cleanField(cells.eq(2)),
+                    university: cleanField(cells.eq(3)),
+                    faculty: cleanField(cells.eq(4)),
                     ssd: cleanField(cells.eq(5)),
                     sc: cleanField(cells.eq(6)),
-                    struttura: cleanField(cells.eq(7)),
-                    servizio_altro_ateneo: cleanField(cells.eq(8))
+                    structure: cleanField(cells.eq(7)),
+                    otherUniversityService: cleanField(cells.eq(8))
                 });
             }
         });
