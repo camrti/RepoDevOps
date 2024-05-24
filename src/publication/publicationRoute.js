@@ -26,10 +26,12 @@ router.get('/parse', async (req, res) => {
     }
 
     if (profileLink) {
-      const publications = await publication.parsePublications(profileLink);
+      const { publications, hIndex, citations } = await publication.parsePublications(profileLink);
       console.log('Publications Data retrieved from parsePublications by PublicationRoute');
       res.json({
         researcherName: researcherName,
+        hIndex : hIndex,
+        citations: citations,
         publications: publications
       });
     } else {
