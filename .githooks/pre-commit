@@ -6,11 +6,13 @@ exec 1>&2
 # Check if npm is installed
 if ! command -v npm >/dev/null 2>&1; then
     echo "npm is not installed. Please install npm to run unit tests."
+    exit 1
 fi
 
 # Check if package.json exists
 if [ ! -f package.json ]; then
     echo "package.json not found. Ensure you are in the root directory of a Node.js project."
+    exit 1
 fi
 
 # Optionally: Stash unstaged changes before running tests
@@ -27,6 +29,7 @@ if ! npm test; then
     git stash pop -q
 
     echo "Unit tests failed."
+    exit 1
 fi
 
 # Optionally: Unstash changes after tests pass
