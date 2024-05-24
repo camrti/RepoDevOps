@@ -16,10 +16,13 @@ router.get('/search_researchers', async (req, res) => {
   try {
     let researchers = [];
     // Try to retrieve data from DB
-    //researchers = await search.getResearcherFromDB(researcherName);
+    researchers = await search.getResearcherFromDB(researcherName);
+
     if (researchers.length === 0){
-        researchers = await search.getResearchers(researcherName)
+        researchers = await search.getResearchers(researcherName);
+        researchers = await search.writeResearcherToDB(researchers);
     }
+    
     res.status(200);
     res.render('search', {researchers});
     console.log('Researchers Data retrieved from getReserarchers by SearchRoute')    
@@ -31,6 +34,7 @@ router.get('/search_researchers', async (req, res) => {
 
 // Route to search publication
 router.get('/search_publications', async (req, res) => {
+    const researcherID = req.query.id;
     const researcherName = req.query.name;
     const researcherSurname = req.query.surname;
     const researcherAteneo = req.query.uni; 
@@ -40,7 +44,7 @@ router.get('/search_publications', async (req, res) => {
     try {
     let data = [];
     // Try to retrieve data from DB
-    // data = search.getPublicationFromDB(researcherName)
+    //data = search.getPublicationFromDB(researcherID)
     
     if (data.length === 0){
         data = await search.getPublications(researcherAteneo, researcherSurname, researcherName)
@@ -66,7 +70,8 @@ router.get('/search_publications', async (req, res) => {
         return;
     }
 
-
+    // C'è un po di confusione tra quali info sono di researcher e quali di publication dobbiamo gestire meglio la cosa
+    // anche per i modellli nel DB
     res.status(200);
     res.render('publications',{
       researcherName: researcherName.charAt(0).toUpperCase() + researcherName.slice(1).toLowerCase(), 
