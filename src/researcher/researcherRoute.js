@@ -7,7 +7,7 @@ const {query} = require('express-validator');
 
 // Route to search researchers
 router.get('/search',[
-  query('researcherName').escape()
+  query('researcherName')
 ], async (req, res) => {
   
   const { researcherName } = req.query;

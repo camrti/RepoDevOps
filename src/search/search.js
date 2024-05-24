@@ -28,6 +28,23 @@ async function getPublications(researcherAteneo, researcherSurname, researcherNa
     return {};
   }
 }
+
+
+// Function to get the data from ScopusRoute
+async function getScopusInfo(researcherAteneo, researcherSurname, researcherName) {
+  try {
+    // Get the data from Cineca
+    const response = await axios.get(`http://localhost:8003/scopus?ateneo=${encodeURIComponent(researcherAteneo)}&surname=${encodeURIComponent(researcherSurname)}&name=${encodeURIComponent(researcherName)}`);
+    console.log('Data retrieved from Scopus Service by Search');
+    return response.data;
+  } catch (error) {
+    console.error('Error:', error);
+    return {};
+  }
+}
+
+
+
 //DA FINIRE
 // async function getResearcherFromDB(researcherName) {
 //   const researchers = await Researcher.find({
@@ -45,5 +62,6 @@ async function getPublications(researcherAteneo, researcherSurname, researcherNa
 module.exports = {
   getResearchers,
   getPublications,
+  getScopusInfo
   //getResearcherFromDB
 }; 

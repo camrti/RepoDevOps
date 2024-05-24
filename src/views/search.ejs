@@ -34,7 +34,7 @@
                         <!-- <strong>S.C.:</strong> <%= researcher.sc %><br> -->
                         <!-- <strong>Struttura di afferenza:</strong> <%= researcher.structure %><br> -->
                         <!-- <strong>Servizio prestato in altro ateneo:</strong> <%= researcher.otherUniversityService %><br> -->
-                        <a href="/search_publications?ateneo=<%= encodeURIComponent(researcher.ateneo) %>&name=<%= encodeURIComponent(researcher.nome) %>&surname=<%= encodeURIComponent(researcher.cognome) %>" class="btn btn-info mt-2">Visualizza Pubblicazioni</a>
+                        <a href="/search_publications?uni=<%= encodeURIComponent(researcher.university) %>&name=<%= encodeURIComponent(researcher.firstName) %>&surname=<%= encodeURIComponent(researcher.lastName) %>&grade=<%= encodeURIComponent(researcher.grade) %>&ssd=<%= encodeURIComponent(researcher.ssd) %>&uni_and_dep=<%= encodeURIComponent(researcher.university + ', ' + researcher.faculty + ' ' + researcher.structure) %>" class="btn btn-info mt-2">Visualizza Pubblicazioni</a>
                     </li>
                 <% }) %>
             </ul>

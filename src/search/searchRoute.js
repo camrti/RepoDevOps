@@ -33,7 +33,10 @@ router.get('/search_researchers', async (req, res) => {
 router.get('/search_publications', async (req, res) => {
     const researcherName = req.query.name;
     const researcherSurname = req.query.surname;
-    const researcherAteneo = req.query.ateneo; 
+    const researcherAteneo = req.query.uni; 
+    const researcherSSD = req.query.ssd;
+    const researcherGrade = req.query.grade;
+    const researcherUni_and_Dep = req.query.uni_and_dep;
     try {
     let data = [];
     // Try to retrieve data from DB
@@ -49,10 +52,29 @@ router.get('/search_publications', async (req, res) => {
         return;
     }
 
+    let info = [];
+
+    // Try to retrieve scopus info from DB
+    // info = search.getScopusInfoFromDB(researcherName)
+
+    if (info.length === 0){
+        info = await search.getScopusInfo(researcherAteneo, researcherSurname, researcherName)
+    }
+    // If no data found
+    if (!info.authorId) {
+        res.status(404).send('No scopus info found');
+        return;
+    }
+
+
     res.status(200);
-    res.render('publications',{ 
+    res.render('publications',{
       researcherName: researcherName.charAt(0).toUpperCase() + researcherName.slice(1).toLowerCase(), 
       researcherSurname: researcherSurname.charAt(0).toUpperCase() + researcherSurname.slice(1).toLowerCase(),
+      uni_and_dep:  info.uni_and_dep || researcherUni_and_Dep,
+      researcherGrade,
+      researcherSSD,
+      numberOfPublications: info.numberOfPublications,
       publications: data.publications,
       hIndex: data.hIndex,
       citations: data.citations
