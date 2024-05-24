@@ -51,9 +51,11 @@ router.get('/search_publications', async (req, res) => {
 
     res.status(200);
     res.render('publications',{ 
-      researcherName: researcherName, 
-      researcherSurname: researcherSurname,
-      publications: data.publications
+      researcherName: researcherName.charAt(0).toUpperCase() + researcherName.slice(1).toLowerCase(), 
+      researcherSurname: researcherSurname.charAt(0).toUpperCase() + researcherSurname.slice(1).toLowerCase(),
+      publications: data.publications,
+      hIndex: data.hIndex,
+      citations: data.citations
     });
     console.log('Publication Data retrieved from getPublication by SearchRoute')      
     } catch (error) {

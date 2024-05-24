@@ -40,7 +40,9 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center mb-4">Publications of <%= researcherName + " " + researcherSurname%></h1>
+        <h2 class="text-center mb-4">Publications of <%= researcherName + " " + researcherSurname%></h2>
+        <h3 class="text-center mb-4">H-index of <%= hIndex %></h3>
+        <h3 class="text-center mb-4">n° of citations <%= citations %></h3>
         <div id="publications">
             <% if (publications.length > 0) { %>
                 <% publications.forEach(publication => { %>

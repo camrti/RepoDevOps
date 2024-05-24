@@ -16,7 +16,7 @@ async function getResearchers(researcherName) {
 }
 
 
-// Function to get the data from PublicationRoute2
+// Function to get the data from PublicationRoute
 async function getPublications(researcherAteneo, researcherSurname, researcherName) {
   try {
     // Get the data from Cineca
