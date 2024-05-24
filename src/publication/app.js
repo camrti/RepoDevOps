@@ -1,4 +1,5 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: require('find-config')('.env') })
 const express = require('express');
 const publicationRoute2 = require('./publicationRoute.js');
 
@@ -12,4 +13,6 @@ app.listen(PORT, () => {
   console.log(`\nPublication service avviato sulla porta ${PORT}`);
 });
 
-// To test the route http://localhost:8002/parse?value=BARI+RUSSO+GIOVANNI&name=Giovanni&surname=Russo
+// To test the route http://localhost:8002/parse?ateneo=Catania&name=Giovanni&surname=Russo
+
+// TEST GIT

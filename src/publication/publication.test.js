@@ -6,8 +6,8 @@ describe('Testing parseLinkToProfile function', () => {
     test.each([
         {
             desc: 'Valid search query with profile link',
-            searchQuery: 'Francesco_Moscato',
-            expectedResult: 'https://scholar.google.it/citations?hl=it&user=wuPuQHUAAAAJ'
+            searchQuery: 'Salerno Francesco Moscato',
+            expectedResult: 'https://scholar.google.it/citations?hl=it&user=brSCK-YAAAAJ'
         },
         {
             desc: 'Valid search query without profile link',

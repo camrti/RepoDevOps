@@ -1,6 +1,6 @@
 // the client app must interact only with the search module, see the architecture diagram
 const axios = require('axios');
-const cheerio = require('cheerio');
+//const Researcher = require('../model/researcherModel');
 
 // Function to get the data from ReseracherRoute
 async function getResearchers(researcherName) {
@@ -16,11 +16,11 @@ async function getResearchers(researcherName) {
 }
 
 
-// Function to get the data from PublicationRoute2
-async function getPublications(searchQuery) {
+// Function to get the data from PublicationRoute
+async function getPublications(researcherAteneo, researcherSurname, researcherName) {
   try {
     // Get the data from Cineca
-    const response = await axios.get(`http://localhost:8002/parse?value=${encodeURIComponent(searchQuery)}`);
+    const response = await axios.get(`http://localhost:8002/parse?ateneo=${encodeURIComponent(researcherAteneo)}&surname=${encodeURIComponent(researcherSurname)}&name=${encodeURIComponent(researcherName)}`);
     console.log('Data retrieved from Publication Service by Search');
     return response.data;
   } catch (error) {
@@ -28,13 +28,22 @@ async function getPublications(searchQuery) {
     return {};
   }
 }
-
-
+//DA FINIRE
+// async function getResearcherFromDB(researcherName) {
+//   const researchers = await Researcher.find({
+//     $or: [
+//         { firstName: new RegExp(researcherName, 'i') },
+//         { lastName: new RegExp(researcherName, 'i') }
+//       ]
+//     });
+//     return researchers;
+// }
 
 // Function to get the data from Database
 // getPublicationFromDB(researcherName) TO WRITE
 
 module.exports = {
   getResearchers,
-  getPublications
+  getPublications,
+  //getResearcherFromDB
 }; 

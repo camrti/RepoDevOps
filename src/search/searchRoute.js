@@ -14,12 +14,10 @@ router.get('/', async (req, res) => {
 router.get('/search_researchers', async (req, res) => {
   const { researcherName } = req.query;
   try {
-    let data = [];
-    let researchers;
+    let researchers = [];
     // Try to retrieve data from DB
-    // data = search.getResearcherFromDB(researcherName)
-    
-    if (data.length === 0){
+    //researchers = await search.getResearcherFromDB(researcherName);
+    if (researchers.length === 0){
         researchers = await search.getResearchers(researcherName)
     }
     res.status(200);
@@ -31,17 +29,18 @@ router.get('/search_researchers', async (req, res) => {
   }
 });
 
-// Route to search researchers
+// Route to search publication
 router.get('/search_publications', async (req, res) => {
-    const researcherName = req.query.name + ' ' + req.query.surname;
-    const searchQuery = req.query.value;
+    const researcherName = req.query.name;
+    const researcherSurname = req.query.surname;
+    const researcherAteneo = req.query.ateneo; 
     try {
     let data = [];
     // Try to retrieve data from DB
     // data = search.getPublicationFromDB(researcherName)
     
     if (data.length === 0){
-        data = await search.getPublications(searchQuery)
+        data = await search.getPublications(researcherAteneo, researcherSurname, researcherName)
     }
 
     // If no data found
@@ -52,8 +51,11 @@ router.get('/search_publications', async (req, res) => {
 
     res.status(200);
     res.render('publications',{ 
-      researcherName: researcherName, 
-      publications: data.publications
+      researcherName: researcherName.charAt(0).toUpperCase() + researcherName.slice(1).toLowerCase(), 
+      researcherSurname: researcherSurname.charAt(0).toUpperCase() + researcherSurname.slice(1).toLowerCase(),
+      publications: data.publications,
+      hIndex: data.hIndex,
+      citations: data.citations
     });
     console.log('Publication Data retrieved from getPublication by SearchRoute')      
     } catch (error) {
@@ -61,8 +63,6 @@ router.get('/search_publications', async (req, res) => {
         res.status(500);
     }
   });
-
-
 
 module.exports = router;
 
