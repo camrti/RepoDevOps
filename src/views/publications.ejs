@@ -3,44 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ricerca ricercatori</title>
+    <title><%= researcherName + " " + researcherSurname%></title>
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Include your custom CSS file -->
     <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .publication {
-            border-bottom: 1px solid #ddd;
-            padding: 10px 0;
-        }
-        .publication:last-child {
-            border-bottom: none;
-        }
-        .title {
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-        .authors, .year, .citation-count {
-            color: #555;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center mb-4">Publications of <%= researcherName + " " + researcherSurname%></h1>
+        <h1 class="text-left mb-4">Publications of <strong><%= researcherName + " " + researcherSurname%></strong></h1>
+        <h6 class="text-left"><strong>University and Department: </strong><%= uni_and_dep %></h6>
+        <h6 class="text-left"><strong>Role: </strong><%= researcherGrade %></h6>
+        <h6 class="text-left"><strong>SSD: </strong><%= researcherSSD %></h6>
+        <h6 class="text-left"><strong>Total Publications: </strong><%= numberOfPublications %></h6>
+        <h6 class="text-left"><strong>H-index: </strong><%= hIndex %></h6>
+        <h6 class="text-left"><strong>Total citations: </strong><%= citations %></h6>
         <div id="publications">
             <% if (publications.length > 0) { %>
                 <% publications.forEach(publication => { %>

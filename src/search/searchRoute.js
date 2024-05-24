@@ -14,12 +14,10 @@ router.get('/', async (req, res) => {
 router.get('/search_researchers', async (req, res) => {
   const { researcherName } = req.query;
   try {
-    let data = [];
-    let researchers;
+    let researchers = [];
     // Try to retrieve data from DB
-    // data = search.getResearcherFromDB(researcherName)
-    
-    if (data.length === 0){
+    //researchers = await search.getResearcherFromDB(researcherName);
+    if (researchers.length === 0){
         researchers = await search.getResearchers(researcherName)
     }
     res.status(200);
@@ -31,11 +29,14 @@ router.get('/search_researchers', async (req, res) => {
   }
 });
 
-// Route to search researchers
+// Route to search publication
 router.get('/search_publications', async (req, res) => {
     const researcherName = req.query.name;
     const researcherSurname = req.query.surname;
-    const researcherAteneo = req.query.ateneo; 
+    const researcherAteneo = req.query.uni; 
+    const researcherSSD = req.query.ssd;
+    const researcherGrade = req.query.grade;
+    const researcherUni_and_Dep = req.query.uni_and_dep;
     try {
     let data = [];
     // Try to retrieve data from DB
@@ -51,11 +52,32 @@ router.get('/search_publications', async (req, res) => {
         return;
     }
 
+    let info = [];
+
+    // Try to retrieve scopus info from DB
+    // info = search.getScopusInfoFromDB(researcherName)
+
+    if (info.length === 0){
+        info = await search.getScopusInfo(researcherAteneo, researcherSurname, researcherName)
+    }
+    // If no data found
+    if (!info.authorId) {
+        res.status(404).send('No scopus info found');
+        return;
+    }
+
+
     res.status(200);
-    res.render('publications',{ 
-      researcherName: researcherName, 
-      researcherSurname: researcherSurname,
-      publications: data.publications
+    res.render('publications',{
+      researcherName: researcherName.charAt(0).toUpperCase() + researcherName.slice(1).toLowerCase(), 
+      researcherSurname: researcherSurname.charAt(0).toUpperCase() + researcherSurname.slice(1).toLowerCase(),
+      uni_and_dep:  info.uni_and_dep || researcherUni_and_Dep,
+      researcherGrade,
+      researcherSSD,
+      numberOfPublications: info.numberOfPublications,
+      publications: data.publications,
+      hIndex: data.hIndex,
+      citations: data.citations
     });
     console.log('Publication Data retrieved from getPublication by SearchRoute')      
     } catch (error) {
@@ -63,8 +85,6 @@ router.get('/search_publications', async (req, res) => {
         res.status(500);
     }
   });
-
-
 
 module.exports = router;
 

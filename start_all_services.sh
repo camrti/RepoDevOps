@@ -12,3 +12,7 @@ node app.js &
 cd ../publication/
 node app.js &
 
+# Run publication service
+cd ../scopus/
+node app.js &
+

@@ -12,7 +12,7 @@ body {
     line-height: 1.6;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5 {
     font-weight: 700;
     margin: 0 0 20px 0;
 }
@@ -69,3 +69,25 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.5;
     border-radius: .3rem;
 }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .publication {
+        border-bottom: 1px solid #ddd;
+        padding: 10px 0;
+    }
+    .publication:last-child {
+        border-bottom: none;
+    }
+    .title {
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+    .authors, .year, .citation-count {
+        color: #555;
+    }
