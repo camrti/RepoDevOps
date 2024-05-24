@@ -28,17 +28,17 @@ async function getPublications(researcherAteneo, researcherSurname, researcherNa
     return {};
   }
 }
-/*DA FINIRE
-async function getResearcherFromDB(researcherName) {
-  const researchers = await Researcher.find({
-    $or: [
-        { nome: new RegExp(researcherName, 'i') },
-        { cognome: new RegExp(researcherName, 'i') }
-      ]
-    });
-    return researchers;
-}
-*/
+//DA FINIRE
+// async function getResearcherFromDB(researcherName) {
+//   const researchers = await Researcher.find({
+//     $or: [
+//         { firstName: new RegExp(researcherName, 'i') },
+//         { lastName: new RegExp(researcherName, 'i') }
+//       ]
+//     });
+//     return researchers;
+// }
+
 // Function to get the data from Database
 // getPublicationFromDB(researcherName) TO WRITE
 

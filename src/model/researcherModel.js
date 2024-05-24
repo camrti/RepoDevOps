@@ -40,3 +40,22 @@ const researcherSchema = new mongoose.Schema({
 
 const Researcher = mongoose.model('Researcher', researcherSchema);
 module.exports = Researcher
+
+// UNCOMMENT TO ADD SAMPLE TO DB
+// async function addSampleToDB(){
+//     let x = {
+//         grade: '1',
+//         lastName: 'Doe',
+//         firstName: 'John',
+//         gender: 'Male',
+//         university: 'University of California, Berkeley',
+//         faculty: 'Computer Science',
+//         ssd: '1',
+//         sc: '1',
+//         structure: '1',
+//         otherUniversityService: '1'
+//     };
+//     const r = await Researcher.create(x).catch((err) => { return reject(err); });
+//     console.log(r);
+// }
+// addSampleToDB();

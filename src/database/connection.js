@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 
 function connect(dbName, dbUri) {
-    const uri = dbUri + dbName;
+    const uri = dbUri + '/' + dbName;
     mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
     const connection = mongoose.connection;
     connection.once('open', () => {
@@ -14,7 +14,7 @@ function connect(dbName, dbUri) {
 
 
 const dbName = process.env.MONGO_DB;
-const dbUri = process.env.MONGO_URI
+const dbUri = process.env.MONGO_URI;
 const main = connect(dbName, dbUri);
 module.exports = {
     connect,

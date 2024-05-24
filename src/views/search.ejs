@@ -24,16 +24,16 @@
             <ul class="list-group">
                 <% researchers.forEach(researcher => { %>
                     <li class="list-group-item">
-                        <strong>Fascia:</strong> <%= researcher.fascia %><br>
-                        <strong>Cognome:</strong> <%= researcher.cognome %><br>
-                        <strong>Nome:</strong> <%= researcher.nome %><br>
-                        <strong>Genere:</strong> <%= researcher.genere %><br>
-                        <strong>Ateneo:</strong> <%= researcher.ateneo %><br>
-                        <strong>Facoltà:</strong> <%= researcher.facolta %><br>
+                        <strong>Fascia:</strong> <%= researcher.grade %><br>
+                        <strong>Cognome:</strong> <%= researcher.lastName %><br>
+                        <strong>Nome:</strong> <%= researcher.firstName %><br>
+                        <strong>Genere:</strong> <%= researcher.gender %><br>
+                        <strong>Ateneo:</strong> <%= researcher.university %><br>
+                        <strong>Facoltà:</strong> <%= researcher.faculty %><br>
                         <strong>S.S.D.:</strong> <%= researcher.ssd %><br>
                         <strong>S.C.:</strong> <%= researcher.sc %><br>
-                        <strong>Struttura di afferenza:</strong> <%= researcher.struttura %><br>
-                        <strong>Servizio prestato in altro ateneo:</strong> <%= researcher.servizio_altro_ateneo %><br>
+                        <strong>Struttura di afferenza:</strong> <%= researcher.structure %><br>
+                        <strong>Servizio prestato in altro ateneo:</strong> <%= researcher.otherUniversityService %><br>
                         <a href="/search_publications?ateneo=<%= encodeURIComponent(researcher.ateneo) %>&name=<%= encodeURIComponent(researcher.nome) %>&surname=<%= encodeURIComponent(researcher.cognome) %>" class="btn btn-info mt-2">Visualizza Pubblicazioni</a>
                     </li>
                 <% }) %>

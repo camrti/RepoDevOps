@@ -29,7 +29,7 @@ router.get('/search_researchers', async (req, res) => {
   }
 });
 
-// Route to search researchers
+// Route to search publication
 router.get('/search_publications', async (req, res) => {
     const researcherName = req.query.name;
     const researcherSurname = req.query.surname;
@@ -61,8 +61,6 @@ router.get('/search_publications', async (req, res) => {
         res.status(500);
     }
   });
-
-
 
 module.exports = router;
 
