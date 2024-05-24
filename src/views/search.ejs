@@ -34,7 +34,16 @@
                         <!-- <strong>S.C.:</strong> <%= researcher.sc %><br> -->
                         <!-- <strong>Struttura di afferenza:</strong> <%= researcher.structure %><br> -->
                         <!-- <strong>Servizio prestato in altro ateneo:</strong> <%= researcher.otherUniversityService %><br> -->
-                        <a href="/search_publications?uni=<%= encodeURIComponent(researcher.university) %>&name=<%= encodeURIComponent(researcher.firstName) %>&surname=<%= encodeURIComponent(researcher.lastName) %>&grade=<%= encodeURIComponent(researcher.grade) %>&ssd=<%= encodeURIComponent(researcher.ssd) %>&uni_and_dep=<%= encodeURIComponent(researcher.university + ', ' + researcher.faculty + ' ' + researcher.structure) %>" class="btn btn-info mt-2">Visualizza Pubblicazioni</a>
+                        <form action="/search_publications" method="GET">
+                            <input type="hidden" name="id" value="<%= researcher._id %>">
+                            <input type="hidden" name="uni" value="<%= researcher.university %>">
+                            <input type="hidden" name="name" value="<%= researcher.firstName %>">
+                            <input type="hidden" name="surname" value="<%= researcher.lastName %>">
+                            <input type="hidden" name="grade" value="<%= researcher.grade %>">
+                            <input type="hidden" name="ssd" value="<%= researcher.ssd %>">
+                            <input type="hidden" name="uni_and_dep" value="<%= researcher.university + ', ' + researcher.faculty + ' ' + researcher.structure %>">
+                            <button type="submit" class="btn btn-info mt-2">Visualizza Pubblicazioni</button>
+                        </form>
                     </li>
                 <% }) %>
             </ul>

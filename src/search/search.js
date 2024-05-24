@@ -1,6 +1,7 @@
 // the client app must interact only with the search module, see the architecture diagram
 const axios = require('axios');
-//const Researcher = require('../model/researcherModel');
+const Researcher = require('../model/researcherModel');
+const Publication = require('../model/publicationModel');
 
 // Function to get the data from ReseracherRoute
 async function getResearchers(researcherName) {
@@ -45,23 +46,50 @@ async function getScopusInfo(researcherAteneo, researcherSurname, researcherName
 
 
 
-//DA FINIRE
-// async function getResearcherFromDB(researcherName) {
-//   const researchers = await Researcher.find({
-//     $or: [
-//         { firstName: new RegExp(researcherName, 'i') },
-//         { lastName: new RegExp(researcherName, 'i') }
-//       ]
-//     });
-//     return researchers;
+// Function to get the resarcher data from DB
+async function getResearcherFromDB(researcherName) {
+  const researchers = await Researcher.find({
+    $or: [
+        { firstName: new RegExp(researcherName, 'i') },
+        { lastName: new RegExp(researcherName, 'i') }
+      ]
+    });
+    return researchers;
+}
+
+// // Function to get the publication data from Database
+// async function getPublicationFromDB(researcherID){
+//     const publications = await Researcher.findById(researcherID).populate('publications').select('publications');
+//     return publications;
 // }
 
-// Function to get the data from Database
-// getPublicationFromDB(researcherName) TO WRITE
+// Function to write the publication data from Database
+async function writeResearcherToDB(researchers) {
+  let results = [];
+
+  for (const researcher of researchers) {
+    try {
+      let res = await Researcher.create(researcher);
+      results.push(res);
+    } catch (err) {
+      console.log("Failed researcher to write to DB", err);
+    }
+  }
+
+  return results;
+}
+
+// // DA FINIRE
+// // Function to write the publication data from Database
+// async function writePublicationToDB(researcherName){
+
+// }
+
 
 module.exports = {
   getResearchers,
   getPublications,
-  getScopusInfo
-  //getResearcherFromDB
+  getScopusInfo,
+  getResearcherFromDB,
+  writeResearcherToDB
 }; 
