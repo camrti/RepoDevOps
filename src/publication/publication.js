@@ -78,8 +78,13 @@ async function parsePublications(profileLink) {
         publicationLink: fullPublicationLink,
       });
     });
+
+    const hIndex = $('#gsc_rsb_st tbody tr:contains("Indice H") td.gsc_rsb_std').first().text().trim() || 'N/A';
+    const citations = $('#gsc_rsb_st tbody tr:contains("Citazioni") td.gsc_rsb_std').first().text().trim() || 'N/A';
+    
     console.log('Publications parsed from Google Scholar by Publication')
-    return publications;
+
+    return { publications, hIndex, citations };
   } catch (error) {
     console.error('Error (parsePublications) fetching or parsing the page:', error);
     throw error;
