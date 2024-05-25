@@ -64,23 +64,23 @@ router.get('/search_publications', async (req, res) => {
         return;
     }
 
-    // // Try to get scopus data from DB
-    // scopusInfo = await search.getByIDScopusInfoFromDB(cinecaInfo.scopusID);
-    // console.log(scopusInfo, "SCOPUS DB");
+    // Try to get scopus data from DB
+    scopusInfo = await search.getByIDScopusInfoFromDB(cinecaInfo.scopusID);
+    console.log(scopusInfo, "SCOPUS DB");
     
-    // // If no data found, get scopus data from API
-    // if (!scopusInfo){
-    //     scopusInfo = await search.getScopusInfo(cinecaInfo.university, cinecaInfo.lastName, cinecaInfo.firstName);
-    //     scopusInfo = await search.writeScopusInfoToDB(cinecaID, scopusInfo);
-    //     console.log(scopusInfo, "SCOPUS API");
-    // }
+    // If no data found, get scopus data from API
+    if (!scopusInfo){
+        scopusInfo = await search.getScopusInfo(cinecaInfo.university, cinecaInfo.lastName, cinecaInfo.firstName);
+        scopusInfo = await search.writeScopusInfoToDB(cinecaID, scopusInfo);
+        console.log(scopusInfo, "SCOPUS API");
+    }
 
-    // // If no data found
-    // if (!scopusInfo.authorId) {
-    //     console.log("No scopus info found");
-    //     //res.status(404).send('No scopus info found');
-    //     //return;
-    // }
+    // If no data found
+    if (!scopusInfo.authorId) {
+        console.log("No scopus info found");
+        //res.status(404).send('No scopus info found');
+        //return;
+    }
 
     res.status(200);
     
