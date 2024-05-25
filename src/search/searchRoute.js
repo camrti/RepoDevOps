@@ -14,17 +14,20 @@ router.get('/', async (req, res) => {
 router.get('/search_researchers', async (req, res) => {
   const { researcherName } = req.query;
   try {
-    let researchers = [];
+    let cinecaInfo = [];
     // Try to retrieve data from DB
-    researchers = await search.getResearcherFromDB(researcherName);
+    cinecaInfo = await search.getByNameCinecaInfoFromDB(researcherName);
 
-    if (researchers.length === 0){
-        researchers = await search.getResearchers(researcherName);
-        researchers = await search.writeResearcherToDB(researchers);
+    if (cinecaInfo.length === 0){
+        cinecaInfo = await search.getCinecaInfo(researcherName);
+        cinecaInfo = await search.writeCinecaInfoToDB(cinecaInfo);
+        console.log('Cineca Data retrieved from API')  
+    } else {
+        console.log('Cineca Data retrieved from DB')    
     }
-    
+
     res.status(200);
-    res.render('search', {researchers});
+    res.render('search', {researchers: cinecaInfo});
     console.log('Researchers Data retrieved from getReserarchers by SearchRoute')    
   } catch (error) {
       console.error('Error:', error);
@@ -34,55 +37,63 @@ router.get('/search_researchers', async (req, res) => {
 
 // Route to search publication
 router.get('/search_publications', async (req, res) => {
-    const researcherID = req.query.id;
-    const researcherName = req.query.name;
-    const researcherSurname = req.query.surname;
-    const researcherAteneo = req.query.uni; 
-    const researcherSSD = req.query.ssd;
-    const researcherGrade = req.query.grade;
-    const researcherUni_and_Dep = req.query.uni_and_dep;
+    const cinecaID = req.query.cinecaID;
+
     try {
-    let data = [];
-    // Try to retrieve data from DB
-    //data = search.getPublicationFromDB(researcherID)
+    let cinecaInfo = {};
+    let scholarInfo = {};
+    let scopusInfo = {};
+    // Get cineca data form DB
+    cinecaInfo = await search.getByIDCinecaInfoFromDB(cinecaID);
+    console.log(cinecaInfo, "CINECA DB");
     
-    if (data.length === 0){
-        data = await search.getPublications(researcherAteneo, researcherSurname, researcherName)
+    // Try to get scholar data from DB
+    scholarInfo = await search.getByIDScholarInfoFromDB(cinecaInfo.scholarID);
+    console.log(scholarInfo, "SCHOLAR DB");
+
+    // If no data found, get scholar data from API
+    if (!scholarInfo){
+        scholarInfo = await search.getScholarInfo(cinecaInfo.university, cinecaInfo.lastName, cinecaInfo.firstName);
+        scholarInfo = await search.writeScholarInfoToDB(cinecaID, scholarInfo);
+        console.log(scholarInfo, "SCHOLAR API");
     }
 
-    // If no data found
-    if (!data.publications) {
+    // If no publications found
+    if (!scholarInfo.publications) {
         res.status(404).send('No publication found');
         return;
     }
 
-    let info = [];
+    // // Try to get scopus data from DB
+    // scopusInfo = await search.getByIDScopusInfoFromDB(cinecaInfo.scopusID);
+    // console.log(scopusInfo, "SCOPUS DB");
+    
+    // // If no data found, get scopus data from API
+    // if (!scopusInfo){
+    //     scopusInfo = await search.getScopusInfo(cinecaInfo.university, cinecaInfo.lastName, cinecaInfo.firstName);
+    //     scopusInfo = await search.writeScopusInfoToDB(cinecaID, scopusInfo);
+    //     console.log(scopusInfo, "SCOPUS API");
+    // }
 
-    // Try to retrieve scopus info from DB
-    // info = search.getScopusInfoFromDB(researcherName)
+    // // If no data found
+    // if (!scopusInfo.authorId) {
+    //     console.log("No scopus info found");
+    //     //res.status(404).send('No scopus info found');
+    //     //return;
+    // }
 
-    if (info.length === 0){
-        info = await search.getScopusInfo(researcherAteneo, researcherSurname, researcherName)
-    }
-    // If no data found
-    if (!info.authorId) {
-        res.status(404).send('No scopus info found');
-        return;
-    }
-
-    // C'è un po di confusione tra quali info sono di researcher e quali di publication dobbiamo gestire meglio la cosa
-    // anche per i modellli nel DB
     res.status(200);
+    
     res.render('publications',{
-      researcherName: researcherName.charAt(0).toUpperCase() + researcherName.slice(1).toLowerCase(), 
-      researcherSurname: researcherSurname.charAt(0).toUpperCase() + researcherSurname.slice(1).toLowerCase(),
-      uni_and_dep:  info.uni_and_dep || researcherUni_and_Dep,
-      researcherGrade,
-      researcherSSD,
-      numberOfPublications: info.numberOfPublications,
-      publications: data.publications,
-      hIndex: data.hIndex,
-      citations: data.citations
+      researcherName: cinecaInfo.firstName.charAt(0).toUpperCase() + cinecaInfo.firstName.slice(1).toLowerCase(), 
+      researcherSurname: cinecaInfo.lastName.charAt(0).toUpperCase() + cinecaInfo.lastName.slice(1).toLowerCase(),
+      uni_and_dep:  scopusInfo.uni_and_dep || (cinecaInfo.university + ', ' + cinecaInfo.faculty + ' ' + cinecaInfo.structure),
+      researcherGrade: cinecaInfo.grade,
+      researcherSSD: cinecaInfo.ssd,
+      numberOfPublications: scopusInfo.numberOfPublications || 0,
+      publications: scholarInfo.publications,
+      hIndex: scholarInfo.hIndex,
+      citations: scholarInfo.citations
     });
     console.log('Publication Data retrieved from getPublication by SearchRoute')      
     } catch (error) {

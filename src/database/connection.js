@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 
 function connect(dbName, dbUri) {
-    const uri = dbUri + '/' + dbName;
-    mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+    const uri = `${dbUri}/${dbName}`;
+    mongoose.connect(uri);
     const connection = mongoose.connection;
     connection.once('open', () => {
         console.log("MongoDB database connection established successfully");
