@@ -6,7 +6,7 @@ const scopusSchema = new mongoose.Schema({
         type: String
     },
     numberOfPublications: {
-        type: Number
+        type: String
     }
 });
 
