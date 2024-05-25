@@ -5,11 +5,11 @@
         "expectedResult": [
             {
                 "ateneo": "SALERNO",
-                "cognome": "MOSCATO",
-                "nome": "FRANCESCO",
+                "lastName": "MOSCATO",
+                "firstName": "FRANCESCO",
                 "facolta": "",
-                "fascia": "ASSOCIATO",
-                "genere": "M",
+                "grade": "ASSOCIATO",
+                "gender": "M",
                 "sc": "09/H1",
                 "servizio_altro_ateneo": "",
                 "ssd": "ING-INF/05",
@@ -24,10 +24,10 @@
         "name": "Giovanni_Russo",
         "expectedResult": [
             {
-                "fascia": "ORDINARIO",
-                "cognome": "RUSSO",
-                "nome": "GIOVANNI",
-                "genere": "M",
+                "grade": "ORDINARIO",
+                "lastName": "RUSSO",
+                "firstName": "GIOVANNI",
+                "gender": "M",
                 "ateneo": "CATANIA",
                 "facolta": "",
                 "ssd": "MAT/08",
@@ -36,10 +36,10 @@
                 "servizio_altro_ateneo": ""
             },
             {
-                "fascia": "ASSOCIATO",
-                "cognome": "RUSSO",
-                "nome": "GIOVANNI",
-                "genere": "M",
+                "grade": "ASSOCIATO",
+                "lastName": "RUSSO",
+                "firstName": "GIOVANNI",
+                "gender": "M",
                 "ateneo": "SALERNO",
                 "facolta": "",
                 "ssd": "ING-INF/04",
@@ -48,10 +48,10 @@
                 "servizio_altro_ateneo": ""
             },
             {
-                "fascia": "STRAORDINARIO TEMPO DETERMINATO",
-                "cognome": "RUSSO",
-                "nome": "GIOVANNI",
-                "genere": "M",
+                "grade": "STRAORDINARIO TEMPO DETERMINATO",
+                "lastName": "RUSSO",
+                "firstName": "GIOVANNI",
+                "gender": "M",
                 "ateneo": "UNIV. TELEMATICA \"E-CAMPUS\"",
                 "facolta": "INGEGNERIA",
                 "ssd": "ICAR/17",
@@ -60,10 +60,10 @@
                 "servizio_altro_ateneo": ""
             },
             {
-                "fascia": "ASSOCIATO",
-                "cognome": "RUSSO",
-                "nome": "GIOVANNI",
-                "genere": "M",
+                "grade": "ASSOCIATO",
+                "lastName": "RUSSO",
+                "firstName": "GIOVANNI",
+                "gender": "M",
                 "ateneo": "BARI",
                 "facolta": "",
                 "ssd": "AGR/10",
@@ -87,11 +87,11 @@
         "name": "Genoveffa",
         "expectedResult": [
             {
-                "fascia": "ASSOCIATO CONFERMATO",
+                "grade": "ASSOCIATO CONFERMATO",
                 "ateneo": "ROMA \"LA SAPIENZA\"",
-                "cognome": "BALDUCCI",
-                "nome": "GENOVEFFA",
-                "genere": "F",
+                "lastName": "BALDUCCI",
+                "firstName": "GENOVEFFA",
+                "gender": "F",
                 "facolta": "",
                 "ssd": "MED/18",
                 "sc": "06/C1",
@@ -99,11 +99,11 @@
                 "servizio_altro_ateneo": ""
             },
             {
-                "fascia": "ORDINARIO",
+                "grade": "ORDINARIO",
                 "ateneo": "SALERNO",
-                "cognome": "TORTORA",
-                "nome": "GENOVEFFA",
-                "genere": "F",
+                "lastName": "TORTORA",
+                "firstName": "GENOVEFFA",
+                "gender": "F",
                 "facolta": "",
                 "ssd": "INF/01",
                 "sc": "01/B1",
@@ -119,11 +119,11 @@
         "name": "Del Vento",
         "expectedResult": [
             {
-                "fascia": "ORDINARIO",
+                "grade": "ORDINARIO",
                 "ateneo": "PAVIA",
-                "cognome": "DEL VENTO",
-                "nome": "CHRISTIAN",
-                "genere": "M",
+                "lastName": "DEL VENTO",
+                "firstName": "CHRISTIAN",
+                "gender": "M",
                 "facolta": "",
                 "ssd": "L-FIL-LET/10",
                 "sc": "10/F1",
