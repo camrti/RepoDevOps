@@ -78,7 +78,7 @@ router.get('/search_publications', async (req, res) => {
     // If no data found
     
     console.log( "SCOPUS Autor ID", scopusInfo.authorId,);
-    console.log("SCOPUS Uni and Deep", scholarInfo.uni_and_dep);
+    console.log("SCOPUS Uni and Deep", scopusInfo.uni_and_dep);
 
     if (!scopusInfo.authorId) {
         console.log("No scopus info found");
