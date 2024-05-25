@@ -5,13 +5,12 @@
             "type": "docker",
             "image": "alpine:3.18",
             "container_dir" : "/tmp",
-            "privileged": true,
             "commit": true,
             "run_command": ["-d", "-i", "-t", "{{.Image}}", "/bin/ash"],
             "changes": [
+                "CMD [\"node\", \"/app/src/search/app.js &\"]",
                 "EXPOSE 8000"
             ]
-            
         },
         {
             "name": "docker_researcher",
@@ -21,9 +20,9 @@
             "commit": true,
             "run_command": ["-d", "-i", "-t", "{{.Image}}", "/bin/ash"],
             "changes": [
+                "CMD [\"node\", \"/app/src/researcher/app.js &\"]",
                 "EXPOSE 8001"
             ]
-            
         },
         {
             "name": "docker_publication",
@@ -33,9 +32,9 @@
             "commit": true,
             "run_command": ["-d", "-i", "-t", "{{.Image}}", "/bin/ash"],
             "changes": [
+                "CMD [\"node\", \"/app/src/publication/app.js &\"]",
                 "EXPOSE 8002"
             ]
-            
         }
         
     ],
@@ -57,7 +56,6 @@
             "inline" : [
                 "mkdir -p /app/src/search"
             ]
-            
         },
         {
             "type" : "file",
@@ -71,7 +69,6 @@
             "inline" : [
                 "mkdir -p /app/src/"
             ]
-            
         },
         {
             "type" : "file",
@@ -84,8 +81,7 @@
             "only" : ["docker_publication"],
             "inline" : [
                 "mkdir -p /app/src/"
-            ]
-            
+            ]  
         },
         {
             "type" : "file",
@@ -125,20 +121,17 @@
         {
             "type": "docker-tag",
             "only": ["docker_search"],
-            "repository": "my-search-image",
-            "tag": "1.0"
+            "repository": "my-search-image"
         },
         {
             "type": "docker-tag",
             "only": ["docker_researcher"],
-            "repository": "my-researcher-image",
-            "tag": "1.0"
+            "repository": "my-researcher-image"
         },
         {
             "type": "docker-tag",
             "only": ["docker_publication"],
-            "repository": "my-publication-image",
-            "tag": "1.0"
+            "repository": "my-publication-image"
         }
     ]
 }

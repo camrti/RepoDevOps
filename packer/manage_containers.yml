@@ -1,0 +1,45 @@
+---
+- name: Manage Docker containers
+  hosts: localhost
+  become: yes
+  collections:
+    - community.docker
+
+  tasks:
+    - name: Ensure Docker is running
+      service:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Create and start the my-publication container
+      docker_container:
+        name: my-publication-container
+        image: vcampagnano/my-publication-image
+        state: started
+        ports:
+          - "8000:8000"
+        
+    - name: Create and start the my-researcher container
+      docker_container:
+        name: my-researcher-container
+        image: vcampagnano/my-researcher-image
+        state: started
+        ports:
+          - "8001:8001"
+        
+    - name: Create and start the my-search container
+      docker_container:
+        name: my-search-container
+        image: vcampagnano/my-search-image
+        state: started
+        ports:
+          - "8002:8002"
+    
+    # - name: Check status of my-search-container
+    #   raw: docker ps -a --filter "name=my-search-container" --format "{{'{{'}}.Status{{'}}'}}"
+    #   register: search_status
+
+    # - name: Debug my-search-container status
+    #   debug:
+    #     msg: "my-search-container status: {{ search_status.stdout }}"
