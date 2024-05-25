@@ -7,9 +7,9 @@
             "container_dir" : "/tmp",
             "privileged": true,
             "commit": true,
+            "run_command": ["-d", "-i", "-t", "{{.Image}}", "/bin/ash"],
             "changes": [
-                "EXPOSE 8000",
-                "CMD /bin/ash"
+                "EXPOSE 8000"
             ]
             
         },
@@ -19,9 +19,9 @@
             "image": "alpine:3.18",
             "container_dir" : "/tmp",
             "commit": true,
+            "run_command": ["-d", "-i", "-t", "{{.Image}}", "/bin/ash"],
             "changes": [
-                "EXPOSE 8001",
-                "CMD /bin/ash"
+                "EXPOSE 8001"
             ]
             
         },
@@ -31,9 +31,9 @@
             "image": "alpine:3.18",
             "container_dir" : "/tmp",
             "commit": true,
+            "run_command": ["-d", "-i", "-t", "{{.Image}}", "/bin/ash"],
             "changes": [
-                "EXPOSE 8002",
-                "CMD /bin/ash"
+                "EXPOSE 8002"
             ]
             
         }

@@ -15,14 +15,14 @@
       ansible.builtin.command:
         cmd: docker run -p 8002:8002 --name docker_publication -d my-publication-image:1.0 
 
-    - name: Run app in docker_search container
-      ansible.builtin.command:
-        cmd: docker exec docker_search node /app/src/search/app.js
+    # - name: Run app in docker_search container
+    #   ansible.builtin.command:
+    #     cmd: docker exec docker_search node /app/src/search/app.js
 
-    - name: Run app in docker_researcher container
-      ansible.builtin.command:
-        cmd: docker exec docker_researcher node /app/src/researcher/app.js
+    # - name: Run app in docker_researcher container
+    #   ansible.builtin.command:
+    #     cmd: docker exec docker_researcher node /app/src/researcher/app.js
 
-    - name: Run app in docker_publication container
-      ansible.builtin.command:
-        cmd: docker exec docker_publication node /app/src/publication/app.js
+    # - name: Run app in docker_publication container
+    #   ansible.builtin.command:
+    #     cmd: docker exec docker_publication node /app/src/publication/app.js
