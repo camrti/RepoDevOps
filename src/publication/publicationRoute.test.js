@@ -1,8 +1,9 @@
 const express = require('express');
 const supertest = require('supertest');
 const publicationRoute = require('./publicationRoute.js');
+const fs = require('fs');
 const path = require('path');
-
+const testCases = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'publicationTestCases.json'), 'utf8'));
 const app = express();
 app.set('view engine', 'ejs');
 
@@ -11,23 +12,9 @@ app.set('views', path.join(__dirname, '..', 'views'));
 app.use('/', publicationRoute);
 
 describe('Testing publicationRoute', () => {
-    let testCases = [
-        {   
-            desc: "/GET with missing 'value' parameter",
-            query: { name: 'Giovanni', surname: 'Russo' },
-            expectedStatusCode: 400,
-            expectedResponse: 'Missing a query parameter'
-        },
-        {   
-            desc: "/GET with no profile link found",
-            query: { ateneo: 'Londra', name: 'Ettore', surname: 'Napoli'},
-            expectedStatusCode: 404,
-            expectedResponse: 'No publication found'
-        }
-    ];
-
-    test.each(testCases)('GET /parse should return the correct status code and response for %s', async ({ desc, query, expectedStatusCode, expectedResponse }) => {
+    test.each(testCases['publicationRoute'])('GET /parse should return the correct status code and response for %s', async ({ desc, query, expectedStatusCode, expectedResponse }) => {
         console.log("Test Case: ", desc);
+        console.log("QUERYYYYYY",query);
         await supertest(app)
             .get('/parse')
             .query(query)
