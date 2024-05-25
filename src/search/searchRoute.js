@@ -74,30 +74,18 @@ router.get('/search_publications', async (req, res) => {
         scopusInfo = await search.writeScopusInfoToDB(cinecaID, scopusInfo);
         console.log(scopusInfo, "SCOPUS API");
     }
-
-    // If no data found
     
-    console.log( "SCOPUS Autor ID", scopusInfo.authorId,);
-    console.log("SCOPUS Uni and Deep", scopusInfo.uni_and_dep);
-
-    if (!scopusInfo.authorId) {
-        console.log("No scopus info found");
-        //res.status(404).send('No scopus info found');
-        //return;
-    }
-
     res.status(200);
-    
     res.render('publications',{
       researcherName: cinecaInfo.firstName.charAt(0).toUpperCase() + cinecaInfo.firstName.slice(1).toLowerCase(), 
       researcherSurname: cinecaInfo.lastName.charAt(0).toUpperCase() + cinecaInfo.lastName.slice(1).toLowerCase(),
       uni_and_dep:  scopusInfo.uni_and_dep || (cinecaInfo.university + ', ' + cinecaInfo.faculty + ' ' + cinecaInfo.structure),
       researcherGrade: cinecaInfo.grade,
       researcherSSD: cinecaInfo.ssd,
-      numberOfPublications: scopusInfo.numberOfPublications || 0,
-      publications: scholarInfo.publications,
-      hIndex: scholarInfo.hIndex,
-      citations: scholarInfo.citations
+      numberOfPublications: scopusInfo.numberOfPublications || "N/A",
+      publications: scholarInfo.publications || "N/A",
+      hIndex: scholarInfo.hIndex || "N/A",
+      citations: scholarInfo.citations || "N/A"
     });
     console.log('Publication Data retrieved from getPublication by SearchRoute')      
     } catch (error) {
