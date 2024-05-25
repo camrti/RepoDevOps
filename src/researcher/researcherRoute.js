@@ -2,13 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const researcher = require('./researcher.js');
 const router = express.Router();
-const {query} = require('express-validator');
-
 
 // Route to search researchers
-router.get('/search',[
-  query('researcherName')
-], async (req, res) => {
+router.get('/search', async (req, res) => {
   
   const { researcherName } = req.query;
   console.log('ResearcherRoute: ', researcherName);
