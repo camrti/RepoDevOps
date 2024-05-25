@@ -1,0 +1,144 @@
+{   
+    "builders": [
+        {
+            "name": "docker_search",
+            "type": "docker",
+            "image": "alpine:3.18",
+            "container_dir" : "/tmp",
+            "privileged": true,
+            "commit": true,
+            "changes": [
+                "EXPOSE 8000",
+                "CMD /bin/ash"
+            ]
+            
+        },
+        {
+            "name": "docker_researcher",
+            "type": "docker",
+            "image": "alpine:3.18",
+            "container_dir" : "/tmp",
+            "commit": true,
+            "changes": [
+                "EXPOSE 8001",
+                "CMD /bin/ash"
+            ]
+            
+        },
+        {
+            "name": "docker_publication",
+            "type": "docker",
+            "image": "alpine:3.18",
+            "container_dir" : "/tmp",
+            "commit": true,
+            "changes": [
+                "EXPOSE 8002",
+                "CMD /bin/ash"
+            ]
+            
+        }
+        
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "apk update",
+                "apk add nodejs npm python3",
+                "if [ ! -e /usr/bin/python ]; then ln -sf python3 /usr/bin/python; fi",
+                "node -v",
+                "npm -v",
+                "python --version"
+            ]
+        },
+        {
+            "type" : "shell",
+            "only" : ["docker_search"],
+            "inline" : [
+                "mkdir -p /app/src/search"
+            ]
+            
+        },
+        {
+            "type" : "file",
+            "source" : "src/search",
+            "destination" : "/app/src/",
+            "only" : ["docker_search"]
+        },
+        {
+            "type" : "shell",
+            "only" : ["docker_researcher"],
+            "inline" : [
+                "mkdir -p /app/src/"
+            ]
+            
+        },
+        {
+            "type" : "file",
+            "source" : "src/researcher",
+            "destination" : "/app/src/",
+            "only" : ["docker_researcher"]
+        },
+        {
+            "type" : "shell",
+            "only" : ["docker_publication"],
+            "inline" : [
+                "mkdir -p /app/src/"
+            ]
+            
+        },
+        {
+            "type" : "file",
+            "source" : "src/publication",
+            "destination" : "/app/src/",
+            "only" : ["docker_publication"]
+        },
+        {   
+            "type" : "file",
+            "source" : "public",
+            "destination" : "/app/"
+        },
+        {   
+            "type" : "file",
+            "source" : "./package-lock.json",
+            "destination" : "app/package-lock.json"
+        },
+        {   
+            "type" : "file",
+            "source" : "./package.json",
+            "destination" : "app/package.json"
+        },
+        {   
+            "type" : "file",
+            "source" : "src/views",
+            "destination" : "app/src/"
+        },
+        {
+            "type" : "shell",
+            "inline" : [
+                "cd app",
+                "npm install"
+            ]
+        }
+    ],
+    "post-processors": [
+        {
+            "type": "docker-tag",
+            "only": ["docker_search"],
+            "repository": "my-search-image",
+            "tag": "1.0"
+        },
+        {
+            "type": "docker-tag",
+            "only": ["docker_researcher"],
+            "repository": "my-researcher-image",
+            "tag": "1.0"
+        },
+        {
+            "type": "docker-tag",
+            "only": ["docker_publication"],
+            "repository": "my-publication-image",
+            "tag": "1.0"
+        }
+    ]
+}
