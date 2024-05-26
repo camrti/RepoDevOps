@@ -24,6 +24,7 @@ describe('Testing scopus.js module', () => {
                     fail('Expected an error but did not get one');
                 } catch (error) {
                     // If an error occurs as expected, pass the test
+                    console.log("AAAAAAAAAA: ", error);
                     expect(error).toBeDefined();
                 }
             }
