@@ -48,14 +48,25 @@
         ],
         "getAuthorDetails": [
             {
-                "desc": "Search for an existing scopus authorID without any query parameters",
+                "desc": "Search detail with an existing scopus authorID",
                 "authorId": "13405037300",
                 "expectedResult":  {
                                         "surname": "Moscato",
                                         "name": "Franceso",
-                                        "uni_and_dep": "Salerno",
-                                        "numberOfPublications": "124",
+                                        "uni_and_dep": "Università degli Studi di Salerno, Department of Information Engineering",
+                                        "numberOfPublications": "87",
                                         "authorId": "13405037300"
+                                    }
+            },
+            {
+                "desc": "Search detail with an non existing scopus authorID",
+                "authorId": "",
+                "expectedResult":  {
+                                        "surname": "",
+                                        "name": "",
+                                        "uni_and_dep": "",
+                                        "numberOfPublications": "",
+                                        "authorId": ""
                                     }
             }
         ]
