@@ -70,4 +70,4 @@ module.exports = {
 };
 
 
-console.log(getAuthorDetails("13405037300"))
+console.log(await getAuthorDetails("13405037300"))
