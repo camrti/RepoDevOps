@@ -69,5 +69,5 @@ module.exports = {
     getAuthorDetails,
 };
 
-let result = getAuthorDetails(13405037300)
-console.log(result)
+
+console.log(getAuthorDetails("13405037300"))
