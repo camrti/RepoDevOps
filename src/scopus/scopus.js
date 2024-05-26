@@ -68,5 +68,3 @@ module.exports = {
     getAuthorId,
     getAuthorDetails,
 };
-
-console.log(getAuthorId('Francesco', 'Moscato', 'Salerno'));
