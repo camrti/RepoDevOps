@@ -25,7 +25,7 @@ describe('Testing scopus.js module', () => {
                 } catch (error) {
                     // If an error occurs as expected, pass the test
                     console.log("AAAAAAAAAA TYPE ERROR:", typeof error);
-                    expect(error).toBeDefined();
+                    expect(error).toEqual(AxiosError);
                 }
             }
             
