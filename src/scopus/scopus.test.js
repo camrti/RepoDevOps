@@ -19,7 +19,7 @@ describe('Testing scopus.js module', () => {
                 }
             } else {
                 try {
-                    await scopus.getAuthorId(name, surname, affiliation);
+                    const authorID = await scopus.getAuthorId(name, surname, affiliation);
                     // If no error occurs when error was expected, fail the test
                     fail('Expected an error but did not get one');
                 } catch (error) {
@@ -44,7 +44,7 @@ describe('Testing scopus.js module', () => {
                 }
             } else {
                 try {
-                    await scopus.getAuthorDetails(authorId);
+                    const authorDetails = await scopus.getAuthorDetails(authorId);
                     // If no error occurs when error was expected, fail the test
                     fail('Expected an error but did not get one');
                 } catch (error) {

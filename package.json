@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "jest",
+        "test": "jest --watch",
         "test:watch": "npm run build && jest --watch",
         "clear-jest-cache": "jest --clearCache"
     },
