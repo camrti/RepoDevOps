@@ -12,12 +12,13 @@ const testCases = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'researcher
 
 describe('Testing researcherRoute', () => {
 
-    test.each(testCases['researcherRoute'])('GET /search should return the correct status code for %s', async ({ desc, name, expectedStatusCode}) => {
+    test.each(testCases['researcherRoute'])('GET /search should return the correct status code for %s', async ({ desc, name, expectedStatusCode, expectedResult}) => {
         console.log("Test Case: ", desc);
-        await supertest(app)
+        const response = await supertest(app)
             .get('/search')
             .query({ researcherName: name })
-            .expect(expectedStatusCode);
+        expect(response.status).toBe(expectedStatusCode);
+        expect(response.body).toEqual(expectedResult)
     });
 
 });

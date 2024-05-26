@@ -12,12 +12,12 @@ app.set('views', path.join(__dirname, '..', 'views'));
 app.use('/', publicationRoute);
 
 describe('Testing publicationRoute', () => {
-    test.each(testCases['publicationRoute'])('GET /parse should return the correct status code and response for %s', async ({ desc, query, expectedStatusCode, expectedResponse }) => {
+    test.each(testCases['publicationRoute'])('GET /parse should return the correct status code and response for %s', async ({ desc, query, expectedStatusCode, expectedResult }) => {
         console.log("Test Case: ", desc);
-        await supertest(app)
+        const response = await supertest(app)
             .get('/parse')
             .query(query)
-            .expect(expectedResponse)
-            .expect(expectedStatusCode)   
+        expect(response.body).toEqual(expectedResult);
+        expect(response.status).toEqual(expectedStatusCode);
     });
 });
