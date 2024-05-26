@@ -57,12 +57,12 @@
                 "desc": "Search detail with an existing scopus authorID",
                 "authorId": "13405037300",
                 "expectedResult":  {
-                                        "surname": "Moscato",
-                                        "name": "Francesco",
-                                        "uni_and_dep": "Università degli Studi di Salerno, Department of Information Engineering",
-                                        "numberOfPublications": "87",
-                                        "authorId": "13405037300"
-                                    },
+                    "surname": "Moscato",
+                    "name": "Francesco",
+                    "uni_and_dep": "Università degli Studi di Salerno, Department of Information Engineering",
+                    "numberOfPublications": "87",
+                    "authorId": "13405037300"
+                },
                 "throwError": false
             },
             {
@@ -74,10 +74,27 @@
         ]
     },
     "scopusRoute": [
-        {
-
-        }
-       
+            {
+                "desc": "/GET for an existing scopus author",
+                "name": "Francesco",
+                "surname": "Moscato",
+                "affiliation": "Salerno", 
+                "expectedResult":  {
+                    "surname": "Moscato",
+                    "name": "Francesco",
+                    "uni_and_dep": "Università degli Studi di Salerno, Department of Information Engineering",
+                    "numberOfPublications": "87",
+                    "authorId": "13405037300"
+                }
+            },
+            {
+                "desc": "/GET for an non existing scopus author",
+                "name": "Pasquale",
+                "surname": "Caggiano",
+                "affiliation": "Salerno", 
+                "expectedResult": "Error occurred in ScopusRoute while requesting the data",
+                "expectedStatusCode": 500
+            }          
     ]
     
 }

@@ -14,7 +14,6 @@ app.use('/', publicationRoute);
 describe.skip('Testing publicationRoute', () => {
     test.each(testCases['publicationRoute'])('GET /parse should return the correct status code and response for %s', async ({ desc, query, expectedStatusCode, expectedResponse }) => {
         console.log("Test Case: ", desc);
-        console.log("QUERYYYYYY",query);
         await supertest(app)
             .get('/parse')
             .query(query)
