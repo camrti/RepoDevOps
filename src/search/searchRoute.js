@@ -72,7 +72,7 @@ router.get('/search_publications', async (req, res) => {
     if (!scopusInfo){
         scopusInfo = await search.getScopusInfo(cinecaInfo.university, cinecaInfo.lastName, cinecaInfo.firstName);
         scopusInfo = await search.writeScopusInfoToDB(cinecaID, scopusInfo);
-        console.log("Researcher scopus info retrived from DB");
+        console.log("Researcher scopus info retrived from SCOPUS API");
     } else {
         console.log("Researcher scopus info retrived from DB");
     }
