@@ -19,7 +19,6 @@ const getAuthorId = async (authorName, authorSurname, affiliation) => {
 
         if (data['search-results'].entry) {
             const authorId = data['search-results'].entry[0]['dc:identifier'].split(':').pop();
-            console.log('Author ID:', authorId);
             return authorId;
         } else {
             throw new Error('Author not found');

@@ -36,7 +36,7 @@ async function getScholarInfo(researcherAteneo, researcherSurname, researcherNam
 async function getScopusInfo(researcherAteneo, researcherSurname, researcherName) {
   try {
     // Get the data from Scopus
-    const response = await axios.get(`http://localhost:8003/scopus?ateneo=${encodeURIComponent(researcherAteneo)}&surname=${encodeURIComponent(researcherSurname)}&name=${encodeURIComponent(researcherName)}`);
+    const response = await axios.get(`http://localhost:8003/scopus?affiliation=${encodeURIComponent(researcherAteneo)}&surname=${encodeURIComponent(researcherSurname)}&name=${encodeURIComponent(researcherName)}`);
     console.log('Data retrieved from Scopus Service by Search');
     return response.data;
   } catch (error) {

@@ -12,11 +12,10 @@ const testCases = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'scopusTest
 describe('Testing scopusRoute', () => {
     test.each(testCases['scopusRoute'])('search should return the correct authorID or null for %s', async ({ desc, name, surname, affiliation,  expectedResult, expectedStatusCode}) => {
         console.log("Test Case: ", desc);
-        const response = await supertest(app).get('/scopus').query({ 
-                                                                        name,
-                                                                        surname,
-                                                                        ateneo: affiliation 
-                                                                    })
+        const response = await supertest(app)
+            .get('/scopus')
+            .query({ name, surname, affiliation });
+            
         expect(response.status).toBe(expectedStatusCode);
         expect(response.body).toEqual(expectedResult)
     });
