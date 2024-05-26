@@ -69,5 +69,5 @@ module.exports = {
     getAuthorDetails,
 };
 
-let result = await getAuthorDetails(13405037300)
+let result = getAuthorDetails(13405037300)
 console.log(result)
