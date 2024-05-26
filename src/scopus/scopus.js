@@ -26,7 +26,7 @@ const getAuthorId = async (authorName, authorSurname, affiliation) => {
         }
     } catch (error) {
         console.error('Error retrieving author ID:', error.message);
-        throw error;
+        return null;
     }
 };
 
