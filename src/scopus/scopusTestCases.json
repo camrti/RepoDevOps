@@ -61,13 +61,7 @@
             {
                 "desc": "Search detail with an non existing scopus authorID",
                 "authorId": "",
-                "expectedResult":  {
-                                        "surname": "",
-                                        "name": "",
-                                        "uni_and_dep": "",
-                                        "numberOfPublications": "",
-                                        "authorId": ""
-                                    }
+                "expectedResult":  null
             }
         ]
     },
