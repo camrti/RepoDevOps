@@ -68,9 +68,3 @@ module.exports = {
     getAuthorId,
     getAuthorDetails,
 };
-
-async function func() {
-    console.log(await getAuthorDetails(""));
-}
-
-func();
