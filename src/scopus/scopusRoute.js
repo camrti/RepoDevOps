@@ -15,6 +15,7 @@ router.get('/scopus', async (req, res)=>{
         const authID = await scopus.getAuthorId(name, surname, affiliation);
         const data = await scopus.getAuthorDetails(authID);
         res.json(data);
+        console.log(data);
         console.log('Data from Scopus by ScopusRoute');
     }catch (err){
         console.error(err);
