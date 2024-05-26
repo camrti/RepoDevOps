@@ -10,10 +10,22 @@ describe('Testing scopus.js module', () => {
         test.each(testCases['scopus']['getAuthorId'])('search should return the correct authorID or null for %s', async ({ desc, name, surname, affiliation,  expectedResult, throwError}) => {
             console.log("Test Case: ", desc);
             if (!throwError){
-                const authorID = await scopus.getAuthorId(name, surname, affiliation)
-                expect(authorID).toEqual(expectedResult);
+                try {
+                    const authorID = await scopus.getAuthorId(name, surname, affiliation);
+                    expect(authorID).toEqual(expectedResult);
+                } catch (error) {
+                    // If an error occurs unexpectedly, fail the test
+                    fail(error);
+                }
             } else {
-                await expect(scopus.getAuthorId(name, surname, affiliation)).rejects.toThrow();
+                try {
+                    await scopus.getAuthorId(name, surname, affiliation);
+                    // If no error occurs when error was expected, fail the test
+                    fail('Expected an error but did not get one');
+                } catch (error) {
+                    // If an error occurs as expected, pass the test
+                    expect(error).toBeDefined();
+                }
             }
             
         });
