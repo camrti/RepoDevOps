@@ -7,15 +7,20 @@ const testCases = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'scopusTest
 describe('Testing scopus.js module', () => {
 
     describe('Testing getAuthorId function', () => {
-        test.each(testCases['scopus']['getAuthorId'])('search should return the correct authorID or null for %s', async ({ desc, name, surname, affiliation,  expectedResult}) => {
+        test.each(testCases['scopus']['getAuthorId'])('search should return the correct authorID or null for %s', async ({ desc, name, surname, affiliation,  expectedResult, throwError}) => {
             console.log("Test Case: ", desc);
-            const authorID = await scopus.getAuthorId(name, surname, affiliation)
-            expect(authorID).toEqual(expectedResult);
+            if (!throwError){
+                const authorID = await scopus.getAuthorId(name, surname, affiliation)
+                expect(authorID).toEqual(expectedResult);
+            } else {
+                await expect(scopus.getAuthorId(name, surname, affiliation)).rejects.toThrow();
+            }
+            
         });
     })
 
     describe('Testing getAuthorDetails function', () => {
-        test.each(testCases['scopus']['getAuthorDetails'])('search should return the correct author detail or null for %s', async ({ desc, authorId,  expectedResult}) => {
+        test.each(testCases['scopus']['getAuthorDetails'])('search should return the correct author detail or null for %s', async ({ desc, authorId,  expectedResult, throwError}) => {
             console.log("Test Case: ", desc);
             const authorDetails = await scopus.getAuthorDetails(authorId)
             expect(authorDetails).toEqual(expectedResult);
