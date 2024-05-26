@@ -13,7 +13,7 @@ describe('Testing scopus.js module', () => {
                 const authorID = await scopus.getAuthorId(name, surname, affiliation)
                 expect(authorID).toEqual(expectedResult);
             } else {
-                expect(scopus.getAuthorId(name, surname, affiliation)).toThrow(expectedResult)
+                expect(() => scopus.getAuthorId(name, surname, affiliation)).toThrow(expectedResult);
             }
             
         });
@@ -26,7 +26,7 @@ describe('Testing scopus.js module', () => {
                 const authorDetails = await scopus.getAuthorDetails(authorId)
                 expect(authorDetails).toEqual(expectedResult);
             } else {
-                expect(scopus.getAuthorDetails(authorId)).toThrow(expectedResult)
+                expect(() => scopus.getAuthorDetails(authorId)).toThrow(expectedResult)
             }
             
         });
