@@ -6,7 +6,7 @@ router.get('/scopus', async (req, res)=>{
     const name = req.query.name;
     const surname = req.query.surname;
     const affiliation = req.query.ateneo; 
-
+    console.log(name, surname, affiliation);
     if (!name || !surname || !affiliation) {
         return res.status(400).send('Missing a query parameter');
     }
