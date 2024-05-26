@@ -19,6 +19,7 @@ const getAuthorId = async (authorName, authorSurname, affiliation) => {
 
         if (data['search-results'].entry) {
             const authorId = data['search-results'].entry[0]['dc:identifier'].split(':').pop();
+            console.log('Author ID:', authorId);
             return authorId;
         } else {
             throw new Error('Author not found');
@@ -62,31 +63,10 @@ const getAuthorDetails = async (authorId) => {
     }
 };
 
-// const getAuthorPublications = async (authorId) => {
-//     const url = `https://api.elsevier.com/content/search/scopus?query=au-id(${authorId})`;
-//     const headers = {
-//         'Accept': 'application/json',
-//         'X-ELS-APIKey': apiKey,
-//     };
-
-//     try {
-//         const response = await axios.get(url, { headers });
-//         const publicationData = response.data['search-results'];
-//         const publications = publicationData.entry || [];
-//         const publicationList = publications.map(pub => ({
-//             title: pub['dc:title'] || 'Title not available',
-//             url: pub['prism:url'] || 'URL not available'
-//         }));
-
-//         return publicationList;
-//     } catch (error) {
-//         console.error('Error retrieving author publications:', error.message);
-//         throw error;
-//     }
-// };
 
 module.exports = {
     getAuthorId,
     getAuthorDetails,
-    // getAuthorPublications
 };
+
+console.log(getAuthorId('Francesco', 'Moscato', 'Salerno'));

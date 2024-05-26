@@ -1,0 +1,26 @@
+{    
+    "scopus":    
+    {
+        "getAuthorId": [
+            {
+                "desc": "Valid search query with profile link",
+                "name": "Francesco",
+                "surname": "Moscato",
+                "affiliation": "Salerno", 
+                "expectedResult": "https://scholar.google.it/citations?hl=it&user=brSCK-YAAAAJ"
+            },
+            {
+                "desc": "Valid search query without profile link",
+                "searchQuery": "Camilla_Murati",
+                "expectedResult": null
+            }
+        ],
+        "getAuthorDetails": [
+           
+        ]
+    },
+    "scopusRoute": [
+       
+    ]
+    
+}
