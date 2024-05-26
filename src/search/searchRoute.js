@@ -21,7 +21,10 @@ router.get('/search_researchers', async (req, res) => {
     if (cinecaInfo.length === 0){
         cinecaInfo = await search.getCinecaInfo(researcherName);
         cinecaInfo = await search.writeCinecaInfoToDB(cinecaInfo);
-        console.log('Cineca Data retrieved from CINECA API')  
+        if (cinecaInfo.length === 0)
+            console.log('No researcher found with CINECA API')  
+        else 
+            console.log('Cineca Data retrieved from CINECA API')  
     } else {
         console.log('Cineca Data retrieved from DB')    
     }
