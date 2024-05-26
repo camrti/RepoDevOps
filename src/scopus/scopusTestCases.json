@@ -8,7 +8,7 @@
                 "surname": "Moscato",
                 "affiliation": "Salerno", 
                 "expectedResult": "13405037300",
-                "error": false
+                "errorFlag": false
             },
             {
                 "desc": "Search for an non existing scopus authorID",
@@ -16,7 +16,7 @@
                 "surname": "Caggiano",
                 "affiliation": "Salerno",
                 "expectedResult": null,
-                "error": true
+                "errorFlag": true
             },
             {
                 "desc": "Search for an existing scopus authorID without a name query parameter",
@@ -24,7 +24,7 @@
                 "surname": "Moscato",
                 "affiliation": "Salerno", 
                 "expectedResult": null,
-                "error": true
+                "errorFlag": true
             },
             {
                 "desc": "Search for an existing scopus authorID without a surname query parameter",
@@ -32,7 +32,7 @@
                 "surname": "",
                 "affiliation": "Salerno", 
                 "expectedResult": null,
-                "error": true
+                "errorFlag": true
             },
             {
                 "desc": "Search for an existing scopus authorID without an affilation query parameter",
@@ -40,7 +40,7 @@
                 "surname": "Moscato",
                 "affiliation": "", 
                 "expectedResult": null,
-                "error": true
+                "errorFlag": true
             },
             {
                 "desc": "Search for an existing scopus authorID without any query parameters",
@@ -48,7 +48,7 @@
                 "surname": "",
                 "affiliation": "", 
                 "expectedResult": null,
-                "error": true
+                "errorFlag": true
             }
 
         ],
@@ -63,13 +63,13 @@
                                         "numberOfPublications": "87",
                                         "authorId": "13405037300"
                                     },
-                "error": false
+                "errorFlag": false
             },
             {
                 "desc": "Search detail with an non existing scopus authorID",
                 "authorId": "",
                 "expectedResult":  null,
-                "error": true
+                "errorFlag": true
             }
         ]
     },
