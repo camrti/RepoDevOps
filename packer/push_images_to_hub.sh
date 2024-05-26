@@ -10,4 +10,4 @@ docker tag my-search-image vcampagnano/my-search-image
 docker push vcampagnano/my-search-image
 
 docker tag my-scopus-image vcampagnano/my-scopus-image
-docker push vcampagnano/my-search-scopus
+docker push vcampagnano/my-scopus-image
