@@ -8,8 +8,8 @@
             "commit": true,
             "run_command": ["-d", "-i", "-t", "{{.Image}}", "/bin/ash"],
             "changes": [
-                "CMD [\"node\", \"/app/src/search/app.js &\"]",
-                "EXPOSE 8000"
+                "CMD [\"node\", \"/app/src/search/app.js\", \"&\"]",
+                "EXPOSE 8000:8000"
             ]
         },
         {
@@ -20,8 +20,8 @@
             "commit": true,
             "run_command": ["-d", "-i", "-t", "{{.Image}}", "/bin/ash"],
             "changes": [
-                "CMD [\"node\", \"/app/src/researcher/app.js &\"]",
-                "EXPOSE 8001"
+                "CMD [\"node\", \"/app/src/researcher/app.js\", \"&\"]",
+                "EXPOSE 8001:8001"
             ]
         },
         {
@@ -32,8 +32,20 @@
             "commit": true,
             "run_command": ["-d", "-i", "-t", "{{.Image}}", "/bin/ash"],
             "changes": [
-                "CMD [\"node\", \"/app/src/publication/app.js &\"]",
-                "EXPOSE 8002"
+                "CMD [\"node\", \"/app/src/publication/app.js\", \"&\"]",
+                "EXPOSE 8002:8002"
+            ]
+        },
+        {
+            "name": "docker_scopus",
+            "type": "docker",
+            "image": "alpine:3.18",
+            "container_dir" : "/tmp",
+            "commit": true,
+            "run_command": ["-d", "-i", "-t", "{{.Image}}", "/bin/ash"],
+            "changes": [
+                "CMD [\"node\", \"/app/src/scopus/app.js\", \"&\"]",
+                "EXPOSE 8003:8003"
             ]
         }
         
@@ -52,9 +64,8 @@
         },
         {
             "type" : "shell",
-            "only" : ["docker_search"],
             "inline" : [
-                "mkdir -p /app/src/search"
+                "mkdir -p /app/src/"
             ]
         },
         {
@@ -63,12 +74,23 @@
             "destination" : "/app/src/",
             "only" : ["docker_search"]
         },
+        {   
+            "type" : "file",
+            "source" : "src/views",
+            "destination" : "app/src/",
+            "only" : ["docker_search"]
+        },
         {
-            "type" : "shell",
-            "only" : ["docker_researcher"],
-            "inline" : [
-                "mkdir -p /app/src/"
-            ]
+            "type" : "file",
+            "source" : "src/database",
+            "destination" : "/app/src/",
+            "only" : ["docker_search"]
+        },
+        {
+            "type" : "file",
+            "source" : "src/model",
+            "destination" : "/app/src/",
+            "only" : ["docker_search"]
         },
         {
             "type" : "file",
@@ -77,17 +99,16 @@
             "only" : ["docker_researcher"]
         },
         {
-            "type" : "shell",
-            "only" : ["docker_publication"],
-            "inline" : [
-                "mkdir -p /app/src/"
-            ]  
-        },
-        {
             "type" : "file",
             "source" : "src/publication",
             "destination" : "/app/src/",
             "only" : ["docker_publication"]
+        },
+        {
+            "type" : "file",
+            "source" : "src/scopus",
+            "destination" : "/app/src/",
+            "only" : ["docker_scopus"]
         },
         {   
             "type" : "file",
@@ -106,8 +127,14 @@
         },
         {   
             "type" : "file",
+            "source" : "./.env",
+            "destination" : "app/.env"
+        },
+        {   
+            "type" : "file",
             "source" : "src/views",
-            "destination" : "app/src/"
+            "destination" : "app/src/",
+            "only" : ["docker_search"]
         },
         {
             "type" : "shell",
@@ -127,6 +154,11 @@
             "type": "docker-tag",
             "only": ["docker_researcher"],
             "repository": "my-researcher-image"
+        },
+        {
+            "type": "docker-tag",
+            "only": ["docker_scopus"],
+            "repository": "my-scopus-image"
         },
         {
             "type": "docker-tag",

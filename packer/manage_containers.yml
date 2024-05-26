@@ -1,7 +1,6 @@
 ---
 - name: Manage Docker containers
   hosts: localhost
-  become: yes
   collections:
     - community.docker
 
@@ -12,6 +11,14 @@
         state: started
         enabled: true
 
+    - name: Create and start the my-scopus container
+      docker_container:
+        name: my-scopus-container
+        image: vcampagnano/my-scopus-image
+        state: started
+        ports:
+          - "8003:8003"
+
     - name: Create and start the my-publication container
       docker_container:
         name: my-publication-container
@@ -19,14 +26,6 @@
         state: started
         ports:
           - "8002:8002"
-
-    - name: Check status of my-publication-container
-      raw: docker ps -a --filter "name=my-publication-container" --format "{{'{{'}}.Status{{'}}'}}"
-      register: publication_status
-
-    - name: Debug my-publication-container status
-      debug:
-        msg: "my-publication-container status: {{ publication_status.stdout }}"
         
     - name: Create and start the my-researcher container
       docker_container:
@@ -35,14 +34,6 @@
         state: started
         ports:
           - "8001:8001"
-
-    - name: Check status of my-researcher-container
-      raw: docker ps -a --filter "name=my-researcher-container" --format "{{'{{'}}.Status{{'}}'}}"
-      register: researcher_status
-
-    - name: Debug my-researcher-container status
-      debug:
-        msg: "my-researcher-container status: {{ researcher_status.stdout }}"
         
     - name: Create and start the my-search container
       docker_container:
@@ -51,11 +42,3 @@
         state: started
         ports:
           - "8000:8000"
-    
-    - name: Check status of my-search-container
-      raw: docker ps -a --filter "name=my-search-container" --format "{{'{{'}}.Status{{'}}'}}"
-      register: search_status
-
-    - name: Debug my-search-container status
-      debug:
-        msg: "my-search-container status: {{ search_status.stdout }}"

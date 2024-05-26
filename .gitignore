@@ -128,3 +128,5 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+packer/alpine_ssh.json.test
+packer/manage_containers_ssh.yml.test

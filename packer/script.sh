@@ -16,5 +16,5 @@ packer build packer/alpine.json
 
 sh packer/push_images_to_hub.sh
 
-ansible-playbook -i packer/inventory.ini packer/manage_containers.yml
+ansible-playbook packer/manage_containers.yml
 
