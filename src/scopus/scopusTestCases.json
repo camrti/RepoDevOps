@@ -3,15 +3,17 @@
     {
         "getAuthorId": [
             {
-                "desc": "Valid search query with profile link",
+                "desc": "Search for an existing scopus authorID",
                 "name": "Francesco",
                 "surname": "Moscato",
                 "affiliation": "Salerno", 
-                "expectedResult": "https://scholar.google.it/citations?hl=it&user=brSCK-YAAAAJ"
+                "expectedResult": "13405037300"
             },
             {
-                "desc": "Valid search query without profile link",
-                "searchQuery": "Camilla_Murati",
+                "desc": "Search for an non existing scopus authorID",
+                "name": "Pasquale",
+                "surname": "Caggiano",
+                "affiliation": "Salerno",
                 "expectedResult": null
             }
         ],
