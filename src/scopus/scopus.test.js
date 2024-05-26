@@ -10,7 +10,7 @@ describe('Testing scopus.js module', () => {
         test.each(testCases['scopus']['getAuthorId'])('search should return the correct authorID or null for %s', async ({ desc, name, surname, affiliation,  expectedResult, error}) => {
             console.log("Test Case: ", desc);
             if (!error){
-                const authorID = scopus.getAuthorId(name, surname, affiliation)
+                const authorID = await scopus.getAuthorId(name, surname, affiliation)
                 expect(authorID).toEqual(expectedResult);
             } else {
                 expect(scopus.getAuthorId(name, surname, affiliation)).toThrow(expectedResult)
