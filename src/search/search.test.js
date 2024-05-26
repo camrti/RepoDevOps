@@ -11,7 +11,7 @@ const testCases = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'searchTest
 
 describe.skip("Test search.js module", () => {
 
-    afterAll(async () => {
+    afterEach(async () => {
         // Close the MongoDB connection after all tests have completed
         await closeConnection();
     });
