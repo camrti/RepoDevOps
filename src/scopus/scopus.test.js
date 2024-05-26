@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const axios = require('axios');
 const scopus = require('./scopus.js'); 
 
 const testCases = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'scopusTestCases.json'), 'utf8'));
@@ -25,7 +24,7 @@ describe('Testing scopus.js module', () => {
                     fail('Expected an error but did not get one');
                 } catch (error) {
                     // If an error occurs as expected, pass the test
-                    expect(error).toBeInstanceOf(axios.AxiosError);
+                    expect(error).toBeInstanceOf(TypeError);
                 }
             }
             
