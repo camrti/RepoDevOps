@@ -7,48 +7,42 @@
                 "name": "Francesco",
                 "surname": "Moscato",
                 "affiliation": "Salerno", 
-                "expectedResult": "13405037300",
-                "errorFlag": false
+                "expectedResult": "13405037300"
             },
             {
                 "desc": "Search for an non existing scopus authorID",
                 "name": "Pasquale",
                 "surname": "Caggiano",
                 "affiliation": "Salerno",
-                "expectedResult": null,
-                "errorFlag": true
+                "expectedResult": null
             },
             {
                 "desc": "Search for an existing scopus authorID without a name query parameter",
                 "name": "",
                 "surname": "Moscato",
                 "affiliation": "Salerno", 
-                "expectedResult": null,
-                "errorFlag": true
+                "expectedResult": null
             },
             {
                 "desc": "Search for an existing scopus authorID without a surname query parameter",
                 "name": "Francesco",
                 "surname": "",
                 "affiliation": "Salerno", 
-                "expectedResult": null,
-                "errorFlag": true
+                "expectedResult": null
             },
             {
                 "desc": "Search for an existing scopus authorID without an affilation query parameter",
                 "name": "Francesco",
                 "surname": "Moscato",
                 "affiliation": "", 
-                "expectedResult": null,
-                "errorFlag": true
+                "expectedResult": null
             },
             {
                 "desc": "Search for an existing scopus authorID without any query parameters",
                 "name": "",
                 "surname": "",
                 "affiliation": "", 
-                "expectedResult": null,
-                "errorFlag": true
+                "expectedResult": null
             }
 
         ],
@@ -62,20 +56,18 @@
                                         "uni_and_dep": "Università degli Studi di Salerno, Department of Information Engineering",
                                         "numberOfPublications": "87",
                                         "authorId": "13405037300"
-                                    },
-                "errorFlag": false
+                                    }
             },
             {
                 "desc": "Search detail with an non existing scopus authorID",
                 "authorId": "",
-                "expectedResult":  null,
-                "errorFlag": true
+                "expectedResult":  null
             }
         ]
     },
     "scopusRoute": [
         {
-
+            
         }
        
     ]
