@@ -26,7 +26,7 @@ const getAuthorId = async (authorName, authorSurname, affiliation) => {
         }
     } catch (error) {
         console.error('Error retrieving author ID:', error.message);
-        return null;
+        throw error;
     }
 };
 
@@ -59,7 +59,7 @@ const getAuthorDetails = async (authorId) => {
         };
     } catch (error) {
         console.error('Error retrieving author details:', error.message);
-        return null;
+        throw error;
     }
 };
 
