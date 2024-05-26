@@ -1,0 +1,44 @@
+---
+- name: Manage Docker containers
+  hosts: localhost
+  collections:
+    - community.docker
+
+  tasks:
+    - name: Ensure Docker is running
+      service:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Create and start the my-scopus container
+      docker_container:
+        name: my-scopus-container
+        image: vcampagnano/my-scopus-image
+        state: started
+        ports:
+          - "8003:8003"
+
+    - name: Create and start the my-publication container
+      docker_container:
+        name: my-publication-container
+        image: vcampagnano/my-publication-image
+        state: started
+        ports:
+          - "8002:8002"
+        
+    - name: Create and start the my-researcher container
+      docker_container:
+        name: my-researcher-container
+        image: vcampagnano/my-researcher-image
+        state: started
+        ports:
+          - "8001:8001"
+        
+    - name: Create and start the my-search container
+      docker_container:
+        name: my-search-container
+        image: vcampagnano/my-search-image
+        state: started
+        ports:
+          - "8000:8000"
