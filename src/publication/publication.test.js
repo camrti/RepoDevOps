@@ -7,6 +7,8 @@ const testCases = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'publicatio
 describe('Testing parseLinkToProfile function', () => {
     test.each(testCases['publication']['parseLinkToProfile'])('should return the correct profile link for $desc', async ({ desc, searchQuery, expectedResult }) => {
         const result = await publication.parseLinkToProfile(searchQuery);
+        console.log("PUBLICAAAA: ", result)
+        console.log("PUBLICAAAA 2: ", expectedResult)
         expect(result).toEqual(expectedResult);
     });
 })
