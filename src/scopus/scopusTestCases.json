@@ -17,23 +17,30 @@
                 "expectedResult": null
             },
             {
-                "desc": "Search for an existing scopus authorID without a name query argoument",
+                "desc": "Search for an existing scopus authorID without a name query parameter",
                 "name": "",
                 "surname": "Moscato",
                 "affiliation": "Salerno", 
                 "expectedResult": null
             },
             {
-                "desc": "Search for an existing scopus authorID without a surname query argoument",
+                "desc": "Search for an existing scopus authorID without a surname query parameter",
                 "name": "Francesco",
                 "surname": "",
                 "affiliation": "Salerno", 
                 "expectedResult": null
             },
             {
-                "desc": "Search for an existing scopus authorID without an affilation query argoument",
+                "desc": "Search for an existing scopus authorID without an affilation query parameter",
                 "name": "Francesco",
                 "surname": "Moscato",
+                "affiliation": "", 
+                "expectedResult": null
+            },
+            {
+                "desc": "Search for an existing scopus authorID without any query parameters",
+                "name": "",
+                "surname": "",
                 "affiliation": "", 
                 "expectedResult": null
             }
