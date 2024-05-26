@@ -4,8 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "jest --watch",
-        "test:watch": "npm run build && jest --watch",
+        "test": "jest",
+        "test:watch": "jest --watch --onlyFailures",
         "clear-jest-cache": "jest --clearCache"
     },
     "keywords": [],
