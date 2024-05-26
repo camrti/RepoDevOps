@@ -5,7 +5,7 @@ const researcher = require('./researcher.js');
 // Load the test cases from the JSON file
 const testCases = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'researcherTestCases.json'), 'utf8'));
 
-describe.skip('Testing getCinecaData function', () => {
+describe('Testing getCinecaData function', () => {
 
     test.each(testCases['researcher'])('should return the correct number of reasearcher and the correct information for %s', async ({ desc, name, expectedResult, expectedLength }) => {
         console.log("Test Case: ", desc);
