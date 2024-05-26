@@ -15,6 +15,13 @@
                 "surname": "Caggiano",
                 "affiliation": "Salerno",
                 "expectedResult": null
+            },
+            {
+                "desc": "Search for an existing scopus authorID without one query argoument",
+                "name": "Francesco",
+                "surname": "",
+                "affiliation": "Salerno", 
+                "expectedResult": null
             }
         ],
         "getAuthorDetails": [
