@@ -59,7 +59,7 @@ const getAuthorDetails = async (authorId) => {
         };
     } catch (error) {
         console.error('Error retrieving author details:', error.message);
-        throw error;
+        return null;
     }
 };
 
@@ -68,3 +68,6 @@ module.exports = {
     getAuthorId,
     getAuthorDetails,
 };
+
+let result = await getAuthorDetails(13405037300)
+console.log(result)

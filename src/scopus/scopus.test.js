@@ -5,9 +5,21 @@ const scopus = require('./scopus.js');
 const testCases = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'scopusTestCases.json'), 'utf8'));
 
 describe('Testing scopus.js module', () => {
-    test.each(testCases['scopus']['getAuthorId'])('search should return the correct authorID or null for %s', async ({ desc, name, surname, affiliation,  expectedResult}) => {
-        console.log("Test Case: ", desc);
-        const authorID = await scopus.getAuthorId(name, surname, affiliation)
-        expect(authorID).toEqual(expectedResult);
-    });
+
+    describe('Testing getAuthorId function', () => {
+        test.each(testCases['scopus']['getAuthorId'])('search should return the correct authorID or null for %s', async ({ desc, name, surname, affiliation,  expectedResult}) => {
+            console.log("Test Case: ", desc);
+            const authorID = await scopus.getAuthorId(name, surname, affiliation)
+            expect(authorID).toEqual(expectedResult);
+        });
+    })
+
+    describe('Testing getAuthorDetails function', () => {
+        test.each(testCases['scopus']['getAuthorDetails'])('search should return the correct authorID or null for %s', async ({ desc, name, surname, affiliation,  expectedResult}) => {
+            console.log("Test Case: ", desc);
+            const authorID = await scopus.getAuthorId(name, surname, affiliation)
+            expect(authorID).toEqual(expectedResult);
+        });
+    })
+    
 });

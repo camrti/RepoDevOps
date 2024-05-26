@@ -47,7 +47,17 @@
 
         ],
         "getAuthorDetails": [
-           
+            {
+                "desc": "Search for an existing scopus authorID without any query parameters",
+                "authorId": "13405037300",
+                "expectedResult":  {
+                                        "surname": "Moscato",
+                                        "name": "Franceso",
+                                        "uni_and_dep": "Salerno",
+                                        "numberOfPublications": "124",
+                                        "authorId": "13405037300"
+                                    }
+            }
         ]
     },
     "scopusRoute": [
