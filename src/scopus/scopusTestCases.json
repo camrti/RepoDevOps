@@ -93,7 +93,7 @@
                 "name": "Pasquale",
                 "surname": "Caggiano",
                 "affiliation": "Salerno", 
-                "expectedResult": "Error occurred in ScopusRoute while requesting the data",
+                "expectedResult": {},
                 "expectedStatusCode": 500
             }          
     ]
