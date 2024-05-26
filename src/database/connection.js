@@ -12,11 +12,21 @@ function connect(dbName, dbUri) {
     return connection;
 }
 
+function closeConnection() {
+    mongoose.disconnect()
+        .then(() => {
+            console.log("MongoDB connection closed successfully");
+        })
+        .catch((err) => {
+            console.error("Error closing MongoDB connection:", err);
+        });
+}
 
 const dbName = process.env.MONGO_DB;
 const dbUri = process.env.MONGO_URI;
 const main = connect(dbName, dbUri);
 module.exports = {
     connect,
+    closeConnection,
     main
 }
