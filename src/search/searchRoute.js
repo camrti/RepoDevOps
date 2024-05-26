@@ -21,7 +21,7 @@ router.get('/search_researchers', async (req, res) => {
     if (cinecaInfo.length === 0){
         cinecaInfo = await search.getCinecaInfo(researcherName);
         cinecaInfo = await search.writeCinecaInfoToDB(cinecaInfo);
-        console.log('Cineca Data retrieved from API')  
+        console.log('Cineca Data retrieved from CINECA API')  
     } else {
         console.log('Cineca Data retrieved from DB')    
     }
@@ -45,17 +45,18 @@ router.get('/search_publications', async (req, res) => {
     let scopusInfo = {};
     // Get cineca data form DB
     cinecaInfo = await search.getByIDCinecaInfoFromDB(cinecaID);
-    console.log(cinecaInfo, "CINECA DB");
+    console.log("Researcher cineca info retrived from DB by ID");
     
     // Try to get scholar data from DB
     scholarInfo = await search.getByIDScholarInfoFromDB(cinecaInfo.scholarID);
-    console.log(scholarInfo, "SCHOLAR DB");
 
     // If no data found, get scholar data from API
     if (!scholarInfo){
         scholarInfo = await search.getScholarInfo(cinecaInfo.university, cinecaInfo.lastName, cinecaInfo.firstName);
         scholarInfo = await search.writeScholarInfoToDB(cinecaID, scholarInfo);
-        console.log(scholarInfo, "SCHOLAR API");
+        console.log("Researcher cineca info retrived from SCHOLAR API");
+    } else {
+        console.log("Researcher scholar info retrived from DB");
     }
 
     // If no publications found
@@ -66,13 +67,14 @@ router.get('/search_publications', async (req, res) => {
 
     // Try to get scopus data from DB
     scopusInfo = await search.getByIDScopusInfoFromDB(cinecaInfo.scopusID);
-    console.log(scopusInfo, "SCOPUS DB");
     
     // If no data found, get scopus data from API
     if (!scopusInfo){
         scopusInfo = await search.getScopusInfo(cinecaInfo.university, cinecaInfo.lastName, cinecaInfo.firstName);
         scopusInfo = await search.writeScopusInfoToDB(cinecaID, scopusInfo);
-        console.log(scopusInfo, "SCOPUS API");
+        console.log("Researcher scopus info retrived from DB");
+    } else {
+        console.log("Researcher scopus info retrived from DB");
     }
     
     res.status(200);
