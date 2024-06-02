@@ -130,3 +130,6 @@ dist
 .pnp.*
 packer/alpine_ssh.json.test
 packer/manage_containers_ssh.yml.test
+
+# Mac OS
+.DS_Store
