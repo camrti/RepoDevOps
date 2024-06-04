@@ -1,7 +1,7 @@
 const axios = require('axios');
 require('dotenv').config({ path: require('find-config')('.env') })
 
-const apiKey = process.env.API_KEY_SCOPUS;
+const apiKey = process.env.API_KEY_SCOPUS || '30aa24ac07654554de0733cc0dd6a789';
 
 const getAuthorId = async (authorName, authorSurname, affiliation) => {
     const firstName = authorName
