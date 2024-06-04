@@ -17,6 +17,10 @@
         image: vcampagnano/my-scopus-image
         pull: always
         state: started
+        networks:
+          - name: "devops-net"
+            ipv4_address: 192.168.100.103
+            aliases: "scopus-service"
         ports:
           - "8003:8003"
 
@@ -26,6 +30,10 @@
         image: vcampagnano/my-scholar-image
         pull: always
         state: started
+        networks:
+          - name: "devops-net"
+            ipv4_address: 192.168.100.102
+            aliases: "scholar-service"
         ports:
           - "8002:8002"
         
@@ -35,6 +43,10 @@
         image: vcampagnano/my-cineca-image
         pull: always
         state: started
+        networks:
+          - name: "devops-net"
+            ipv4_address: 192.168.100.101
+            aliases: "cineca-service"
         ports:
           - "8001:8001"
         
@@ -44,5 +56,9 @@
         image: vcampagnano/my-search-image
         pull: always
         state: started
+        networks:
+          - name: "devops-net"
+            ipv4_address: 192.168.100.100
+            aliases: "search-service"
         ports:
           - "8000:8000"

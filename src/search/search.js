@@ -8,7 +8,7 @@ const Scopus = require('../model/scopusModel');
 async function getCinecaInfo(researcherName) {
   try {
     // Get the data from Cineca
-    const response = await axios.get(`http://localhost:8001/search?researcherName=${encodeURIComponent(researcherName)}`);
+    const response = await axios.get(`http://cineca-service:8001/search?researcherName=${encodeURIComponent(researcherName)}`);
     console.log('Data retrieved from Researcher Service by Search');
     return response.data;
   } catch (error) {
@@ -22,7 +22,7 @@ async function getCinecaInfo(researcherName) {
 async function getScholarInfo(researcherAteneo, researcherSurname, researcherName) {
   try {
     // Get the data from Scholar
-    const response = await axios.get(`http://localhost:8002/parse?ateneo=${encodeURIComponent(researcherAteneo)}&surname=${encodeURIComponent(researcherSurname)}&name=${encodeURIComponent(researcherName)}`);
+    const response = await axios.get(`http://scholar-service:8002/parse?ateneo=${encodeURIComponent(researcherAteneo)}&surname=${encodeURIComponent(researcherSurname)}&name=${encodeURIComponent(researcherName)}`);
     console.log('Data retrieved from Publication Service by Search');
     return response.data;
   } catch (error) {
@@ -36,7 +36,7 @@ async function getScholarInfo(researcherAteneo, researcherSurname, researcherNam
 async function getScopusInfo(researcherAteneo, researcherSurname, researcherName) {
   try {
     // Get the data from Scopus
-    const response = await axios.get(`http://localhost:8003/scopus?affiliation=${encodeURIComponent(researcherAteneo)}&surname=${encodeURIComponent(researcherSurname)}&name=${encodeURIComponent(researcherName)}`);
+    const response = await axios.get(`http://scopus-service:8003/scopus?affiliation=${encodeURIComponent(researcherAteneo)}&surname=${encodeURIComponent(researcherSurname)}&name=${encodeURIComponent(researcherName)}`);
     console.log('Data retrieved from Scopus Service by Search');
     return response.data;
   } catch (error) {
