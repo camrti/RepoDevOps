@@ -1,4 +1,0 @@
-Per inizializzare o avviare il DB in locale:
-- Copiare la directory database fuori dalla repository Git
-- Entrare nella cartella copiata
-- Lanciare: docker compose up -d
