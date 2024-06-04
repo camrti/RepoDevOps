@@ -11,10 +11,25 @@
         state: started
         enabled: true
 
+    - name: Create and start the DB container
+      docker_container:
+        name: my-mongodb-container
+        image: mongo:4.4.9
+        pull: always
+        state: started
+        volume:
+          - ./dbData:/data/db
+        networks:
+          - name: "devops-net"
+            ipv4_address: 192.168.100.200
+            aliases: "database-service"
+        ports:
+          - "27017:27017"
+
     - name: Create and start the my-scopus container
       docker_container:
         name: my-scopus-container
-        image: vcampagnano/my-scopus-image
+        image: my-scopus-image
         pull: always
         state: started
         networks:
@@ -27,7 +42,7 @@
     - name: Create and start the my-scholar container
       docker_container:
         name: my-scholar-container
-        image: vcampagnano/my-scholar-image
+        image: my-scholar-image
         pull: always
         state: started
         networks:
@@ -40,7 +55,7 @@
     - name: Create and start the my-cineca container
       docker_container:
         name: my-cineca-container
-        image: vcampagnano/my-cineca-image
+        image: my-cineca-image
         pull: always
         state: started
         networks:
@@ -53,7 +68,7 @@
     - name: Create and start the my-search container
       docker_container:
         name: my-search-container
-        image: vcampagnano/my-search-image
+        image: my-search-image
         pull: always
         state: started
         networks:
