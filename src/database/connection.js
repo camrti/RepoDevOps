@@ -22,8 +22,8 @@ function closeConnection() {
         });
 }
 
-const dbName = process.env.MONGO_DB;
-const dbUri = process.env.MONGO_URI;
+const dbName = process.env.MONGO_DB || "researcherDB";
+const dbUri = process.env.MONGO_URI || "mongodb://172.16.174.108:27017";
 const main = connect(dbName, dbUri);
 module.exports = {
     connect,
