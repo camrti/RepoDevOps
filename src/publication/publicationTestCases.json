@@ -188,8 +188,8 @@
             "query": { "name": "Francesco", "surname": "Moscato", "ateneo": "Salerno"},
             "expectedStatusCode": 200,
             "expectedResult": {
-                "citations": "1463",
-                "hIndex": "22",
+                "citations": "1468",
+                "hIndex": "23",
                 "publications": [
                     {
                         "title": "PATIENT WITH CHRONIC CORONARY SYNDROME: USE OF MULTIMODAL IMAGING FOR CORRECT DIAGNOSIS AND TREATMENT",
@@ -252,7 +252,7 @@
                         "authors": "F Amato, V Casola, G Cozzolino, A De Benedictis, N Mazzocca, ...",
                         "paperType": "ACM Transactions on Multimedia Computing, Communications, and Applications, 2021",
                         "year": "2021",
-                        "citationCount": "15",
+                        "citationCount": "16",
                         "publicationLink": "https://scholar.google.it/citations?view_op=view_citation&hl=it&oe=ASCII&user=brSCK-YAAAAJ&sortby=pubdate&citation_for_view=brSCK-YAAAAJ:J-pR_7NvFogC"
                     },
                     {
@@ -260,7 +260,7 @@
                         "authors": "F Amato, G Cozzolino, F Moscato, V Moscato, F Xhafa",
                         "paperType": "IEEE Transactions on Industrial Informatics 17 (11), 7752-7759, 2021",
                         "year": "2021",
-                        "citationCount": "22",
+                        "citationCount": "23",
                         "publicationLink": "https://scholar.google.it/citations?view_op=view_citation&hl=it&oe=ASCII&user=brSCK-YAAAAJ&sortby=pubdate&citation_for_view=brSCK-YAAAAJ:V3AGJWp-ZtQC"
                     },
                     {
@@ -268,7 +268,7 @@
                         "authors": "F Amato, L Coppolino, F Mercaldo, F Moscato, R Nardone, A Santone",
                         "paperType": "IEEE Transactions on Intelligent Transportation Systems 22 (8), 5081-5090, 2021",
                         "year": "2021",
-                        "citationCount": "51",
+                        "citationCount": "52",
                         "publicationLink": "https://scholar.google.it/citations?view_op=view_citation&hl=it&oe=ASCII&user=brSCK-YAAAAJ&sortby=pubdate&citation_for_view=brSCK-YAAAAJ:kRWSkSYxWN8C"
                     },
                     {
@@ -300,7 +300,7 @@
                         "authors": "L Barolli, F Amato, F Moscato, T Enokido, M Takizawa",
                         "paperType": "Springer Nature, 2020",
                         "year": "2020",
-                        "citationCount": "4",
+                        "citationCount": "5",
                         "publicationLink": "https://scholar.google.it/citations?view_op=view_citation&hl=it&oe=ASCII&user=brSCK-YAAAAJ&sortby=pubdate&citation_for_view=brSCK-YAAAAJ:BrmTIyaxlBUC"
                     },
                     {

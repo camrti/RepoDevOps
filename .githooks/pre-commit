@@ -21,16 +21,16 @@ git stash --keep-index -q
 
 echo "Running unit tests with npm..."
 
-# # [UNIT TESTING]
-# # Run npm test
-# if ! npm test; then
-#     # Optionally: Unstash changes if tests fail
-#     echo "Restoring unstaged changes..."
-#     git stash pop -q
+# [UNIT TESTING]
+# Run npm test
+if ! npm test; then
+    # Optionally: Unstash changes if tests fail
+    echo "Restoring unstaged changes..."
+    git stash pop -q
 
-#     echo "Unit tests failed."
-#     exit 1
-# fi
+    echo "Unit tests failed."
+    exit 1
+fi
 
 # Optionally: Unstash changes after tests pass
 echo "Restoring unstaged changes..."
