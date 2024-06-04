@@ -1,5 +1,5 @@
 {    
-    "publication":    
+    "scholar":    
     {
         "parseLinkToProfile": [
             {
@@ -182,7 +182,7 @@
             }
         ]
     },
-    "publicationRoute": [
+    "scholarRoute": [
         {   
             "desc": "/GET for a researcher with publications",
             "query": { "name": "Francesco", "surname": "Moscato", "ateneo": "Salerno"},

@@ -1,16 +1,16 @@
 const path = require('path');
 require('dotenv').config({ path: require('find-config')('.env') })
 const express = require('express');
-const researcherRoute = require('./researcherRoute.js');
+const cinecaRoute = require('./cinecaRoute.js');
 
 const app = express();
-const PORT = process.env.RESEARCHER_PORT || 8001;
+const PORT = process.env.CINECA_PORT || 8001;
 
-app.use('/', researcherRoute);
+app.use('/', cinecaRoute);
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`\nResearcher service avviato sulla porta ${PORT}`);
+  console.log(`\nCineca service avviato sulla porta ${PORT}`);
 });
 
 // Link: http://localhost:8001/search?researcherName=Francesco_Moscato

@@ -17,7 +17,7 @@ router.get('/search_researchers', async (req, res) => {
     let cinecaInfo = [];
     // Try to retrieve data from DB
     cinecaInfo = await search.getByNameCinecaInfoFromDB(researcherName);
-
+    console
     if (cinecaInfo.length === 0){
         cinecaInfo = await search.getCinecaInfo(researcherName);
         cinecaInfo = await search.writeCinecaInfoToDB(cinecaInfo);

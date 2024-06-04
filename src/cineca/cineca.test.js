@@ -1,16 +1,16 @@
 const fs = require('fs');
 const path = require('path');
-const researcher = require('./researcher.js');
+const cineca = require('./cineca.js');
 
 // Load the test cases from the JSON file
-const testCases = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'researcherTestCases.json'), 'utf8'));
+const testCases = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'cinecaTestCases.json'), 'utf8'));
 
 describe('Testing getCinecaData function', () => {
 
-    test.each(testCases['researcher'])('should return the correct number of reasearcher and the correct information for %s', async ({ desc, name, expectedResult, expectedLength }) => {
+    test.each(testCases['cineca'])('should return the correct number of reasearcher and the correct information for %s', async ({ desc, name, expectedResult, expectedLength }) => {
         console.log("Test Case: ", desc);
         
-        const data = await researcher.getCinecaData(name);
+        const data = await cineca.getCinecaData(name);
         const minLength = Math.min(data.length, expectedResult.length);
 
         expect(data.length).toEqual(expectedLength);
@@ -28,10 +28,10 @@ describe('Testing getCinecaData function', () => {
         }
     });
 
-    test.each(testCases['researcher'])(`should return the correct type for each researcher field`, async ({ desc, name, expectedResult, expectedLength }) => {
+    test.each(testCases['cineca'])(`should return the correct type for each researcher field`, async ({ desc, name, expectedResult, expectedLength }) => {
         console.log("Test Case Type: ", desc);
 
-        const data = await researcher.getCinecaData(name);
+        const data = await cineca.getCinecaData(name);
         const minLength = Math.min(data.length, expectedResult.length);
 
         for (let i = 0; i < minLength; i++) {

@@ -1,5 +1,5 @@
 const express = require('express');
-const publication = require('./publication.js');
+const scholar = require('./scholar.js');
 const router = express.Router();
 
 router.get('/parse', async (req, res) => {
@@ -13,20 +13,20 @@ router.get('/parse', async (req, res) => {
 
   try {
     const query = researcherAteneo + " " + researcherName + " " + researcherSurname;
-    let profileLink = await publication.parseLinkToProfile(query);
+    let profileLink = await scholar.parseLinkToProfile(query);
     
     // Check if the profile link is not found, try to parse the profile link using the cleanAndExtractLastWord function
     if (!profileLink) {
-      profileLink = await publication.parseLinkToProfile(publication.cleanAndExtractLastWord(researcherAteneo.toUpperCase()) + " " + researcherName + " " + researcherSurname);
+      profileLink = await scholar.parseLinkToProfile(scholar.cleanAndExtractLastWord(researcherAteneo.toUpperCase()) + " " + researcherName + " " + researcherSurname);
     }
 
     // Check if the profile link is not found, try to parse the profile link using the translation map
     if (!profileLink) {
-      profileLink = await publication.parseLinkToProfile(publication.translationMap.get(researcherAteneo.toUpperCase()) + " " + researcherName + " " + researcherSurname);
+      profileLink = await scholar.parseLinkToProfile(scholar.translationMap.get(researcherAteneo.toUpperCase()) + " " + researcherName + " " + researcherSurname);
     }
 
     if (profileLink) {
-      const { publications, hIndex, citations } = await publication.parsePublications(profileLink);
+      const { publications, hIndex, citations } = await scholar.parsePublications(profileLink);
       console.log('Publications Data retrieved from parsePublications by PublicationRoute');
       res.json({
         researcherName: researcherName,

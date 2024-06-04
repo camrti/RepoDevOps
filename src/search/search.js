@@ -74,12 +74,6 @@ async function getByIDScopusInfoFromDB(scopusID) {
     return scopusInfo;
 }
 
-// // Function to get the publication data from Database
-// async function getPublicationFromDB(researcherID){
-//     const publications = await Researcher.findById(researcherID).populate('publications').select('publications');
-//     return publications;
-// }
-
 // Function to write the publication data from Database
 async function writeCinecaInfoToDB(cinecaInfo) {
   let results = [];

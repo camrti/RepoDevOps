@@ -20,19 +20,19 @@
         ports:
           - "8003:8003"
 
-    - name: Create and start the my-publication container
+    - name: Create and start the my-scholar container
       docker_container:
-        name: my-publication-container
-        image: vcampagnano/my-publication-image
+        name: my-scholar-container
+        image: vcampagnano/my-scholar-image
         pull: always
         state: started
         ports:
           - "8002:8002"
         
-    - name: Create and start the my-researcher container
+    - name: Create and start the my-cineca container
       docker_container:
-        name: my-researcher-container
-        image: vcampagnano/my-researcher-image
+        name: my-cineca-container
+        image: vcampagnano/my-cineca-image
         pull: always
         state: started
         ports:

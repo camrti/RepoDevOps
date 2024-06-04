@@ -13,26 +13,26 @@
             ]
         },
         {
-            "name": "docker_researcher",
+            "name": "docker_cineca",
             "type": "docker",
             "image": "alpine:3.18",
             "container_dir" : "/tmp",
             "commit": true,
             "run_command": ["-d", "-i", "-t", "{{.Image}}", "/bin/ash"],
             "changes": [
-                "CMD [\"node\", \"/app/src/researcher/app.js\", \"&\"]",
+                "CMD [\"node\", \"/app/src/cineca/app.js\", \"&\"]",
                 "EXPOSE 8001:8001"
             ]
         },
         {
-            "name": "docker_publication",
+            "name": "docker_scholar",
             "type": "docker",
             "image": "alpine:3.18",
             "container_dir" : "/tmp",
             "commit": true,
             "run_command": ["-d", "-i", "-t", "{{.Image}}", "/bin/ash"],
             "changes": [
-                "CMD [\"node\", \"/app/src/publication/app.js\", \"&\"]",
+                "CMD [\"node\", \"/app/src/scholar/app.js\", \"&\"]",
                 "EXPOSE 8002:8002"
             ]
         },
@@ -94,15 +94,15 @@
         },
         {
             "type" : "file",
-            "source" : "src/researcher",
+            "source" : "src/cineca",
             "destination" : "/app/src/",
-            "only" : ["docker_researcher"]
+            "only" : ["docker_cineca"]
         },
         {
             "type" : "file",
-            "source" : "src/publication",
+            "source" : "src/scholar",
             "destination" : "/app/src/",
-            "only" : ["docker_publication"]
+            "only" : ["docker_scholar"]
         },
         {
             "type" : "file",
@@ -152,8 +152,8 @@
         },
         {
             "type": "docker-tag",
-            "only": ["docker_researcher"],
-            "repository": "my-researcher-image"
+            "only": ["docker_cineca"],
+            "repository": "my-cineca-image"
         },
         {
             "type": "docker-tag",
@@ -162,8 +162,8 @@
         },
         {
             "type": "docker-tag",
-            "only": ["docker_publication"],
-            "repository": "my-publication-image"
+            "only": ["docker_scholar"],
+            "repository": "my-scholar-image"
         }
     ]
 }
