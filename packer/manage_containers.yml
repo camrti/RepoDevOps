@@ -17,7 +17,7 @@
         image: mongo:4.4.9
         pull: always
         state: started
-        volume:
+        volumes:
           - ./dbData:/data/db
         networks:
           - name: "devops-net"
