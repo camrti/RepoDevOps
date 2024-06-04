@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Array of container names to stop
 containers=("my-search-container" "my-cineca-container" "my-scholar-container" "my-scopus-container")

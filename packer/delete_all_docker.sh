@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ "$(docker ps -q)" ]; then
     docker stop $(docker ps -a -q)

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Script to push my-scopus-image, my-scholar-image, my-cineca-image, my-search-image to docker hub vcampagnano
 
 docker tag my-scholar-image vcampagnano/my-scholar-image
