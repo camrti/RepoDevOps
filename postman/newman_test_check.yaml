@@ -12,32 +12,44 @@
       debug:
         msg: "Test failed!"
       when: parsed_results.run.stats.assertions.failed > 0
-
-    - name: Stop my-scopus-container
-      docker_container:
-        name: my-scopus-container
-        state: stopped
+      
+    - name: Check if any tests failed
+      debug:
+        msg: "Test failed! Reason: {{ item.error.message }}"
+      with_items: "{{ parsed_results.run.failures }}"
       when: parsed_results.run.stats.assertions.failed > 0
 
-    - name: Stop my-scholar-container
+    - name: Cleanup test containers if test failed
       docker_container:
-        name: my-scholar-container
-        state: stopped
-      when: parsed_results.run.stats.assertions.failed > 0
-
-    - name: Stop my-cineca-container
-      docker_container:
-        name: my-cineca-container
-        state: stopped
-      when: parsed_results.run.stats.assertions.failed > 0
-
-    - name: Stop my-search-container
-      docker_container:
-        name: my-search-container
-        state: stopped
+        name: "{{ item }}"
+        state: absent
+      loop:
+        - my-scopus-container
+        - my-scholar-container
+        - my-cineca-container
+        - my-search-container
       when: parsed_results.run.stats.assertions.failed > 0
 
     - name: Check if all tests passed
       debug:
         msg: "Test success"
+      when: parsed_results.run.stats.assertions.failed == 0
+
+    - name: Cleanup test containers after test passed
+      docker_container:
+        name: "{{ item }}"
+        state: absent
+      loop:
+        - my-scopus-container
+        - my-scholar-container
+        - my-cineca-container
+        - my-search-container
+      when: parsed_results.run.stats.assertions.failed == 0
+
+    - name: Commit and push changes to main branch
+      git:
+        repo: 'ssh://git@github.com/username/repo.git'
+        dest: '/path/to/your/repo'
+        version: main
+        force: yes
       when: parsed_results.run.stats.assertions.failed == 0
