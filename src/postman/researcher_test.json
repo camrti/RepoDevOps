@@ -1,0 +1,159 @@
+[     
+  {
+    "researcherName": "Francesco Moscato",
+    "expectedResult": [
+      {
+        "surname": "MOSCATO",
+        "name": "FRANCESCO",
+        "universityAndDepartment": "SALERNO, INGEGNERIA DELL'INFORMAZIONE ED ELETTRICA E MATEMATICA APPLICATA",
+        "role": "ASSOCIATO",
+        "ssd": "ING-INF/05"
+      }
+    ]
+  },
+  {
+    "researcherName": "Russo",
+    "expectedResult": [
+      {
+        "surname": "BOCCARUSSO",
+        "name": "LUCA",
+        "universityAndDepartment": "NAPOLI FEDERICO II, INGEGNERIA CHIMICA, DEI MATERIALI E DELLA PRODUZIONE INDUSTRIALE",
+        "role": "RICERCATORE A T.D. - T.PIENO (ART. 24 C.3-B L. 240/10)",
+        "ssd": "ING-IND/16"
+      },
+      {
+        "surname": "CAPORUSSO",
+        "name": "SIMONA",
+        "universityAndDepartment": "UNIV. TELEMATICA \"E-CAMPUS\", GIURISPRUDENZA DIPARTIMENTO E-CAMPUS",
+        "role": "ASSOCIATO",
+        "ssd": "IUS/15"
+      },
+      {
+        "surname": "COLARUSSO",
+        "name": "ANDREA MARCO",
+        "universityAndDepartment": "ROMA \"FORO ITALICO\", SCIENZE MOTORIE, UMANE E DELLA SALUTE",
+        "role": "RICERCATORE A T.D. - T.DEFIN. (ART. 24 C.3-A L. 240/10)",
+        "ssd": "IUS/10"
+      },
+      {
+        "surname": "DELLO RUSSO",
+        "name": "ANTONIO",
+        "universityAndDepartment": "POLITECNICA DELLE MARCHE, SCIENZE BIOMEDICHE E SANITA' PUBBLICA",
+        "role": "ORDINARIO",
+        "ssd": "MED/11"
+      },
+      {
+        "surname": "DELLO RUSSO",
+        "name": "CINZIA",
+        "universityAndDepartment": "CATTOLICA DEL SACRO CUORE, MEDICINA E CHIRURGIA FARMACOLOGIA",
+        "role": "RICERCATORE",
+        "ssd": "BIO/14"
+      },
+      {
+        "surname": "DELLO RUSSO",
+        "name": "SILVIA",
+        "universityAndDepartment": "LUISS GUIDO CARLI, IMPRESA E MANAGEMENT",
+        "role": "ASSOCIATO",
+        "ssd": "SECS-P/10"
+      },
+      {
+        "surname": "DI RUSSO",
+        "name": "ENRICO",
+        "universityAndDepartment": "PADOVA, FISICA E ASTRONOMIA \"GALILEO GALILEI\" - DFA",
+        "role": "RICERCATORE A T.D. - T.PIENO (ART. 24 C.3-A L. 240/10)",
+        "ssd": "FIS/03"
+      },
+      {
+        "surname": "DI RUSSO",
+        "name": "FRANCESCO",
+        "universityAndDepartment": "ROMA \"FORO ITALICO\", SCIENZE MOTORIE, UMANE E DELLA SALUTE",
+        "role": "ORDINARIO",
+        "ssd": "M-PSI/02"
+      },
+      {
+        "surname": "FACCIORUSSO",
+        "name": "ANTONIO",
+        "universityAndDepartment": "FOGGIA, SCIENZE MEDICHE E CHIRURGICHE",
+        "role": "ASSOCIATO",
+        "ssd": "MED/12"
+      },
+      {
+        "surname": "FACCIORUSSO",
+        "name": "JOHANN ANTONIO",
+        "universityAndDepartment": "FIRENZE, INGEGNERIA CIVILE E AMBIENTALE (DICEA)",
+        "role": "ASSOCIATO",
+        "ssd": "ICAR/07"
+      },
+      {
+        "surname": "FATTORUSSO",
+        "name": "CATERINA",
+        "universityAndDepartment": "NAPOLI FEDERICO II, FARMACIA",
+        "role": "ORDINARIO",
+        "ssd": "CHIM/08"
+      },
+      {
+        "surname": "FATTORUSSO",
+        "name": "ROBERTO",
+        "universityAndDepartment": "CAMPANIA - \"L. VANVITELLI\", SCIENZE E TECNOLOGIE AMBIENTALI, BIOLOGICHE E FARMACEUTICHE (DISTABIF)",
+        "role": "ORDINARIO",
+        "ssd": "CHIM/03"
+      },
+      {
+        "surname": "LO RUSSO",
+        "name": "LUCIO",
+        "universityAndDepartment": "FOGGIA, MEDICINA CLINICA E SPERIMENTALE",
+        "role": "ORDINARIO",
+        "ssd": "MED/28"
+      },
+      {
+        "surname": "LO RUSSO",
+        "name": "STEFANO",
+        "universityAndDepartment": "POLITECNICO DI TORINO, INGEGNERIA DELL'AMBIENTE, DEL TERRITORIO E DELLE INFRASTRUTTURE",
+        "role": "ORDINARIO",
+        "ssd": "GEO/05"
+      },
+      {
+        "surname": "LORUSSO",
+        "name": "ANNA MARIA",
+        "universityAndDepartment": "BOLOGNA, DELLE ARTI",
+        "role": "ORDINARIO",
+        "ssd": "M-FIL/05"
+      },
+      {
+        "surname": "LORUSSO",
+        "name": "ANTONELLA",
+        "universityAndDepartment": "SALENTO, MATEMATICA E FISICA ENNIO DE GIORGI",
+        "role": "RICERCATORE A T.D. - T.PIENO (ART. 24 C.3-B L. 240/10)",
+        "ssd": "FIS/03"
+      },
+      {
+        "surname": "LORUSSO",
+        "name": "DOMENICA",
+        "universityAndDepartment": "HUMANITAS UNIVERSITY, SCIENZE BIOMEDICHE",
+        "role": "ORDINARIO",
+        "ssd": "MED/40"
+      },
+      {
+        "surname": "LORUSSO",
+        "name": "FELICE",
+        "universityAndDepartment": "CHIETI-PESCARA, DIPARTIMENTO DI TECNOLOGIE INNOVATIVE IN MEDICINA & ODONTOIATRIA",
+        "role": "RICERCATORE A T.D. - T.PIENO (ART. 24 C.3-B L. 240/10)",
+        "ssd": "MED/28"
+      },
+      {
+        "surname": "LORUSSO",
+        "name": "MARCO",
+        "universityAndDepartment": "PERUGIA, SCIENZE POLITICHE",
+        "role": "RICERCATORE A T.D. - T.PIENO (ART. 24 C.3-B L. 240/10)",
+        "ssd": "SECS-P/02"
+      },
+      {
+        "surname": "LORUSSO",
+        "name": "MARIELLA",
+        "universityAndDepartment": "BOLOGNA, DELLE ARTIA",
+        "role": "ASSOCIATO",
+        "ssd": "L-LIN/12"
+      }
+    ]
+  }
+]
