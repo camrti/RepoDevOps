@@ -6,16 +6,16 @@
                 "name": "Francesco_Moscato",
                 "expectedResult": [
                     {
-                        "ateneo": "SALERNO",
+                        "university": "SALERNO",
                         "lastName": "MOSCATO",
                         "firstName": "FRANCESCO",
-                        "facolta": "",
+                        "faculty": "",
                         "grade": "ASSOCIATO",
                         "gender": "M",
                         "sc": "09/H1",
-                        "servizio_altro_ateneo": "",
+                        "otherUniversityService": "",
                         "ssd": "ING-INF/05",
-                        "struttura": "INGEGNERIA DELL'INFORMAZIONE ED ELETTRICA E MATEMATICA APPLICATA"
+                        "structure": "INGEGNERIA DELL'INFORMAZIONE ED ELETTRICA E MATEMATICA APPLICATA"
                     }
                 ]
             }

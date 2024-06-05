@@ -1,28 +1,48 @@
 const fs = require('fs');
+const express = require('express');
 const path = require('path');
 const search = require('./search.js');
-const { closeConnection } = require('../database/connection.js');
 const cinecaRoute = require('../cineca/cinecaRoute.js');
 const scholarRoute = require('../scholar/scholarRoute.js');
 const scopusRoute = require('../scopus/scopusRoute.js'); 
+const CINECA_PORT=8001
+const SCHOLAR_PORT=8002
+const SCHOPUS_PORT=8003
 
 const cinecaApp = express();
 cinecaApp.use('/', cinecaRoute);
+cinecaServer = cinecaApp.listen(CINECA_PORT, () => {
+    console.log(`\n Cineca service avviato sulla porta ${CINECA_PORT}`);
+  });
 
 const scholarApp = express();
 scholarApp.use('/', scholarRoute);
+scholarServer = scholarApp.listen(SCHOLAR_PORT, () => {
+    console.log(`\nScholar service avviato sulla porta ${SCHOLAR_PORT}`);
+  });
 
 const scopusApp = express();
 scopusApp.use('/', scopusRoute);
+scupusServer = scopusApp.listen(SCHOPUS_PORT, () => {
+    console.log(`\nScopus service avviato sulla porta ${SCHOPUS_PORT}`);
+  });
 
 // Load the test cases from the JSON file
 const testCases = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'searchTestCases.json'), 'utf8'));
 
 describe("Test search.js module", () => {
 
-    afterEach(async () => {
-        // Close the MongoDB connection after all tests have completed
-        closeConnection();
+    afterAll(async () => {
+        cinecaServer.close(() => {
+            console.log('Cineca service stopped.');
+        });
+        scholarServer.close(() => {
+            console.log('Scholar service stopped.');
+        });
+        scupusServer.close(() => {
+            console.log('Scopus service stopped.');
+        });
+  
     });
 
     test.each(testCases['search']['getCinecaInfo'])('should return the correct number of reasearcher and the correct information for %s', async ({ desc, name, expectedResult}) => {
