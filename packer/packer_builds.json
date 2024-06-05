@@ -9,7 +9,7 @@
             "run_command": ["-d", "-i", "-t", "{{.Image}}", "/bin/ash"],
             "changes": [
                 "CMD [\"node\", \"/app/src/search/app.js\", \"&\"]",
-                "EXPOSE 8000:8000"
+                "EXPOSE 8080"
             ]
         },
         {
@@ -21,7 +21,7 @@
             "run_command": ["-d", "-i", "-t", "{{.Image}}", "/bin/ash"],
             "changes": [
                 "CMD [\"node\", \"/app/src/cineca/app.js\", \"&\"]",
-                "EXPOSE 8001:8001"
+                "EXPOSE 8081"
             ]
         },
         {
@@ -33,7 +33,7 @@
             "run_command": ["-d", "-i", "-t", "{{.Image}}", "/bin/ash"],
             "changes": [
                 "CMD [\"node\", \"/app/src/scholar/app.js\", \"&\"]",
-                "EXPOSE 8002:8002"
+                "EXPOSE 8082"
             ]
         },
         {
@@ -45,7 +45,7 @@
             "run_command": ["-d", "-i", "-t", "{{.Image}}", "/bin/ash"],
             "changes": [
                 "CMD [\"node\", \"/app/src/scopus/app.js\", \"&\"]",
-                "EXPOSE 8003:8003"
+                "EXPOSE 8083"
             ]
         }
         
