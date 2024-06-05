@@ -45,17 +45,27 @@ async function getScopusInfo(researcherAteneo, researcherSurname, researcherName
   }
 }
 
-// Function to get the resarcher data from DB
-async function getByNameCinecaInfoFromDB(researcherName) {
+// // Function to get the resarcher data from DB
+// async function getByNameCinecaInfoFromDB(researcherName) {
 
+//   let cinecaInfo = await Cineca.find({
+//     $or: [
+//         { firstName: new RegExp(researcherName, 'i') },
+//         { lastName: new RegExp(researcherName, 'i') }
+//       ]
+//     });
+//     return cinecaInfo;
+// }
+
+// Function to get the researcher data from DB with case-insensitive matching
+async function getByNameCinecaInfoFromDB(researcherFirstName, researcherLastName) {
   let cinecaInfo = await Cineca.find({
-    $or: [
-        { firstName: new RegExp(researcherName, 'i') },
-        { lastName: new RegExp(researcherName, 'i') }
-      ]
-    });
-    return cinecaInfo;
+    firstName: new RegExp(`^${researcherFirstName}$`, 'i'),
+    lastName: new RegExp(`^${researcherLastName}$`, 'i')
+  });
+  return cinecaInfo;
 }
+
 
 // Function to get the resarcher data from DB
 async function getByIDCinecaInfoFromDB(cinecaID) {
@@ -75,16 +85,51 @@ async function getByIDScopusInfoFromDB(scopusID) {
     return scopusInfo;
 }
 
-// Function to write the publication data from Database
+// // Function to write the publication data from Database
+// async function writeCinecaInfoToDB(cinecaInfo) {
+//   let results = [];
+
+//   for (const info of cinecaInfo) {
+//     try {
+//       let res = await Cineca.create(info);
+//       results.push(res);
+//     } catch (err) {
+//       console.log("Failed researcher to write to DB", err);
+//     }
+//   }
+
+//   return results;
+// }
+// Function to write the cineca info to DB
 async function writeCinecaInfoToDB(cinecaInfo) {
   let results = [];
 
   for (const info of cinecaInfo) {
     try {
-      let res = await Cineca.create(info);
-      results.push(res);
+      // Check if the info already exists in the database
+      let existingInfo = await Cineca.findOne({
+        university: info.university,
+        lastName: info.lastName,
+        firstName: info.firstName,
+        faculty: info.faculty,
+        grade: info.grade,
+        gender: info.gender,
+        sc: info.sc,
+        otherUniversityService: info.otherUniversityService,
+        ssd: info.ssd,
+        structure: info.structure
+      });
+
+      // If the info does not exist, insert it
+      if (!existingInfo) {
+        let res = await Cineca.create(info);
+        results.push(res);
+      } else {
+        results.push(existingInfo);
+        console.log("Duplicate entry found, not inserting in DB");
+      }
     } catch (err) {
-      console.log("Failed researcher to write to DB", err);
+      console.log("Failed to write researcher to DB", err);
     }
   }
 
@@ -93,15 +138,63 @@ async function writeCinecaInfoToDB(cinecaInfo) {
 
 // Function to write the publication data from Database
 async function writeScholarInfoToDB(cinecaID, scholarInfo) {
-  scholarInfo = await Scholar.create(scholarInfo);
-  const cinecaInfo = await Cineca.findByIdAndUpdate(cinecaID, { scholarID: scholarInfo._id }, { new: true });
-  return scholarInfo;
+  let info = {};
+
+  try {
+    // Check if the info already exists in the database
+    let existingInfo = await Scholar.findOne({
+      citations: scholarInfo.citations,
+      hIndex: scholarInfo.hIndex,
+      publications: scholarInfo.publications,
+    });
+
+    // If the info does not exist, insert it
+    if (!existingInfo) {
+      console.log("Inserting new entry in DB");
+      info = await Scholar.create(scholarInfo);
+      await Cineca.findByIdAndUpdate(cinecaID, { scholarID: info._id }, { new: true });
+    } else {
+      info = existingInfo;
+      console.log("Duplicate entry found, not inserting in DB");
+    }
+  } catch (err) {
+    console.log("Failed to write researcher to DB", err);
+  }
+
+  return info;
 }
+
 // Function to write the publication data from Database
 async function writeScopusInfoToDB(cinecaID, scopusInfo) {
-    scopusInfo = await Scopus.create(scopusInfo);
-    const cinecaInfo = await Cineca.findByIdAndUpdate(cinecaID, { scopusID: scopusInfo._id }, { new: true });
-    return scopusInfo;
+  let info = {};
+
+  try {
+    // Check if the info already exists in the database
+    let existingInfo = await Scopus.findOne({
+      name: scopusInfo.name,
+      surname: scopusInfo.surname,
+      uni_and_dep: scopusInfo.uni_and_dep,
+      numberOfPublications: scopusInfo.numberOfPublications,
+      authorId: scopusInfo.authorId,
+    });
+
+    // If the info does not exist, insert it
+    if (!existingInfo) {
+      console.log("Inserting new entry in DB");
+      info = await Scholar.create(scopusInfo);
+      await Cineca.findByIdAndUpdate(cinecaID, { scholarID: info._id }, { new: true });
+    } else {
+      info = existingInfo;
+      console.log("Duplicate entry found, not inserting in DB");
+    }
+  } catch (err) {
+    console.log("Failed to write researcher to DB", err);
+  }
+
+  return info;
+    // scopusInfo = await Scopus.create(scopusInfo);
+    // await Cineca.findByIdAndUpdate(cinecaID, { scopusID: scopusInfo._id }, { new: true });
+    // return scopusInfo;
 }
 
 module.exports = {

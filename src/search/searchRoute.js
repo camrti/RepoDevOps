@@ -10,40 +10,80 @@ const router = express.Router();
 const dbName = process.env.MONGO_DB || "researcherDB";
 const dbUri = process.env.MONGO_URI || "mongodb://database-service:27017";
 
-DB.openConnection(dbName, dbUri)
+DB.openConnection(dbName, dbUri);
+
+// Restore DB
+// const Cineca = require('../model/cinecaModel');
+// const Scholar = require('../model/scholarModel');
+// const Scopus = require('../model/scopusModel'); 
+// Cineca.deleteMany({}).then(console.log("Cineca DB deleted"));
+// Scholar.deleteMany({}).then(console.log("Scholar DB deleted"));
+// Scopus.deleteMany({}).then(console.log("Scopus DB deleted"));
 
 router.get('/', async (req, res) => {
     res.status(200);
     res.render('index');
 });
 
+// // Route to search researchers
+// router.get('/search_researchers', async (req, res) => {
+//   const { researcherName } = req.query;
+//   try {
+//     let cinecaInfo = [];
+//     // Try to retrieve data from DB
+//     cinecaInfo = await search.getByNameCinecaInfoFromDB(researcherName);
+//     console
+//     if (cinecaInfo.length === 0){
+//         cinecaInfo = await search.getCinecaInfo(researcherName);
+//         cinecaInfo = await search.writeCinecaInfoToDB(cinecaInfo);
+//         if (cinecaInfo.length === 0)
+//             console.log('No researcher found with CINECA API')  
+//         else 
+//             console.log('Cineca Data retrieved from CINECA API')  
+//     } else {
+//         console.log('Cineca Data retrieved from DB')    
+//     }
+
+//     res.status(200);
+//     res.render('search', {researchers: cinecaInfo});
+//     console.log('Researchers Data retrieved from getReserarchers by SearchRoute')    
+//   } catch (error) {
+//       console.error('Error:', error);
+//       res.status(500);
+//   }
+// });
+
 // Route to search researchers
 router.get('/search_researchers', async (req, res) => {
-  const { researcherName } = req.query;
-  try {
-    let cinecaInfo = [];
-    // Try to retrieve data from DB
-    cinecaInfo = await search.getByNameCinecaInfoFromDB(researcherName);
-    console
-    if (cinecaInfo.length === 0){
-        cinecaInfo = await search.getCinecaInfo(researcherName);
-        cinecaInfo = await search.writeCinecaInfoToDB(cinecaInfo);
-        if (cinecaInfo.length === 0)
-            console.log('No researcher found with CINECA API')  
-        else 
-            console.log('Cineca Data retrieved from CINECA API')  
-    } else {
-        console.log('Cineca Data retrieved from DB')    
+    let { researcherFirstName, researcherLastName } = req.query;
+    researcherFirstName = researcherFirstName.trim();
+    researcherLastName = researcherLastName.trim();
+    try {
+      let cinecaInfo = [];
+      // Try to retrieve data from DB
+      cinecaInfo = await search.getByNameCinecaInfoFromDB(researcherFirstName, researcherLastName);
+      console.log("Researcher cineca info retrived from DB by name: ", cinecaInfo);
+      if (cinecaInfo.length === 0){
+          const researcherFullName = researcherFirstName + ' ' + researcherLastName;
+          cinecaInfo = await search.getCinecaInfo(researcherFullName);
+          cinecaInfo = await search.writeCinecaInfoToDB(cinecaInfo);
+          if (cinecaInfo.length === 0)
+              console.log('No researcher found with CINECA API')  
+          else 
+              console.log('Cineca Data retrieved from CINECA API')  
+      } else {
+          console.log('Cineca Data retrieved from DB')    
+      }
+  
+      res.status(200);
+      res.render('search', {researchers: cinecaInfo});
+      console.log('Researchers Data retrieved from getReserarchers by SearchRoute')    
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500);
     }
-
-    res.status(200);
-    res.render('search', {researchers: cinecaInfo});
-    console.log('Researchers Data retrieved from getReserarchers by SearchRoute')    
-  } catch (error) {
-      console.error('Error:', error);
-      res.status(500);
-  }
-});
+  });
+  
 
 // Route to search publication
 router.get('/search_publications', async (req, res) => {
