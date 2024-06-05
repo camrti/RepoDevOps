@@ -35,7 +35,7 @@
             ipv4_address: 192.168.100.103
             aliases: "scopus-service"
         ports:
-          - "8083:8083"
+          - "8083:8003"
 
     - name: Create and start the my-scholar container
       docker_container:
@@ -47,7 +47,7 @@
             ipv4_address: 192.168.100.102
             aliases: "scholar-service"
         ports:
-          - "8082:8082"
+          - "8082:8002"
         
     - name: Create and start the my-cineca container
       docker_container:
@@ -59,7 +59,7 @@
             ipv4_address: 192.168.100.101
             aliases: "cineca-service"
         ports:
-          - "8081:8081"
+          - "8081:8001"
         
     - name: Create and start the my-search container
       docker_container:
@@ -71,4 +71,4 @@
             ipv4_address: 192.168.100.100
             aliases: "search-service"
         ports:
-          - "8080:8080"
+          - "8080:8000"
