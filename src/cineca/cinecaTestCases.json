@@ -25,6 +25,18 @@
             "name": "Giovanni_Russo",
             "expectedResult": [
                 {
+                    "grade": "ORDINARIO",
+                    "lastName": "RUSSO",
+                    "firstName": "GIOVANNI",
+                    "gender": "M",
+                    "university": "CATANIA",
+                    "faculty": "",
+                    "ssd": "MAT/08",
+                    "sc": "01/A5",
+                    "structure": "MATEMATICA E INFORMATICA",
+                    "otherUniversityService": ""
+                },
+                {
                     "grade": "ASSOCIATO",
                     "lastName": "RUSSO",
                     "firstName": "GIOVANNI",
@@ -58,18 +70,6 @@
                     "ssd": "AGR/10",
                     "sc": "07/C1",
                     "structure": "SCIENZE DEL SUOLO, DELLA PIANTA E DEGLI ALIMENTI (DI.S.S.P.A.)",
-                    "otherUniversityService": ""
-                },
-                {
-                    "grade": "ORDINARIO",
-                    "lastName": "RUSSO",
-                    "firstName": "GIOVANNI",
-                    "gender": "M",
-                    "university": "CATANIA",
-                    "faculty": "",
-                    "ssd": "MAT/08",
-                    "sc": "01/A5",
-                    "structure": "MATEMATICA E INFORMATICA",
                     "otherUniversityService": ""
                 }
             ],
