@@ -47,7 +47,8 @@ async function getScopusInfo(researcherAteneo, researcherSurname, researcherName
 
 // Function to get the resarcher data from DB
 async function getByNameCinecaInfoFromDB(researcherName) {
-  const cinecaInfo = await Cineca.find({
+
+  let cinecaInfo = await Cineca.find({
     $or: [
         { firstName: new RegExp(researcherName, 'i') },
         { lastName: new RegExp(researcherName, 'i') }

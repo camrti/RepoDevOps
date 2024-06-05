@@ -1,9 +1,16 @@
 // the client app must interact only with the search module, see the architecture diagram
 
 require('dotenv').config();
+
+const DB = require('../database/connection')
 const express = require('express');
 const search = require('./search.js');
 const router = express.Router();
+
+const dbName = process.env.MONGO_DB || "researcherDB";
+const dbUri = process.env.MONGO_URI || "mongodb://database-service:27017";
+
+DB.openConnection(dbName, dbUri)
 
 router.get('/', async (req, res) => {
     res.status(200);

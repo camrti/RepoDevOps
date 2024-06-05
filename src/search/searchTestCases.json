@@ -210,6 +210,43 @@
                     "authorId": "13405037300"
                 }
             }
+        ],
+
+        "getByNameCinecaInfoFromDB": [
+            {
+                "desc": "Search Cineca info from test DB by name",
+                "name": "Francesco Moscato",
+                "expectedResult": [{
+                    "university": "SALERNO",
+                    "lastName": "MOSCATO",
+                    "firstName": "FRANCESCO",
+                    "faculty": "",
+                    "grade": "ASSOCIATO",
+                    "gender": "M",
+                    "sc": "09/H1",
+                    "otherUniversityService": "",
+                    "ssd": "ING-INF/05",
+                    "structure": "INGEGNERIA DELL'INFORMAZIONE ED ELETTRICA E MATEMATICA APPLICATA"
+                }] 
+            }
+        ],
+
+        "getByIDCinecaInfoFromDB": [
+            {
+                "desc": "Search Cineca info from test DB by ID",
+                "expectedResult": {
+                    "university": "SALERNO",
+                    "lastName": "MOSCATO",
+                    "firstName": "FRANCESCO",
+                    "faculty": "",
+                    "grade": "ASSOCIATO",
+                    "gender": "M",
+                    "sc": "09/H1",
+                    "otherUniversityService": "",
+                    "ssd": "ING-INF/05",
+                    "structure": "INGEGNERIA DELL'INFORMAZIONE ED ELETTRICA E MATEMATICA APPLICATA"
+                }   
+            }
         ]
         
     },
