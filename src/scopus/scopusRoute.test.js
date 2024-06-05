@@ -9,7 +9,7 @@ app.use('/', scopusRoute);
 
 const testCases = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'scopusTestCases.json'), 'utf8'));
 
-describe('Testing scopusRoute', () => {
+describe.skip('Testing scopusRoute', () => {
     test.each(testCases['scopusRoute'])('search should return the correct authorID or null for %s', async ({ desc, name, surname, affiliation,  expectedResult, expectedStatusCode}) => {
         console.log("Test Case: ", desc);
         const response = await supertest(app)

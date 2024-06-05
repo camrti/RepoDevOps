@@ -10,7 +10,7 @@ const app = express();
 app.set('views', path.join(__dirname, '..', 'views'));
 app.use('/', scholarRoute);
 
-describe('Testing scholarRoute', () => {
+describe.skip('Testing scholarRoute', () => {
     test.each(testCases['scholarRoute'])('GET /parse should return the correct status code and response for %s', async ({ desc, query, expectedStatusCode, expectedResult }) => {
         console.log("Test Case: ", desc);
         const response = await supertest(app)

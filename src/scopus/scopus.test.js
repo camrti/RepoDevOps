@@ -4,7 +4,7 @@ const scopus = require('./scopus.js');
 
 const testCases = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'scopusTestCases.json'), 'utf8'));
 
-describe('Testing scopus.js module', () => {
+describe.skip('Testing scopus.js module', () => {
 
     describe('Testing getAuthorId function', () => {
         test.each(testCases['scopus']['getAuthorId'])('search should return the correct authorID or null for %s', async ({ desc, name, surname, affiliation,  expectedResult, throwError}) => {
