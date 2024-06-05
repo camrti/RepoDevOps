@@ -2,9 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const search = require('./search.js');
 const { closeConnection } = require('../database/connection.js');
-const cinecaRoute = require('./cinecaRoute.js');
-const scholarRoute = require('./scholarRoute.js');
-const scopusRoute = require('./scopusRoute.js'); 
+const cinecaRoute = require('../cineca/cinecaRoute.js');
+const scholarRoute = require('../scholar/scholarRoute.js');
+const scopusRoute = require('../scopus/scopusRoute.js'); 
 
 const cinecaApp = express();
 cinecaApp.use('/', cinecaRoute);
