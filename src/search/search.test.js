@@ -5,9 +5,9 @@ const search = require('./search.js');
 const cinecaRoute = require('../cineca/cinecaRoute.js');
 const scholarRoute = require('../scholar/scholarRoute.js');
 const scopusRoute = require('../scopus/scopusRoute.js'); 
-const CINECA_PORT=8001
-const SCHOLAR_PORT=8002
-const SCHOPUS_PORT=8003
+const CINECA_PORT=8081
+const SCHOLAR_PORT=8082
+const SCHOPUS_PORT=8083
 
 const cinecaApp = express();
 cinecaApp.use('/', cinecaRoute);
