@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const db = require('../database/connection').main;
 
 const scholarSchema = new mongoose.Schema({
     hIndex: {

@@ -1,24 +1,28 @@
 #!/bin/bash
 
+# Define the SSH connection parameters
+SSH_USER="test"
+SSH_HOST="172.16.174.107"
+
+# Define the remote script to execute
+REMOTE_SCRIPT="/home/test/RepoDevOps/packer/testing.sh"
+
 # Read the standard input to get the old and new revisions and the ref name
 while read oldrev newrev refname
 do
     # Check if the refname is the production branch
-    if [[ "$refname" == "refs/heads/production" ]]; then
+    if [[ "$refname" == "refs/heads/main" ]]; then
         echo "Production branch is being updated."
 
-        # SSH command to run the Packer script on the production server
-        SSH_CMD="RepoDevOps/packer/script.sh"
-
-        # Run the SSH command on the production server and capture the output and status
-        SSH_OUTPUT=$(ssh devops@172.16.174.108 "$SSH_CMD")
+        # SSH into the remote server and execute the script
+        SSH_OUTPUT=$(ssh "$SSH_USER@$SSH_HOST" "$REMOTE_SCRIPT")
         SSH_STATUS=$?
 
         # Check if the SSH command succeeded
         if [[ $SSH_STATUS -eq 0 ]]; then
-            echo "Packer script completed successfully on the production server."
+            echo "Packer script completed successfully on the test server."
         else
-            echo "Packer script failed on the production server. Aborting push."
+            echo "Packer script failed on the test server. Aborting push."
             echo "$SSH_OUTPUT"
             exit 1
         fi

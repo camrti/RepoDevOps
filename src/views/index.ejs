@@ -11,14 +11,16 @@
 </head>
 <body>
     <div class="container"> <!-- Use Bootstrap container for better layout -->
-        <h1 class="text-center mb-4">Ricerca Ricercatori</h1> <!-- Center the heading -->
+        <h1 class="text-center mb-4">Search Researcher</h1> <!-- Center the heading -->
         <form action="/search_researchers" method="get">
             <div class="form-group"> <!-- Use Bootstrap form-group for better styling -->
-                <text for="researcherName">Nome del ricercatore:</text>
-                <!-- Use Bootstrap form-control classes to style the input -->
-                <input type="text" class="form-control form-control-lg" id="researcherName" name="researcherName" placeholder="Inserisci il nome del ricercatore" required>
+                <text for="researcherFirstName">Name:</text>
+                <input type="text" class="form-control form-control-lg" id="researcherFirstName" name="researcherFirstName" required>
+                
+                <text for="researcherLastName">Surname:</text>
+                <input type="text" class="form-control form-control-lg" id="researcherLastName" name="researcherLastName" required>
             </div>
-            <button class="btn btn-primary" type="submit">Cerca</button> <!-- Use Bootstrap btn classes -->
+            <button class="btn btn-primary" type="submit">Search</button> <!-- Use Bootstrap btn classes -->
         </form>
     </div>
 </body>

@@ -1,11 +1,19 @@
 const mongoose = require('mongoose');
-const db = require('../database/connection').main;
 
 const scopusSchema = new mongoose.Schema({
+    surname: {
+        type: String
+    },
+    name: {
+        type: String
+    },
     uni_and_dep: {
         type: String
     },
     numberOfPublications: {
+        type: String
+    },
+    authorId: {
         type: String
     }
 });
