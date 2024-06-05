@@ -4,14 +4,14 @@ const fs = require('fs');
 const path = require('path');
 const testCases = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'scholarTestCases.json'), 'utf8'));
 
-describe.skip('Testing parseLinkToProfile function', () => {
+describe('Testing parseLinkToProfile function', () => {
     test.each(testCases['scholar']['parseLinkToProfile'])('should return the correct profile link for $desc', async ({ desc, searchQuery, expectedResult }) => {
         const result = await scholar.parseLinkToProfile(searchQuery);
         expect(result).toEqual(expectedResult);
     });
 })
 
-describe.skip('Testing parsePublications function', () => {
+describe('Testing parsePublications function', () => {
     test.each(testCases['scholar']['parsePublications'])('should return the correct number of publications and the correct information for $desc', async ({ desc, profileLink, expectedResult}) => {
         const result = await scholar.parsePublications(profileLink);
         

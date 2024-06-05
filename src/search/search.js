@@ -45,18 +45,6 @@ async function getScopusInfo(researcherAteneo, researcherSurname, researcherName
   }
 }
 
-// // Function to get the resarcher data from DB
-// async function getByNameCinecaInfoFromDB(researcherName) {
-
-//   let cinecaInfo = await Cineca.find({
-//     $or: [
-//         { firstName: new RegExp(researcherName, 'i') },
-//         { lastName: new RegExp(researcherName, 'i') }
-//       ]
-//     });
-//     return cinecaInfo;
-// }
-
 // Function to get the researcher data from DB with case-insensitive matching
 async function getByNameCinecaInfoFromDB(researcherFirstName, researcherLastName) {
   let cinecaInfo = await Cineca.find({
@@ -192,9 +180,6 @@ async function writeScopusInfoToDB(cinecaID, scopusInfo) {
   }
 
   return info;
-    // scopusInfo = await Scopus.create(scopusInfo);
-    // await Cineca.findByIdAndUpdate(cinecaID, { scopusID: scopusInfo._id }, { new: true });
-    // return scopusInfo;
 }
 
 module.exports = {

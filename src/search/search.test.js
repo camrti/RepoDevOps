@@ -58,7 +58,7 @@ describe("Test search.js module", () => {
   
     });
 
-    describe.skip("Test Cineca functions", () => {
+    describe("Test Cineca functions", () => {
         test.each(testCases['search']['getCinecaInfo'])('should return the correct number of reasearcher and the correct information for %s', async ({ desc, name, expectedResult}) => {
             console.log(desc);  
             const data = await search.getCinecaInfo(name);

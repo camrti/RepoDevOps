@@ -8,7 +8,7 @@ const app = express();
 
 app.use('/', scholarRoute);
 
-describe.skip('Testing scholarRoute', () => {
+describe('Testing scholarRoute', () => {
     test.each(testCases['scholarRoute'])('GET /parse should return the correct status code and response for %s', async ({ desc, query, expectedStatusCode, expectedResult }) => {
         console.log("Test Case: ", desc);
         const response = await supertest(app)

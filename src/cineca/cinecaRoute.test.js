@@ -10,7 +10,7 @@ app.use('/', cinecaRoute);
 // Load the test cases from the JSON file
 const testCases = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'cinecaTestCases.json'), 'utf8'));
 
-describe.skip('Testing cinecaRoute', () => {
+describe('Testing cinecaRoute', () => {
 
     test.each(testCases['cinecaRoute'])('GET /search should return the correct status code for %s', async ({ desc, name, expectedStatusCode, expectedResult}) => {
         console.log("Test Case: ", desc);
