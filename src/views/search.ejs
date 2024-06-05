@@ -13,11 +13,14 @@
     <div class="container">
         <h1 class="text-center mb-4">Ricerca Ricercatori</h1>
         <form action="/search_researchers" method="get">
-            <div class="form-group">
-                <label for="researcherName">Nome del ricercatore:</label>
-                <input type="text" class="form-control" id="researcherName" name="researcherName" placeholder="Inserisci il nome del ricercatore">
+            <div class="form-group"> <!-- Use Bootstrap form-group for better styling -->
+                <text for="researcherFirstName">Nome del ricercatore:</text>
+                <input type="text" class="form-control form-control-lg" id="researcherFirstName" name="researcherFirstName" placeholder="Inserisci il nome del ricercatore" required>
+                
+                <text for="researcherLastName">Cognome del ricercatore:</text>
+                <input type="text" class="form-control form-control-lg" id="researcherLastName" name="researcherLastName" placeholder="Inserisci il cognome del ricercatore" required>
             </div>
-            <button class="btn btn-primary" type="submit">Cerca</button>
+            <button class="btn btn-primary" type="submit">Cerca</button> <!-- Use Bootstrap btn classes -->
         </form>
         <% if (researchers && researchers.length > 0) { %>
             <h2>Risultati della ricerca:</h2>
