@@ -1,6 +1,6 @@
 {
     "search": {
-        "getCinecaInfo": 
+        "getCinecaInfo": [
             {
                 "desc": "Search info from Cineca Service",
                 "name": "Francesco_Moscato",
@@ -18,8 +18,10 @@
                         "struttura": "INGEGNERIA DELL'INFORMAZIONE ED ELETTRICA E MATEMATICA APPLICATA"
                     }
                 ]
-            },
-        "getScholarInfo": 
+            }
+        ],
+
+        "getScholarInfo": [
             {
                 "desc": "Search info from Scholar Service",
                 "researcherAteneo": "Salerno",
@@ -191,9 +193,10 @@
                         }],
                     "researcherName": "Francesco"    
                 }        
-            },
+            }
+        ],
         
-        "getScopusInfo": 
+        "getScopusInfo":[
             {
                 "desc": "Search info from Scopus Service",
                 "name": "Francesco",
@@ -207,6 +210,7 @@
                     "authorId": "13405037300"
                 }
             }
+        ]
         
     },
 
