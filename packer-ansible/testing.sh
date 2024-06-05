@@ -31,8 +31,28 @@ do
 done
 echo "All images have been removed."
 
-packer build packer/packer_builds.json 
+packer build packer-ansible/packer_builds.json 
 
 docker network create --driver=bridge --subnet=192.168.100.0/24 devops-net
 
-ansible-playbook packer/manage_containers_test.yml
+# Remove the temp file if it exists
+if [ -f /tmp/test_result.txt ]; then
+    rm /tmp/test_result.txt
+fi
+
+
+ansible-playbook packer-ansible/manage_containers_test.yml
+
+# Run Newman tests
+newman run postman/postman_test_project.postman_collection.json -d postman/researcher_test.json -r json --reporter-json-export postman/output_test.json
+
+ansible-playbook packer-ansible/newman_test_check.yaml
+
+if [ -f /tmp/test_result.txt ]; then
+    echo "Tests failed."
+    rm /tmp/test_result.txt
+    exit 1
+else
+    echo "All tests passed."
+    exit 0
+fi

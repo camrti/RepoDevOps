@@ -34,7 +34,7 @@
     - name: Cleanup test containers if test failed
       docker_container:
         name: "{{ item }}"
-        state: absent
+        state: stopped
       loop:
         - my-scopus-container
         - my-scholar-container
