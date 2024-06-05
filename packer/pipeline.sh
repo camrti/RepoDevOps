@@ -43,7 +43,7 @@ docker network create --driver=bridge --subnet=192.168.100.0/24 devops-net
 ansible-playbook packer/manage_containers_test.yml
 
 # Run Newman tests
-newman run postman_test_project.postman_collection.json -d researcher_test.json -r json --reporter-json-export output_test.json
+newman run postman/postman_test_project.postman_collection.json -d postman/researcher_test.json -r json --reporter-json-export postman/output_test.json
 
 ansible-playbook postman/newman_test_check.yml
 
