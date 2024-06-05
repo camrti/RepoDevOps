@@ -1,0 +1,14 @@
+[
+    {
+        "researcherName": "Francesco Moscato",
+        "expectedResult": [
+            {
+                "surname": "MOSCATO",
+                "name": "FRANCESCO",
+                "universityAndDepartment": "SALERNO, INGEGNERIA DELL'INFORMAZIONE ED ELETTRICA E MATEMATICA APPLICATA",
+                "role": "ASSOCIATO",
+                "ssd": "ING-INF/05"
+            }
+        ]
+    }
+]

@@ -1,0 +1,43 @@
+- hosts: localhost
+  tasks:
+    - name: Read test results
+      command: cat output_test1.json
+      register: test_results
+
+    - name: Parse test results
+      set_fact:
+        parsed_results: "{{ test_results.stdout | from_json }}"
+
+    - name: Check if any tests failed
+      debug:
+        msg: "Test failed!"
+      when: parsed_results.run.stats.assertions.failed > 0
+
+    - name: Stop my-scopus-container
+      docker_container:
+        name: my-scopus-container
+        state: stopped
+      when: parsed_results.run.stats.assertions.failed > 0
+
+    - name: Stop my-scholar-container
+      docker_container:
+        name: my-scholar-container
+        state: stopped
+      when: parsed_results.run.stats.assertions.failed > 0
+
+    - name: Stop my-cineca-container
+      docker_container:
+        name: my-cineca-container
+        state: stopped
+      when: parsed_results.run.stats.assertions.failed > 0
+
+    - name: Stop my-search-container
+      docker_container:
+        name: my-search-container
+        state: stopped
+      when: parsed_results.run.stats.assertions.failed > 0
+
+    - name: Check if all tests passed
+      debug:
+        msg: "Test success"
+      when: parsed_results.run.stats.assertions.failed == 0
