@@ -12,11 +12,23 @@
       debug:
         msg: "Test failed!"
       when: parsed_results.run.stats.assertions.failed > 0
-      
-    - name: Check if any tests failed
+
+    - name: Extract stack from failures
+      set_fact:
+        failure_stack: "{{ item.error.stack }}"
+      loop: "{{ parsed_results.run.failures }}"
+      when: parsed_results.run.stats.assertions.failed > 0
+      no_log: true
+
+    - name: Debug failure_stack
       debug:
-        msg: "Test failed! Reason: {{ item.error.message }}"
-      with_items: "{{ parsed_results.run.failures }}"
+        msg: "Test failed! Reason: {{ failure_stack }}"
+      when: parsed_results.run.stats.assertions.failed > 0
+
+    - name: Write test result to temp file
+      copy:
+        content: "{{ parsed_results.run.stats.assertions.failed > 0 }}"
+        dest: "/tmp/test_result.txt"
       when: parsed_results.run.stats.assertions.failed > 0
 
     - name: Cleanup test containers if test failed
@@ -44,12 +56,4 @@
         - my-scholar-container
         - my-cineca-container
         - my-search-container
-      when: parsed_results.run.stats.assertions.failed == 0
-
-    - name: Commit and push changes to main branch
-      git:
-        repo: 'ssh://git@github.com/username/repo.git'
-        dest: '/path/to/your/repo'
-        version: main
-        force: yes
       when: parsed_results.run.stats.assertions.failed == 0
