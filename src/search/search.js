@@ -9,7 +9,7 @@ async function getCinecaInfo(researcherName) {
   try {
     // Get the data from Cineca
     const response = await axios.get(`http://cineca-service:8001/search?researcherName=${encodeURIComponent(researcherName)}`);
-    console.log('Data retrieved from Researcher Service by Search');
+    console.log('Data retrieved from Cineca Service by Search');
     return response.data;
   } catch (error) {
     console.error('Error:', error);
@@ -23,7 +23,7 @@ async function getScholarInfo(researcherAteneo, researcherSurname, researcherNam
   try {
     // Get the data from Scholar
     const response = await axios.get(`http://scholar-service:8002/parse?ateneo=${encodeURIComponent(researcherAteneo)}&surname=${encodeURIComponent(researcherSurname)}&name=${encodeURIComponent(researcherName)}`);
-    console.log('Data retrieved from Publication Service by Search');
+    console.log('Data retrieved from Scholar Service by Search');
     return response.data;
   } catch (error) {
     console.error('Error:', error);
