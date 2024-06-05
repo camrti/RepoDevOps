@@ -2,6 +2,18 @@ const fs = require('fs');
 const path = require('path');
 const search = require('./search.js');
 const { closeConnection } = require('../database/connection.js');
+const cinecaRoute = require('./cinecaRoute.js');
+const scholarRoute = require('./scholarRoute.js');
+const scopusRoute = require('./scopusRoute.js'); 
+
+const cinecaApp = express();
+cinecaApp.use('/', cinecaRoute);
+
+const scholarApp = express();
+scholarApp.use('/', scholarRoute);
+
+const scopusApp = express();
+scopusApp.use('/', scopusRoute);
 
 // Load the test cases from the JSON file
 const testCases = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'searchTestCases.json'), 'utf8'));
