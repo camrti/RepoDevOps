@@ -45,7 +45,7 @@ ansible-playbook packer/manage_containers_test.yml
 # Run Newman tests
 newman run postman/postman_test_project.postman_collection.json -d postman/researcher_test.json -r json --reporter-json-export postman/output_test.json
 
-ansible-playbook postman/newman_test_check.yml
+ansible-playbook postman/newman_test_check.yaml
 
 if [ -f /tmp/test_result.txt ]; then
     echo "Tests failed."
