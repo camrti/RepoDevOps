@@ -11,41 +11,31 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center mb-4">Ricerca Ricercatori</h1>
+        <h1 class="text-center mb-4">Search Researcher</h1>
         <form action="/search_researchers" method="get">
             <div class="form-group"> <!-- Use Bootstrap form-group for better styling -->
-                <text for="researcherFirstName">Nome del ricercatore:</text>
-                <input type="text" class="form-control form-control-lg" id="researcherFirstName" name="researcherFirstName" placeholder="Inserisci il nome del ricercatore" required>
+                <text for="researcherFirstName">Name:</text>
+                <input type="text" class="form-control form-control-lg" id="researcherFirstName" name="researcherFirstName" required>
                 
-                <text for="researcherLastName">Cognome del ricercatore:</text>
-                <input type="text" class="form-control form-control-lg" id="researcherLastName" name="researcherLastName" placeholder="Inserisci il cognome del ricercatore" required>
+                <text for="researcherLastName">Surname:</text>
+                <input type="text" class="form-control form-control-lg" id="researcherLastName" name="researcherLastName" required>
             </div>
-            <button class="btn btn-primary" type="submit">Cerca</button> <!-- Use Bootstrap btn classes -->
+            <button class="btn btn-primary" type="submit">Search</button> <!-- Use Bootstrap btn classes -->
         </form>
         <% if (researchers && researchers.length > 0) { %>
-            <h2>Risultati della ricerca:</h2>
+            <h2>Results:</h2>
             <ul class="list-group">
                 <% researchers.forEach(researcher => { %>
                     <li class="list-group-item">
                         <strong>Surname:</strong> <%= researcher.lastName %><br>
                         <strong>Name:</strong> <%= researcher.firstName %><br>
-                        <!-- <strong>Gender:</strong> <%= researcher.gender %><br> -->
                         <strong>University and Department:</strong> <%= researcher.university + ", " + researcher.faculty + " " + researcher.structure %><br>
-                        <!-- <strong>Facoltà:</strong> <%= researcher.faculty %><br> -->
                         <strong>Role:</strong> <%= researcher.grade %><br>
                         <strong>S.S.D.:</strong> <%= researcher.ssd %><br>
-                        <!-- <strong>S.C.:</strong> <%= researcher.sc %><br> -->
-                        <!-- <strong>Struttura di afferenza:</strong> <%= researcher.structure %><br> -->
-                        <!-- <strong>Servizio prestato in altro ateneo:</strong> <%= researcher.otherUniversityService %><br> -->
                         <form action="/search_publications" method="GET">
                             <input type="hidden" name="cinecaID" value="<%= researcher._id %>">
-                            <!-- <input type="hidden" name="uni" value="<%= researcher.university %>">
-                            <input type="hidden" name="name" value="<%= researcher.firstName %>">
-                            <input type="hidden" name="surname" value="<%= researcher.lastName %>">
-                            <input type="hidden" name="grade" value="<%= researcher.grade %>">
-                            <input type="hidden" name="ssd" value="<%= researcher.ssd %>">
-                            <input type="hidden" name="uni_and_dep" value="<%= researcher.university + ', ' + researcher.faculty + ' ' + researcher.structure %>"> -->
-                            <button type="submit" class="btn btn-info mt-2">Visualizza Pubblicazioni</button>
+
+                            <button type="submit" class="btn btn-info mt-2">Show Publications</button>
                         </form>
                     </li>
                 <% }) %>

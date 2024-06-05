@@ -12,7 +12,7 @@ const dbUri = process.env.MONGO_URI || "mongodb://database-service:27017";
 
 DB.openConnection(dbName, dbUri);
 
-// Restore DB
+// //Restore DB
 // const Cineca = require('../model/cinecaModel');
 // const Scholar = require('../model/scholarModel');
 // const Scopus = require('../model/scopusModel'); 
@@ -25,34 +25,6 @@ router.get('/', async (req, res) => {
     res.render('index');
 });
 
-// // Route to search researchers
-// router.get('/search_researchers', async (req, res) => {
-//   const { researcherName } = req.query;
-//   try {
-//     let cinecaInfo = [];
-//     // Try to retrieve data from DB
-//     cinecaInfo = await search.getByNameCinecaInfoFromDB(researcherName);
-//     console
-//     if (cinecaInfo.length === 0){
-//         cinecaInfo = await search.getCinecaInfo(researcherName);
-//         cinecaInfo = await search.writeCinecaInfoToDB(cinecaInfo);
-//         if (cinecaInfo.length === 0)
-//             console.log('No researcher found with CINECA API')  
-//         else 
-//             console.log('Cineca Data retrieved from CINECA API')  
-//     } else {
-//         console.log('Cineca Data retrieved from DB')    
-//     }
-
-//     res.status(200);
-//     res.render('search', {researchers: cinecaInfo});
-//     console.log('Researchers Data retrieved from getReserarchers by SearchRoute')    
-//   } catch (error) {
-//       console.error('Error:', error);
-//       res.status(500);
-//   }
-// });
-
 // Route to search researchers
 router.get('/search_researchers', async (req, res) => {
     let { researcherFirstName, researcherLastName } = req.query;
@@ -62,7 +34,7 @@ router.get('/search_researchers', async (req, res) => {
       let cinecaInfo = [];
       // Try to retrieve data from DB
       cinecaInfo = await search.getByNameCinecaInfoFromDB(researcherFirstName, researcherLastName);
-      console.log("Researcher cineca info retrived from DB by name: ", cinecaInfo);
+      console.log("Researcher cineca info retrived from DB by name");
       if (cinecaInfo.length === 0){
           const researcherFullName = researcherFirstName + ' ' + researcherLastName;
           cinecaInfo = await search.getCinecaInfo(researcherFullName);
