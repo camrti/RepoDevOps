@@ -17,6 +17,9 @@ do
         # Move in repository
         echo "$(ssh -p 2222 "$SSH_USER@$SSH_HOST" "cd /home/devops/RepoDevOps")"
         
+        # Move in repository
+        echo "$(ssh -p 2222 "$SSH_USER@$SSH_HOST" "pwd"
+
         # Set the remote branch to main
         echo "$(ssh -p 2222 "$SSH_USER@$SSH_HOST" "git checkout main")"
 
