@@ -2,6 +2,7 @@
 
 # Base Path
 BASE_PATH="/home/devops/RepoDevOps"
+cd "${BASE_PATH}"
 
 # Array of container names to stop
 containers=("my-search-container" "my-cineca-container" "my-scholar-container" "my-scopus-container")
@@ -36,7 +37,7 @@ echo "All images have been removed."
 
 
 echo "Starting packer_builds.json..."
-packer build "${BASE_PATH}/packer-ansible/packer_builds.json" 
+packer build "packer-ansible/packer_builds.json" 
 
 if [[ $? -eq 0 ]]; then
     echo "Packer build script completed successfully."
@@ -52,7 +53,7 @@ if [ -f /tmp/test_result.txt ]; then
     rm /tmp/test_result.txt
 fi
 
-ansible-playbook "${BASE_PATH}/packer-ansible/manage_containers_test.yml"
+ansible-playbook "packer-ansible/manage_containers_test.yml"
 
 if [[ $? -eq 0 ]]; then
     echo "Ansible manage_container playbook completed successfully."
@@ -62,7 +63,7 @@ else
 fi
 
 # Run Newman tests
-newman run "${BASE_PATH}/postman/postman_test_project.postman_collection.json" -d "${BASE_PATH}/postman/researcher_test.json" -r json --reporter-json-export "${BASE_PATH}/postman/output.json"
+newman run "postman/postman_test_project.postman_collection.json" -d "postman/researcher_test.json" -r json --reporter-json-export "postman/output.json"
 
 if [[ $? -eq 0 ]]; then
     echo "Newman tests completed successfully."
@@ -71,7 +72,7 @@ else
     exit 1
 fi
 
-ansible-playbook "${BASE_PATH}/packer-ansible/newman_test_check.yaml"
+ansible-playbook "packer-ansible/newman_test_check.yaml"
 
 if [[ $? -eq 0 ]]; then
     echo "Newman command error completed successfully."
