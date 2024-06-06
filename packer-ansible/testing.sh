@@ -9,7 +9,7 @@ git checkout develop
 git pull
 
 # Array of container names to stop
-containers=("my-search-container" "my-cineca-container" "my-scholar-container" "my-scopus-container")
+containers=("my-search-container-test" "my-cineca-container-test" "my-scholar-container-test" "my-scopus-container-test")
 
 # Loop through the array and stop each container
 for container in "${containers[@]}"
@@ -52,43 +52,30 @@ fi
 
 docker network create --driver=bridge --subnet=192.168.100.0/24 devops-net
 
-# Remove the temp file for check tests, if it exists
-if [ -f /tmp/test_result.txt ]; then
-    rm /tmp/test_result.txt
-fi
-
+echo "Starting ansible manage_container playbook..."
 ansible-playbook "packer-ansible/manage_containers_test.yml"
+ansible_status=$?
 
-if [[ $? -eq 0 ]]; then
+if [[ $ansible_status -eq 0 ]]; then
     echo "Ansible manage_container playbook completed successfully."
 else
     echo "Ansible manage_container playbook failed. Aborting push."
     exit 1
 fi
-echo "$?"
-
-echo "Starting newman tests..."
-echo "$?"
-echo "Current working directory:"
-pwd
-
-echo "Current PATH:"
-echo $PATH
-
-PATH=/home/devops/.nvm/versions/node/v20.14.0/bin:$PATH
-echo "Updated PATH:"
-echo $PATH
 
 # Run Newman tests
+echo "Starting newman tests..."
 newman run "postman/postman_collection.json" -d "postman/reasearcher.json" -r json --reporter-json-export "postman/output.json"
-newman_stat=$?
+newman_status=$?
 
-echo "$newman_stat"
 
-if [[ $newman_stat -eq 0 ]]; then
+if [[ $newman_status -eq 0 ]]; then
     echo "Newman tests completed successfully. Pushing to origin/main..."
+    rm -f "postman/output.json"
+    ansible-playbook "packer-ansible/delete_containers.yml"
 else
     echo "Newman tests failed. Aborting push."
+    ansible-playbook "packer-ansible/stop_containers.yml"
     exit 1
 fi
 
