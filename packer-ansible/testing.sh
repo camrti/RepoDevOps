@@ -65,6 +65,10 @@ fi
 # Run Newman tests
 Output=$(newman run "postman/postman_collection.json" -d "postman/reasearcher.json" -r json --reporter-json-export "postman/output_new.json")
 
+echo "$?"
+
+echo "$Output"
+
 if [[ $? -eq 0 ]]; then
     echo "Newman tests completed successfully."
 else
