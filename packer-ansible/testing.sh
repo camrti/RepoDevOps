@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Base Path
+BASE_PATH="/home/devops/RepoDevOps"
+cd "${BASE_PATH}"
+
 # Go to branch develop and pull
 git checkout develop
 git pull
@@ -35,27 +39,58 @@ do
 done
 echo "All images have been removed."
 
-packer build packer-ansible/packer_builds.json 
+
+echo "Starting packer_builds.json..."
+packer build "packer-ansible/packer_builds.json" 
+
+if [[ $? -eq 0 ]]; then
+    echo "Packer build script completed successfully."
+else
+    echo "Packer build script failed. Aborting push."
+    exit 1
+fi
 
 docker network create --driver=bridge --subnet=192.168.100.0/24 devops-net
 
-# Remove the temp file if it exists
+# Remove the temp file for check tests, if it exists
 if [ -f /tmp/test_result.txt ]; then
     rm /tmp/test_result.txt
 fi
 
-ansible-playbook packer-ansible/manage_containers_test.yml
+ansible-playbook "packer-ansible/manage_containers_test.yml"
+
+if [[ $? -eq 0 ]]; then
+    echo "Ansible manage_container playbook completed successfully."
+else
+    echo "Ansible manage_container playbook failed. Aborting push."
+    exit 1
+fi
+echo "$?"
+
+echo "Starting newman tests..."
+echo "$?"
+echo "Current working directory:"
+pwd
+
+echo "Current PATH:"
+echo $PATH
+
+PATH=/home/devops/.nvm/versions/node/v20.14.0/bin:$PATH
+echo "Updated PATH:"
+echo $PATH
 
 # Run Newman tests
-newman run postman/postman_test_project.postman_collection.json -d postman/researcher_test.json -r json --reporter-json-export postman/output_test.json
+newman run "postman/postman_collection.json" -d "postman/reasearcher.json" -r json --reporter-json-export "postman/output.json"
+newman_stat=$?
 
-ansible-playbook packer-ansible/newman_test_check.yaml
+echo "$newman_stat"
 
-if [ -f /tmp/test_result.txt ]; then
-    echo "Tests failed."
-    rm /tmp/test_result.txt
-    exit 1
+if [[ $newman_stat -eq 0 ]]; then
+    echo "Newman tests completed successfully. Pushing to origin/main..."
 else
-    echo "All tests passed."
-    exit 0
+    echo "Newman tests failed. Aborting push."
+    exit 1
 fi
+
+
+exit 0

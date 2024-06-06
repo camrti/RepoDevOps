@@ -3,8 +3,8 @@
 		"_postman_id": "4ee381a1-7ce0-41a8-bbab-7bb1483830cd",
 		"name": "postman_test_project",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "34157748",
-		"_collection_link": "https://devops-9911.postman.co/workspace/DevOps-Workspace~3860822d-ce9a-4e41-8631-3b2c4b9242aa/collection/34157779-4ee381a1-7ce0-41a8-bbab-7bb1483830cd?action=share&source=collection_link&creator=34157748"
+		"_exporter_id": "34037127",
+		"_collection_link": "https://devops-9911.postman.co/workspace/DevOps-Workspace~3860822d-ce9a-4e41-8631-3b2c4b9242aa/collection/34157779-4ee381a1-7ce0-41a8-bbab-7bb1483830cd?action=share&source=collection_link&creator=34037127"
 	},
 	"item": [
 		{
@@ -56,7 +56,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/search_researchers?researcherName={{researcherName}}",
+					"raw": "{{base_url}}/search_researchers?researcherFirstName={{researcherFirstName}}&researcherLastName={{researcherLastName}}",
 					"host": [
 						"{{base_url}}"
 					],
@@ -65,8 +65,12 @@
 					],
 					"query": [
 						{
-							"key": "researcherName",
-							"value": "{{researcherName}}"
+							"key": "researcherFirstName",
+							"value": "{{researcherFirstName}}"
+						},
+						{
+							"key": "researcherLastName",
+							"value": "{{researcherLastName}}"
 						}
 					]
 				},
@@ -100,7 +104,7 @@
 	"variable": [
 		{
 			"key": "base_url",
-			"value": "http://172.16.174.108:8000",
+			"value": "http://172.16.174.108:8080",
 			"type": "string"
 		}
 	]
