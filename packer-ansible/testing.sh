@@ -68,7 +68,7 @@ else
     echo "Ansible manage_container playbook failed. Aborting push."
     exit 1
 fi
-
+PATH=/home/devops/.nvm/versions/node/v20.14.0/bin:$PATH
 # Run Newman tests
 echo "Starting newman tests..."
 newman run "postman/postman_collection.json" -d "postman/reasearcher.json" -r json --reporter-json-export "postman/output.json"
