@@ -4,6 +4,10 @@
 BASE_PATH="/home/devops/RepoDevOps"
 cd "${BASE_PATH}"
 
+# Go to branch develop and pull
+git checkout develop
+git pull
+
 # Array of container names to stop
 containers=("my-search-container" "my-cineca-container" "my-scholar-container" "my-scopus-container")
 
