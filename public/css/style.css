@@ -1,15 +1,94 @@
- /* Default style */
-    body {
-        font-family: 'Times New Roman', Times, serif;
-        font-size: 16px;
-        line-height: 1.6;
-        margin: 0;
-        padding: 0;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Typography */
+body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Container */
+.container {
+    max-width: 800px;
+    margin: 50px auto 0;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styling */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-control-lg {
+    height: calc(2.25rem + 2px);
+    font-size: 1.25rem;
+    padding: .5rem 1rem;
+    line-height: 1.5;
+    border-radius: .3rem;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Search Results */
+.list-group-item {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+/* Publications */
+.publication {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.publication:last-child {
+    border-bottom: none;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.authors, .year, .citation-count {
+    color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
     }
-    
-    h1, h2, h3, h4, h5, h6 {
-        font-family: 'Times New Roman', Times, serif;;
-        font-weight: 400;
-        margin: 0 0 20px 0;
-        padding: 0;
-    }
+}

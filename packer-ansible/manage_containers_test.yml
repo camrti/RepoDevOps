@@ -1,0 +1,74 @@
+---
+- name: Manage Docker containers
+  hosts: localhost
+  collections:
+    - community.docker
+
+  tasks:
+    - name: Ensure Docker is running
+      service:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Create and start the DB container
+      docker_container:
+        name: my-mongodb-container
+        image: mongo:4.4.9
+        state: started
+        volumes:
+          - /home/devops/db_devops:/data/db
+        networks:
+          - name: "devops-net"
+            ipv4_address: 192.168.100.200
+            aliases: "database-service"
+        ports:
+          - "27017:27017"
+
+    - name: Create and start the my-scopus container
+      docker_container:
+        name: my-scopus-container
+        image: my-scopus-image
+        state: started
+        networks:
+          - name: "devops-net"
+            ipv4_address: 192.168.100.103
+            aliases: "scopus-service"
+        ports:
+          - "8083:8003"
+
+    - name: Create and start the my-scholar container
+      docker_container:
+        name: my-scholar-container
+        image: my-scholar-image
+        state: started
+        networks:
+          - name: "devops-net"
+            ipv4_address: 192.168.100.102
+            aliases: "scholar-service"
+        ports:
+          - "8082:8002"
+        
+    - name: Create and start the my-cineca container
+      docker_container:
+        name: my-cineca-container
+        image: my-cineca-image
+        state: started
+        networks:
+          - name: "devops-net"
+            ipv4_address: 192.168.100.101
+            aliases: "cineca-service"
+        ports:
+          - "8081:8001"
+        
+    - name: Create and start the my-search container
+      docker_container:
+        name: my-search-container
+        image: my-search-image
+        state: started
+        networks:
+          - name: "devops-net"
+            ipv4_address: 192.168.100.100
+            aliases: "search-service"
+        ports:
+          - "8080:8000"

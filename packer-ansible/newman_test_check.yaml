@@ -1,0 +1,59 @@
+- hosts: localhost
+  tasks:
+    - name: Read test results
+      command: cat output_test.json
+      register: test_results
+
+    - name: Parse test results
+      set_fact:
+        parsed_results: "{{ test_results.stdout | from_json }}"
+
+    - name: Check if any tests failed
+      debug:
+        msg: "Test failed!"
+      when: parsed_results.run.stats.assertions.failed > 0
+
+    - name: Extract stack from failures
+      set_fact:
+        failure_stack: "{{ item.error.stack }}"
+      loop: "{{ parsed_results.run.failures }}"
+      when: parsed_results.run.stats.assertions.failed > 0
+      no_log: true
+
+    - name: Debug failure_stack
+      debug:
+        msg: "Test failed! Reason: {{ failure_stack }}"
+      when: parsed_results.run.stats.assertions.failed > 0
+
+    - name: Write test result to temp file
+      copy:
+        content: "{{ parsed_results.run.stats.assertions.failed > 0 }}"
+        dest: "/tmp/test_result.txt"
+      when: parsed_results.run.stats.assertions.failed > 0
+
+    - name: Cleanup test containers if test failed
+      docker_container:
+        name: "{{ item }}"
+        state: stopped
+      loop:
+        - my-scopus-container
+        - my-scholar-container
+        - my-cineca-container
+        - my-search-container
+      when: parsed_results.run.stats.assertions.failed > 0
+
+    - name: Check if all tests passed
+      debug:
+        msg: "Test success"
+      when: parsed_results.run.stats.assertions.failed == 0
+
+    - name: Cleanup test containers after test passed
+      docker_container:
+        name: "{{ item }}"
+        state: absent
+      loop:
+        - my-scopus-container
+        - my-scholar-container
+        - my-cineca-container
+        - my-search-container
+      when: parsed_results.run.stats.assertions.failed == 0

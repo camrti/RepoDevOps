@@ -4,11 +4,15 @@
 cd src/search/
 node app.js &
 
-# Run researcher service
-cd ../researcher/
+# Run cineca service
+cd ../cineca/
 node app.js &
 
-# Run publication service
-cd ../publication/
+# Run scholar service
+cd ../scholar/
+node app.js &
+
+# Run scopus service
+cd ../scopus/
 node app.js &
 

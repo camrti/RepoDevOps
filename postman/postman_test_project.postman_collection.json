@@ -1,0 +1,107 @@
+{
+	"info": {
+		"_postman_id": "4ee381a1-7ce0-41a8-bbab-7bb1483830cd",
+		"name": "postman_test_project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34157748",
+		"_collection_link": "https://devops-9911.postman.co/workspace/DevOps-Workspace~3860822d-ce9a-4e41-8631-3b2c4b9242aa/collection/34157779-4ee381a1-7ce0-41a8-bbab-7bb1483830cd?action=share&source=collection_link&creator=34157748"
+	},
+	"item": [
+		{
+			"name": "search_researchers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response contains expected values\", function () {",
+							"    // Load the HTML response to $",
+							"    const $ = cheerio.load(pm.response.text());",
+							"",
+							"    // Get the expected results from the iteration data",
+							"    const expectedResults = pm.variables.get('expectedResult');",
+							"",
+							"    // Define an array to store the researchers' details",
+							"    let researchers = [];",
+							"",
+							"    // Extract the researchers' details from the HTML response",
+							"    $('.list-group-item').each(function(i, elem) {",
+							"        let researcher = {};",
+							"        researcher.surname = $(this).find('strong:contains(\"Surname:\")').get(0).nextSibling.nodeValue.trim().replace(/  +/g, ' ');",
+							"        researcher.name = $(this).find('strong:contains(\"Name:\")').get(0).nextSibling.nodeValue.trim().replace(/  +/g, ' ');",
+							"        researcher.universityAndDepartment = $(this).find('strong:contains(\"University and Department:\")').get(0).nextSibling.nodeValue.trim().replace(/  +/g, ' ');",
+							"        researcher.role = $(this).find('strong:contains(\"Role:\")').get(0).nextSibling.nodeValue.trim().replace(/  +/g, ' ');",
+							"        researcher.ssd = $(this).find('strong:contains(\"S.S.D.:\")').get(0).nextSibling.nodeValue.trim().replace(/  +/g, ' ');",
+							"        researchers.push(researcher);",
+							"    });",
+							"",
+							"    // Log the researchers details and expected results for debugging",
+							"    console.log('Researchers:', researchers);",
+							"    console.log('Expected Results:', expectedResults);",
+							"",
+							"    // Compare the researchers' details with the expected results",
+							"    pm.expect(researchers).to.eql(expectedResults);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/search_researchers?researcherName={{researcherName}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"search_researchers"
+					],
+					"query": [
+						{
+							"key": "researcherName",
+							"value": "{{researcherName}}"
+						}
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://172.16.174.108:8000",
+			"type": "string"
+		}
+	]
+}

@@ -1,0 +1,101 @@
+{    
+    "scopus":    
+    {
+        "getAuthorId": [
+            {
+                "desc": "Search for an existing scopus authorID",
+                "name": "Francesco",
+                "surname": "Moscato",
+                "affiliation": "Salerno", 
+                "expectedResult": "13405037300",
+                "throwError": false
+            },
+            {
+                "desc": "Search for an non existing scopus authorID",
+                "name": "Pasquale",
+                "surname": "Caggiano",
+                "affiliation": "Salerno",
+                "expectedResult": null,
+                "throwError": true
+            },
+            {
+                "desc": "Search for an existing scopus authorID without a name query parameter",
+                "name": "",
+                "surname": "Moscato",
+                "affiliation": "Salerno", 
+                "expectedResult": null,
+                "throwError": true
+            },
+            {
+                "desc": "Search for an existing scopus authorID without a surname query parameter",
+                "name": "Francesco",
+                "surname": "",
+                "affiliation": "Salerno", 
+                "expectedResult": null,
+                "throwError": true
+            },
+            {
+                "desc": "Search for an existing scopus authorID without an affilation query parameter",
+                "name": "Francesco",
+                "surname": "Moscato",
+                "affiliation": "", 
+                "expectedResult": null,
+                "throwError": true
+            },
+            {
+                "desc": "Search for an existing scopus authorID without any query parameters",
+                "name": "",
+                "surname": "",
+                "affiliation": "", 
+                "expectedResult": null,
+                "throwError": true
+            }
+
+        ],
+        "getAuthorDetails": [
+            {
+                "desc": "Search detail with an existing scopus authorID",
+                "authorId": "13405037300",
+                "expectedResult":  {
+                    "surname": "Moscato",
+                    "name": "Francesco",
+                    "uni_and_dep": "Università degli Studi di Salerno, Department of Information Engineering",
+                    "numberOfPublications": "87",
+                    "authorId": "13405037300"
+                },
+                "throwError": false
+            },
+            {
+                "desc": "Search detail with an non existing scopus authorID",
+                "authorId": "",
+                "expectedResult":  null,
+                "throwError": true
+            }
+        ]
+    },
+    "scopusRoute": [
+            {
+                "desc": "/GET for an existing scopus author",
+                "name": "Francesco",
+                "surname": "Moscato",
+                "affiliation": "Salerno", 
+                "expectedResult":  {
+                    "surname": "Moscato",
+                    "name": "Francesco",
+                    "uni_and_dep": "Università degli Studi di Salerno, Department of Information Engineering",
+                    "numberOfPublications": "87",
+                    "authorId": "13405037300"
+                },
+                "expectedStatusCode": 200
+            },
+            {
+                "desc": "/GET for an non existing scopus author",
+                "name": "Pasquale",
+                "surname": "Caggiano",
+                "affiliation": "Salerno", 
+                "expectedResult": {},
+                "expectedStatusCode": 500
+            }          
+    ]
+    
+}

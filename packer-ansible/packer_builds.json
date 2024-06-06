@@ -1,0 +1,169 @@
+{   
+    "builders": [
+        {
+            "name": "docker_search",
+            "type": "docker",
+            "image": "alpine:3.18",
+            "container_dir" : "/tmp",
+            "commit": true,
+            "run_command": ["-d", "-i", "-t", "{{.Image}}", "/bin/ash"],
+            "changes": [
+                "CMD [\"node\", \"/app/src/search/app.js\", \"&\"]",
+                "EXPOSE 8000"
+            ]
+        },
+        {
+            "name": "docker_cineca",
+            "type": "docker",
+            "image": "alpine:3.18",
+            "container_dir" : "/tmp",
+            "commit": true,
+            "run_command": ["-d", "-i", "-t", "{{.Image}}", "/bin/ash"],
+            "changes": [
+                "CMD [\"node\", \"/app/src/cineca/app.js\", \"&\"]",
+                "EXPOSE 8001"
+            ]
+        },
+        {
+            "name": "docker_scholar",
+            "type": "docker",
+            "image": "alpine:3.18",
+            "container_dir" : "/tmp",
+            "commit": true,
+            "run_command": ["-d", "-i", "-t", "{{.Image}}", "/bin/ash"],
+            "changes": [
+                "CMD [\"node\", \"/app/src/scholar/app.js\", \"&\"]",
+                "EXPOSE 8002"
+            ]
+        },
+        {
+            "name": "docker_scopus",
+            "type": "docker",
+            "image": "alpine:3.18",
+            "container_dir" : "/tmp",
+            "commit": true,
+            "run_command": ["-d", "-i", "-t", "{{.Image}}", "/bin/ash"],
+            "changes": [
+                "CMD [\"node\", \"/app/src/scopus/app.js\", \"&\"]",
+                "EXPOSE 8003"
+            ]
+        }
+        
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "apk update",
+                "apk add nodejs npm python3",
+                "if [ ! -e /usr/bin/python ]; then ln -sf python3 /usr/bin/python; fi",
+                "node -v",
+                "npm -v",
+                "python --version"
+            ]
+        },
+        {
+            "type" : "shell",
+            "inline" : [
+                "mkdir -p /app/src/"
+            ]
+        },
+        {
+            "type" : "file",
+            "source" : "src/search",
+            "destination" : "/app/src/",
+            "only" : ["docker_search"]
+        },
+        {   
+            "type" : "file",
+            "source" : "src/views",
+            "destination" : "app/src/",
+            "only" : ["docker_search"]
+        },
+        {
+            "type" : "file",
+            "source" : "src/database",
+            "destination" : "/app/src/",
+            "only" : ["docker_search"]
+        },
+        {
+            "type" : "file",
+            "source" : "src/model",
+            "destination" : "/app/src/",
+            "only" : ["docker_search"]
+        },
+        {
+            "type" : "file",
+            "source" : "src/cineca",
+            "destination" : "/app/src/",
+            "only" : ["docker_cineca"]
+        },
+        {
+            "type" : "file",
+            "source" : "src/scholar",
+            "destination" : "/app/src/",
+            "only" : ["docker_scholar"]
+        },
+        {
+            "type" : "file",
+            "source" : "src/scopus",
+            "destination" : "/app/src/",
+            "only" : ["docker_scopus"]
+        },
+        {   
+            "type" : "file",
+            "source" : "public",
+            "destination" : "/app/"
+        },
+        {   
+            "type" : "file",
+            "source" : "./package-lock.json",
+            "destination" : "app/package-lock.json"
+        },
+        {   
+            "type" : "file",
+            "source" : "./package.json",
+            "destination" : "app/package.json"
+        },
+        {   
+            "type" : "file",
+            "source" : "./.env",
+            "destination" : "app/.env"
+        },
+        {   
+            "type" : "file",
+            "source" : "src/views",
+            "destination" : "app/src/",
+            "only" : ["docker_search"]
+        },
+        {
+            "type" : "shell",
+            "inline" : [
+                "cd app",
+                "npm install"
+            ]
+        }
+    ],
+    "post-processors": [
+        {
+            "type": "docker-tag",
+            "only": ["docker_search"],
+            "repository": "my-search-image"
+        },
+        {
+            "type": "docker-tag",
+            "only": ["docker_cineca"],
+            "repository": "my-cineca-image"
+        },
+        {
+            "type": "docker-tag",
+            "only": ["docker_scopus"],
+            "repository": "my-scopus-image"
+        },
+        {
+            "type": "docker-tag",
+            "only": ["docker_scholar"],
+            "repository": "my-scholar-image"
+        }
+    ]
+}

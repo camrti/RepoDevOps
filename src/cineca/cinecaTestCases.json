@@ -1,0 +1,212 @@
+{
+    "cineca": [
+        {
+            "desc": "Cineca Single Researcher Found",
+            "name": "Francesco_Moscato",
+            "expectedResult": [
+                {
+                    "university": "SALERNO",
+                    "lastName": "MOSCATO",
+                    "firstName": "FRANCESCO",
+                    "faculty": "",
+                    "grade": "ASSOCIATO",
+                    "gender": "M",
+                    "sc": "09/H1",
+                    "otherUniversityService": "",
+                    "ssd": "ING-INF/05",
+                    "structure": "INGEGNERIA DELL'INFORMAZIONE ED ELETTRICA E MATEMATICA APPLICATA"
+                }
+            ],
+            "expectedLength": 1,
+            "expectedStatusCode": 200
+        },
+        {
+            "desc": "Cineca Multiple Researcher Found",
+            "name": "Giovanni_Russo",
+            "expectedResult": [
+                {
+                    "grade": "ORDINARIO",
+                    "lastName": "RUSSO",
+                    "firstName": "GIOVANNI",
+                    "gender": "M",
+                    "university": "CATANIA",
+                    "faculty": "",
+                    "ssd": "MAT/08",
+                    "sc": "01/A5",
+                    "structure": "MATEMATICA E INFORMATICA",
+                    "otherUniversityService": ""
+                },
+                {
+                    "grade": "ASSOCIATO",
+                    "lastName": "RUSSO",
+                    "firstName": "GIOVANNI",
+                    "gender": "M",
+                    "university": "SALERNO",
+                    "faculty": "",
+                    "ssd": "ING-INF/04",
+                    "sc": "09/G1",
+                    "structure": "INGEGNERIA DELL'INFORMAZIONE ED ELETTRICA E MATEMATICA APPLICATA",
+                    "otherUniversityService": ""
+                },
+                {
+                    "grade": "STRAORDINARIO TEMPO DETERMINATO",
+                    "lastName": "RUSSO",
+                    "firstName": "GIOVANNI",
+                    "gender": "M",
+                    "university": "UNIV. TELEMATICA \"E-CAMPUS\"",
+                    "faculty": "INGEGNERIA",
+                    "ssd": "ICAR/17",
+                    "sc": "08/E1",
+                    "structure": "",
+                    "otherUniversityService": ""
+                },
+                {
+                    "grade": "ASSOCIATO",
+                    "lastName": "RUSSO",
+                    "firstName": "GIOVANNI",
+                    "gender": "M",
+                    "university": "BARI",
+                    "faculty": "",
+                    "ssd": "AGR/10",
+                    "sc": "07/C1",
+                    "structure": "SCIENZE DEL SUOLO, DELLA PIANTA E DEGLI ALIMENTI (DI.S.S.P.A.)",
+                    "otherUniversityService": ""
+                }
+            ],
+            "expectedLength": 4,
+            "expectedStatusCode": 200
+        },
+        {
+            "desc": "Cineca No Researcher Found",
+            "name": "Pasquale_Caggiano",
+            "expectedResult": [],
+            "expectedLength": 0,
+            "expectedStatusCode": 404
+        },
+        {
+            "desc": "Cineca Search Researcher Only By Name",
+            "name": "Genoveffa",
+            "expectedResult": [
+                {
+                    "grade": "ASSOCIATO CONFERMATO",
+                    "university": "ROMA \"LA SAPIENZA\"",
+                    "lastName": "BALDUCCI",
+                    "firstName": "GENOVEFFA",
+                    "gender": "F",
+                    "faculty": "",
+                    "ssd": "MED/18",
+                    "sc": "06/C1",
+                    "structure": "SCIENZE MEDICO-CHIRURGICHE E DI MEDICINA TRASLAZIONALE",
+                    "otherUniversityService": ""
+                },
+                {
+                    "grade": "ORDINARIO",
+                    "university": "SALERNO",
+                    "lastName": "TORTORA",
+                    "firstName": "GENOVEFFA",
+                    "gender": "F",
+                    "faculty": "",
+                    "ssd": "INF/01",
+                    "sc": "01/B1",
+                    "structure": "INFORMATICA",
+                    "otherUniversityService": ""
+                }
+            ],
+            "expectedLength": 2,
+            "expectedStatusCode": 200
+        },
+        {
+            "desc": "Cineca Search Researcher Only By a Surname composed of two word",
+            "name": "Del Vento",
+            "expectedResult": [
+                {
+                    "grade": "ORDINARIO",
+                    "university": "PAVIA",
+                    "lastName": "DEL VENTO",
+                    "firstName": "CHRISTIAN",
+                    "gender": "M",
+                    "faculty": "",
+                    "ssd": "L-FIL-LET/10",
+                    "sc": "10/F1",
+                    "structure": "STUDI UMANISTICI",
+                    "otherUniversityService": ""
+                }
+            ],
+            "expectedLength": 1,
+            "expectedStatusCode": 200
+        }
+    ],
+    "cinecaRoute": [
+        {
+            "name": "Francesco_Moscato",
+            "expectedStatusCode": 200,
+            "expectedResult": [
+                {
+                    "university": "SALERNO",
+                    "lastName": "MOSCATO",
+                    "firstName": "FRANCESCO",
+                    "faculty": "",
+                    "grade": "ASSOCIATO",
+                    "gender": "M",
+                    "sc": "09/H1",
+                    "otherUniversityService": "",
+                    "ssd": "ING-INF/05",
+                    "structure": "INGEGNERIA DELL'INFORMAZIONE ED ELETTRICA E MATEMATICA APPLICATA"
+                }
+            ]
+        },
+        {
+            "name": "Pasquale_Caggiano",
+            "expectedStatusCode": 404,
+            "expectedResult": {}
+        },
+        {
+            "name": "Genoveffa",
+            "expectedStatusCode": 200,
+            "expectedResult": [
+                {
+                    "grade": "ASSOCIATO CONFERMATO",
+                    "university": "ROMA \"LA SAPIENZA\"",
+                    "lastName": "BALDUCCI",
+                    "firstName": "GENOVEFFA",
+                    "gender": "F",
+                    "faculty": "",
+                    "ssd": "MED/18",
+                    "sc": "06/C1",
+                    "structure": "SCIENZE MEDICO-CHIRURGICHE E DI MEDICINA TRASLAZIONALE",
+                    "otherUniversityService": ""
+                },
+                {
+                    "grade": "ORDINARIO",
+                    "university": "SALERNO",
+                    "lastName": "TORTORA",
+                    "firstName": "GENOVEFFA",
+                    "gender": "F",
+                    "faculty": "",
+                    "ssd": "INF/01",
+                    "sc": "01/B1",
+                    "structure": "INFORMATICA",
+                    "otherUniversityService": ""
+                }
+            ]
+        },
+        {
+            "name": "Del Vento",
+            "expectedStatusCode": 200,
+            "expectedResult": [
+                {
+                    "grade": "ORDINARIO",
+                    "university": "PAVIA",
+                    "lastName": "DEL VENTO",
+                    "firstName": "CHRISTIAN",
+                    "gender": "M",
+                    "faculty": "",
+                    "ssd": "L-FIL-LET/10",
+                    "sc": "10/F1",
+                    "structure": "STUDI UMANISTICI",
+                    "otherUniversityService": ""
+                }
+            ]
+        }
+    ]
+}

@@ -1,31 +1,24 @@
 const express = require('express');
 const router = express.Router();
-router.use(express.json());
-const publication = require('./scopus.js');
+const scopus = require('./scopus.js');
 
-router
-    .get('/researcher=:name', async (req, res)=>{
-        try{
-            let researcher = req.params.name;
-            const [name, lastName] = researcher.split('_');
-            let data = await publication.getScopusData(name, lastName);
-            res.send(data);
-            console.log('Name from Scopus by PublicationRoute');
-        }catch (err){
-            console.error(err);
-            res.status(500).json({ status: "error", message: "Internal Server Error" });
-        }
-    })
-    .get('/researcherId=:id', async (req, res)=>{
-        try{
-            let researcherId = req.params.id;
-            let data = await publication.getPublication(researcherId);
-            res.send(data);
-            console.log('ID from Scopus by PublicationRoute');
-        }catch (err){
-            console.error(err);
-            res.status(500).json({ status: "error", message: "Internal Server Error" });
-        }
-    });
+router.get('/scopus', async (req, res)=>{
+    const name = req.query.name;
+    const surname = req.query.surname;
+    const affiliation = req.query.affiliation; 
+    if (!name || !surname || !affiliation) {
+        return res.status(400).send('Missing a query parameter');
+    }
 
-    module.exports = router;
+    try{
+        const authID = await scopus.getAuthorId(name, surname, affiliation);
+        const data = await scopus.getAuthorDetails(authID);
+        res.json(data);
+        console.log('Data from Scopus by ScopusRoute');
+    }catch (err){
+        console.error(err);
+        res.status(500).send('Error occurred in ScopusRoute while requesting the data');
+    }
+})
+
+module.exports = router;
