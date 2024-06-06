@@ -61,7 +61,10 @@ else
     echo "Ansible manage_container playbook failed. Aborting push."
     exit 1
 fi
+echo "$?"
 
+echo "Starting newman tests..."
+echo "$?"
 # Run Newman tests
 newman run "postman/postman_collection.json" -d "postman/reasearcher.json" -r json --reporter-json-export "postman/output_new2.json"
 newman_stat=$?
