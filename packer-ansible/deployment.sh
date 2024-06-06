@@ -7,6 +7,7 @@ cd "${BASE_PATH}"
 # Array of container names to stop
 containers=("my-search-container" "my-cineca-container" "my-scholar-container" "my-scopus-container")
 
+
 # Loop through the array and stop each container
 for container in "${containers[@]}"
 do
