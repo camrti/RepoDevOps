@@ -24,7 +24,7 @@ do
 done
 echo "All containers have been removed."
 
-echo "Starting ansilble palybook..."
+echo "Starting ansible palybook..."
 ansible-playbook "packer-ansible/manage_containers_deploy.yml"
 docker ps -a
 
