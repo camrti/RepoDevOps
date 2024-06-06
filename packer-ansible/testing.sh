@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Base Path
+BASE_PATH="/home/devops/RepoDevOps"
+
 # Array of container names to stop
 containers=("my-search-container" "my-cineca-container" "my-scholar-container" "my-scopus-container")
 
@@ -31,28 +34,57 @@ do
 done
 echo "All images have been removed."
 
-packer build packer-ansible/packer_builds.json 
+
+echo "Starting packer_builds.json..."
+packer build "${BASE_PATH}/packer-ansible/packer_builds.json" 
+
+if [[ $? -eq 0 ]]; then
+    echo "Packer build script completed successfully."
+else
+    echo "Packer build script failed. Aborting push."
+    exit 1
+fi
 
 docker network create --driver=bridge --subnet=192.168.100.0/24 devops-net
 
-# Remove the temp file if it exists
+# Remove the temp file for check tests, if it exists
 if [ -f /tmp/test_result.txt ]; then
     rm /tmp/test_result.txt
 fi
 
+ansible-playbook "${BASE_PATH}/packer-ansible/manage_containers_test.yml"
 
-ansible-playbook packer-ansible/manage_containers_test.yml
+if [[ $? -eq 0 ]]; then
+    echo "Ansible manage_container playbook completed successfully."
+else
+    echo "Ansible manage_container playbook failed. Aborting push."
+    exit 1
+fi
 
 # Run Newman tests
-newman run postman/postman_test_project.postman_collection.json -d postman/researcher_test.json -r json --reporter-json-export postman/output_test.json
+newman run "${BASE_PATH}/postman/postman_test_project.postman_collection.json" -d "${BASE_PATH}/postman/researcher_test.json" -r json --reporter-json-export "${BASE_PATH}/postman/output.json"
 
-ansible-playbook packer-ansible/newman_test_check.yaml
+if [[ $? -eq 0 ]]; then
+    echo "Newman tests completed successfully."
+else
+    echo "Newman tests failed. Aborting push."
+    exit 1
+fi
+
+ansible-playbook "${BASE_PATH}/packer-ansible/newman_test_check.yaml"
+
+if [[ $? -eq 0 ]]; then
+    echo "Newman command error completed successfully."
+else
+    echo "Newman command error failed. Aborting push."
+    exit 1
+fi
 
 if [ -f /tmp/test_result.txt ]; then
-    echo "Tests failed."
+    echo "All newman tests passed."
+    exit 0
+else
+    echo "All newman tests failed."
     rm /tmp/test_result.txt
     exit 1
-else
-    echo "All tests passed."
-    exit 0
 fi

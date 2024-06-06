@@ -27,9 +27,9 @@
 
     - name: Write test result to temp file
       copy:
-        content: "{{ parsed_results.run.stats.assertions.failed > 0 }}"
+        content: "{{ parsed_results.run.stats.assertions.failed == 0 }}"
         dest: "/tmp/test_result.txt"
-      when: parsed_results.run.stats.assertions.failed > 0
+      when: parsed_results.run.stats.assertions.failed == 0
 
     - name: Cleanup test containers if test failed
       docker_container:
