@@ -1,7 +1,7 @@
 - hosts: localhost
   tasks:
     - name: Read test results
-      command: cat output_new.json
+      command: cat output.json
       register: test_results
 
     - name: Parse test results
