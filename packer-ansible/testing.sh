@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Go to branch develop and pull
+git checkout develop
+git pull
+
 # Array of container names to stop
 containers=("my-search-container" "my-cineca-container" "my-scholar-container" "my-scopus-container")
 
@@ -39,7 +43,6 @@ docker network create --driver=bridge --subnet=192.168.100.0/24 devops-net
 if [ -f /tmp/test_result.txt ]; then
     rm /tmp/test_result.txt
 fi
-
 
 ansible-playbook packer-ansible/manage_containers_test.yml
 
