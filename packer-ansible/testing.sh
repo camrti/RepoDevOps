@@ -4,6 +4,7 @@
 BASE_PATH="/home/devops/RepoDevOps"
 cd "${BASE_PATH}"
 
+### 1) Delete all containers and images
 
 # Array of container names to stop
 containers=("my-search-container-test" "my-cineca-container-test" "my-scholar-container-test" "my-scopus-container-test")
@@ -24,6 +25,8 @@ do
     docker rm "$container"
 done
 echo "All containers have been removed."
+
+### 2)
 
 # Array of container images to remove
 images=("my-search-image" "my-cineca-image" "my-scholar-image" "my-scopus-image")
