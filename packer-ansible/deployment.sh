@@ -28,7 +28,6 @@ echo "Starting ansible palybook..."
 ansible-playbook "packer-ansible/manage_containers_deploy.yml"
 docker ps -a
 
-
 if [[ $? -eq 0 ]]; then
     echo "Ansible manage_container playbook for deployment completed successfully."
 else
