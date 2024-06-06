@@ -67,9 +67,15 @@ echo "Starting newman tests..."
 echo "$?"
 echo "Current working directory:"
 pwd
+
+echo "Current PATH:"
+echo $PATH
+which newman
 # Run Newman tests
 newman run "postman/postman_collection.json" -d "postman/reasearcher.json" -r json --reporter-json-export "postman/output_new2.json"
 newman_stat=$?
+
+cat newman_error.log
 
 echo "$newman_stat"
 
