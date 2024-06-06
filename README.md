@@ -1,0 +1,16 @@
+### For developer
+To correctly work with repository, follow these steps:
+* Install dependencies executing ```npm install```
+* Append to your file ```/etc/hosts```  :
+    ```
+    127.0.0.1   scopus-service
+    127.0.0.1   scholar-service
+    127.0.0.1   cineca-service
+    127.0.0.1   search-service
+    172.16.174.108  database-service
+    ```
+* Execute the script: ```./setup-hooks.sh```
+* If you want perform a unit testing, execute: ```npm test```
+* If you want run the application in local, execute the scripts: 
+    * to start ```./start_all_services.sh``` 
+    * to stop ```./stop_all_services.sh```
