@@ -73,6 +73,63 @@
 				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
 			},
 			"response": []
+		},
+		{
+			"name": "search_publications",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"pm.test(\"Response contains expected values\", function () {\r",
+							"    const $ = cheerio.load(pm.response.text());\r",
+							"\r",
+							"    const expectedResults = pm.variables.get('expectedResult');\r",
+							"\r",
+							"    let publications = {\r",
+							"        totalPublications: '',\r",
+							"        hIndex: '',\r",
+							"        totalCitations: ''\r",
+							"    };\r",
+							"\r",
+							"    publications.totalPublications = $('strong:contains(\"Total Publications:\")').get(0).nextSibling.nodeValue.trim().replace(/  +/g, ' ');\r",
+							"    publications.hIndex = $('strong:contains(\"H-index:\")').get(0).nextSibling.nodeValue.trim().replace(/  +/g, ' ');\r",
+							"    publications.totalCitations = $('strong:contains(\"Total citations:\")').get(0).nextSibling.nodeValue.trim().replace(/  +/g, ' ');\r",
+							"\r",
+							"    pm.expect(publications).to.eql(expectedResults);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/search_publications?cinecaId={{cinecaId}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"search_publications"
+					],
+					"query": [
+						{
+							"key": "cinecaId",
+							"value": "{{cinecaId}}"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -100,7 +157,7 @@
 	"variable": [
 		{
 			"key": "base_url",
-			"value": "http://172.16.174.108:8000",
+			"value": "http://172.16.174.108:8080",
 			"type": "string"
 		}
 	]

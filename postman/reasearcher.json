@@ -1,6 +1,7 @@
 [
     {
-        "researcherName": "Francesco Moscato",
+        "researcherFirstName": "Francesco",
+        "researcherLastName": "Moscato",
         "expectedResult": [
             {
                 "surname": "MOSCATO",

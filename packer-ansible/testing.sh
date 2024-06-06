@@ -63,7 +63,7 @@ else
 fi
 
 # Run Newman tests
-newman run "postman/postman_test_project.postman_collection.json" -d "postman/researcher_test.json" -r json --reporter-json-export "postman/output.json"
+newman run "postman/postman_collection.json" -d "postman/reasearcher.json" -r json --reporter-json-export "postman/output.json"
 
 if [[ $? -eq 0 ]]; then
     echo "Newman tests completed successfully."
