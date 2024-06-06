@@ -15,7 +15,6 @@ do
 done
 echo "All containers have been stopped."
 
-
 # Loop through the array and remove each container
 for container in "${containers[@]}"
 do
