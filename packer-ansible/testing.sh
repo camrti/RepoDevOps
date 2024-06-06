@@ -6,7 +6,13 @@ cd "${BASE_PATH}"
 
 # Go to branch develop and pull
 git checkout develop
+checkout_status=$?
+echo "Pull status: "
+echo $checkout_status
 git pull
+pull_status=$?
+echo "Pull status: "
+echo $pull_status
 
 # Array of container names to stop
 containers=("my-search-container-test" "my-cineca-container-test" "my-scholar-container-test" "my-scopus-container-test")
