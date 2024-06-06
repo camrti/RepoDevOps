@@ -1,5 +1,5 @@
 ---
-- name: Manage Docker containers
+- name: TEST - Manage Docker containers
   hosts: localhost
   collections:
     - community.docker
@@ -13,7 +13,7 @@
 
     - name: Create and start the DB container
       docker_container:
-        name: my-mongodb-container-test
+        name: my-mongodb-container
         image: mongo:4.4.9
         state: started
         volumes:
