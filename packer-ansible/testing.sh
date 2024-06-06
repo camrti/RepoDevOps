@@ -63,7 +63,7 @@ else
 fi
 
 # Run Newman tests
-Output=$(newman run "postman/postman_collection.json" -d "postman/reasearcher.json" -r json --reporter-json-export "postman/output_new.json")
+Output=$(newman run "postman/postman_collection.json" -d "postman/reasearcher.json" -r json --reporter-json-export "postman/output_new2.json")
 newman_stat=$?
 
 echo "$newman_stat"
