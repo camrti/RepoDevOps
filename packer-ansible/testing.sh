@@ -63,12 +63,13 @@ else
 fi
 
 # Run Newman tests
-newman run "postman/postman_collection.json" -d "postman/reasearcher.json" -r json --reporter-json-export "postman/output.json"
+Output=$(newman run "postman/postman_collection.json" -d "postman/reasearcher.json" -r json --reporter-json-export "postman/output_new.json")
 
 if [[ $? -eq 0 ]]; then
     echo "Newman tests completed successfully."
 else
     echo "Newman tests failed. Aborting push."
+    echo "$Output"
     exit 1
 fi
 
