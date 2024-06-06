@@ -14,6 +14,9 @@ do
    if [ "$refname" == "refs/heads/main" ]; then
         echo "Push to main branch detected. Executing remote script..."
 
+        # Move in repository
+        echo "$(ssh -p 2222 "$SSH_USER@$SSH_HOST" "cd /home/devops/RepoDevOps")"
+        
         # Set the remote branch to main
         echo "$(ssh -p 2222 "$SSH_USER@$SSH_HOST" "git checkout main")"
 
