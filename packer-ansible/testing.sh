@@ -4,15 +4,6 @@
 BASE_PATH="/home/devops/RepoDevOps"
 cd "${BASE_PATH}"
 
-# Go to branch develop and pull
-git checkout develop
-checkout_status=$?
-echo "Pull status: "
-echo $checkout_status
-git pull
-pull_status=$?
-echo "Pull status: "
-echo $pull_status
 
 # Array of container names to stop
 containers=("my-search-container-test" "my-cineca-container-test" "my-scholar-container-test" "my-scopus-container-test")
@@ -45,7 +36,6 @@ do
 done
 echo "All images have been removed."
 
-
 echo "Starting packer_builds.json..."
 packer build "packer-ansible/packer_builds.json" 
 
@@ -68,21 +58,21 @@ else
     echo "Ansible manage_container playbook failed. Aborting push."
     exit 1
 fi
-PATH=/home/devops/.nvm/versions/node/v20.14.0/bin:$PATH
-echo $PATH
+
 # Run Newman tests
 echo "Starting newman tests..."
+PATH=/home/devops/.nvm/versions/node/v20.14.0/bin:$PATH
 newman run "postman/postman_collection.json" -d "postman/reasearcher.json" -r json --reporter-json-export "postman/output.json"
 newman_status=$?
-echo $newman_status
-
 
 if [[ $newman_status -eq 0 ]]; then
     echo "Newman tests completed successfully. Pushing to origin/main..."
     rm -f "postman/output.json"
+    echo "Starting ansible delete_containers playbook..."
     ansible-playbook "packer-ansible/delete_containers.yml"
 else
     echo "Newman tests failed. Aborting push."
+    echo "Starting ansible stop_containers playbook..."
     ansible-playbook "packer-ansible/stop_containers.yml"
     exit 1
 fi

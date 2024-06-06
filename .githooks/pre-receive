@@ -14,7 +14,13 @@ do
     if [[ "$refname" == "refs/heads/main" ]]; then
         echo "Production branch is being updated."
 
-        # SSH into the remote server and execute the script
+        # Set the remote branch to develop
+        echo "$(ssh -p 2222 "$SSH_USER@$SSH_HOST" "git checkout main")"
+
+        # Pull the latest changes from the remote branch
+        echo "$(ssh -p 2222 "$SSH_USER@$SSH_HOST" "git pull")"
+
+        # Run the remote script
         SSH_OUTPUT=$(ssh -p 2222 "$SSH_USER@$SSH_HOST" "$REMOTE_SCRIPT")
         SSH_STATUS=$?
 
