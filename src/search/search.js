@@ -73,21 +73,7 @@ async function getByIDScopusInfoFromDB(scopusID) {
     return scopusInfo;
 }
 
-// // Function to write the publication data from Database
-// async function writeCinecaInfoToDB(cinecaInfo) {
-//   let results = [];
 
-//   for (const info of cinecaInfo) {
-//     try {
-//       let res = await Cineca.create(info);
-//       results.push(res);
-//     } catch (err) {
-//       console.log("Failed researcher to write to DB", err);
-//     }
-//   }
-
-//   return results;
-// }
 // Function to write the cineca info to DB
 async function writeCinecaInfoToDB(cinecaInfo) {
   let results = [];
@@ -135,7 +121,7 @@ async function writeScholarInfoToDB(cinecaID, scholarInfo) {
       hIndex: scholarInfo.hIndex,
       publications: scholarInfo.publications,
     });
-
+    console.log("Existing info: ", existingInfo);
     // If the info does not exist, insert it
     if (!existingInfo) {
       console.log("Inserting new entry in DB");
@@ -169,8 +155,8 @@ async function writeScopusInfoToDB(cinecaID, scopusInfo) {
     // If the info does not exist, insert it
     if (!existingInfo) {
       console.log("Inserting new entry in DB");
-      info = await Scholar.create(scopusInfo);
-      await Cineca.findByIdAndUpdate(cinecaID, { scholarID: info._id }, { new: true });
+      info = await Scopus.create(scopusInfo);
+      await Cineca.findByIdAndUpdate(cinecaID, { scopusID: info._id }, { new: true });
     } else {
       info = existingInfo;
       console.log("Duplicate entry found, not inserting in DB");

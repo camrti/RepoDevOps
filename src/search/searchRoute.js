@@ -12,14 +12,6 @@ const dbUri = process.env.MONGO_URI || "mongodb://database-service:27017";
 
 DB.openConnection(dbName, dbUri);
 
-// //Restore DB
-// const Cineca = require('../model/cinecaModel');
-// const Scholar = require('../model/scholarModel');
-// const Scopus = require('../model/scopusModel'); 
-// Cineca.deleteMany({}).then(console.log("Cineca DB deleted"));
-// Scholar.deleteMany({}).then(console.log("Scholar DB deleted"));
-// Scopus.deleteMany({}).then(console.log("Scopus DB deleted"));
-
 router.get('/', async (req, res) => {
     res.status(200);
     res.render('index');
@@ -34,7 +26,7 @@ router.get('/search_researchers', async (req, res) => {
       let cinecaInfo = [];
       // Try to retrieve data from DB
       cinecaInfo = await search.getByNameCinecaInfoFromDB(researcherFirstName, researcherLastName);
-      console.log("Researcher cineca info retrived from DB by name");
+      //console.log("Researcher cineca info retrived from DB by name");
       if (cinecaInfo.length === 0){
           const researcherFullName = researcherFirstName + ' ' + researcherLastName;
           cinecaInfo = await search.getCinecaInfo(researcherFullName);
@@ -67,8 +59,7 @@ router.get('/search_publications', async (req, res) => {
     let scopusInfo = {};
     // Get cineca data form DB
     cinecaInfo = await search.getByIDCinecaInfoFromDB(cinecaID);
-    console.log("Researcher cineca info retrived from DB by ID");
-    
+
     // Try to get scholar data from DB
     scholarInfo = await search.getByIDScholarInfoFromDB(cinecaInfo.scholarID);
 
@@ -89,7 +80,6 @@ router.get('/search_publications', async (req, res) => {
 
     // Try to get scopus data from DB
     scopusInfo = await search.getByIDScopusInfoFromDB(cinecaInfo.scopusID);
-    
     // If no data found, get scopus data from API
     if (!scopusInfo){
         scopusInfo = await search.getScopusInfo(cinecaInfo.university, cinecaInfo.lastName, cinecaInfo.firstName);
