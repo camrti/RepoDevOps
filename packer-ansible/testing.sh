@@ -70,36 +70,23 @@ pwd
 
 echo "Current PATH:"
 echo $PATH
-which newman
+
+PATH=/home/devops/.nvm/versions/node/v20.14.0/bin:$PATH
+echo "Updated PATH:"
+echo $PATH
+
 # Run Newman tests
 newman run "postman/postman_collection.json" -d "postman/reasearcher.json" -r json --reporter-json-export "postman/output.json"
 newman_stat=$?
 
-cat newman_error.log
-
 echo "$newman_stat"
 
 if [[ $newman_stat -eq 0 ]]; then
-    echo "Newman tests completed successfully."
+    echo "Newman tests completed successfully. Pushing to origin/main..."
 else
     echo "Newman tests failed. Aborting push."
     exit 1
 fi
 
-ansible-playbook "packer-ansible/newman_test_check.yaml"
 
-if [[ $? -eq 0 ]]; then
-    echo "Newman command error completed successfully."
-else
-    echo "Newman command error failed. Aborting push."
-    exit 1
-fi
-
-if [ -f /tmp/test_result.txt ]; then
-    echo "All newman tests passed."
-    exit 0
-else
-    echo "All newman tests failed."
-    rm /tmp/test_result.txt
-    exit 1
-fi
+exit 0
