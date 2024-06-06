@@ -1,0 +1,11 @@
+- hosts: localhost
+  tasks:
+    - name: Cleanup test containers if test failed
+      docker_container:
+        name: "{{ item }}"
+        state: stopped
+      loop:
+        - my-scopus-container-test
+        - my-scholar-container-test
+        - my-cineca-container-test
+        - my-search-container-test
