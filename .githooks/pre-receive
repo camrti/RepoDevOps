@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Define the SSH connection parameters
-SSH_USER="test"
-SSH_HOST="172.16.174.107"
+SSH_USER="devops"
+SSH_HOST="172.16.174.108"
 
 # Define the remote script to execute
 REMOTE_SCRIPT="/home/test/RepoDevOps/packer/testing.sh"

@@ -1,31 +1,31 @@
 #!/bin/bash
 
 # Define the SSH connection parameters
-SSH_USER="devops"
-SSH_HOST="172.16.174.108"
+#SSH_USER="devops"
+#SSH_HOST="172.16.174.108"
 
 # Define the remote script to execute
-REMOTE_SCRIPT="/home/devops/RepoDevOps/packer/deployment.sh"
+#REMOTE_SCRIPT="/home/devops/RepoDevOps/packer/deployment.sh"
 
 # Read the input from stdin
-while read oldrev newrev refname
-do
+#while read oldrev newrev refname
+#do
     # Check if the pushed branch is the main branch
-    if [ "$refname" == "refs/heads/main" ]; then
-        echo "Push to main branch detected. Executing remote script..."
+#    if [ "$refname" == "refs/heads/main" ]; then
+#        echo "Push to main branch detected. Executing remote script..."
 
         # SSH into the remote server and execute the script
-        SSH_OUTPUT=$(ssh "$SSH_USER@$SSH_HOST" "$REMOTE_SCRIPT")
-        SSH_STATUS=$?
+#        SSH_OUTPUT=$(ssh "$SSH_USER@$SSH_HOST" "$REMOTE_SCRIPT")
+#        SSH_STATUS=$?
 
         # Check if the SSH command succeeded
-        if [[ $SSH_STATUS -eq 0 ]]; then
-            echo "Packer script completed successfully on the production server."
-        else
-            echo "Packer script failed on the production server. Aborting push."
-            echo "$SSH_OUTPUT"
-            exit 1
-        fi
-    fi
-done
+#        if [[ $SSH_STATUS -eq 0 ]]; then
+#            echo "Packer script completed successfully on the production server."
+#        else
+#            echo "Packer script failed on the production server. Aborting push."
+#            echo "$SSH_OUTPUT"
+#            exit 1
+#        fi
+#    fi
+#done
 
