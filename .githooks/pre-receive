@@ -5,7 +5,7 @@ SSH_USER="devops"
 SSH_HOST="172.16.174.108"
 
 # Define the remote script to execute
-REMOTE_SCRIPT="/home/test/RepoDevOps/packer/testing.sh"
+REMOTE_SCRIPT="/home/devops/RepoDevOps/packer-ansible/testing.sh"
 
 # Read the standard input to get the old and new revisions and the ref name
 while read oldrev newrev refname
@@ -15,14 +15,15 @@ do
         echo "Production branch is being updated."
 
         # SSH into the remote server and execute the script
-        SSH_OUTPUT=$(ssh "$SSH_USER@$SSH_HOST" "$REMOTE_SCRIPT")
+        SSH_OUTPUT=$(ssh -p 2222 "$SSH_USER@$SSH_HOST" "$REMOTE_SCRIPT")
         SSH_STATUS=$?
 
         # Check if the SSH command succeeded
         if [[ $SSH_STATUS -eq 0 ]]; then
-            echo "Packer script completed successfully on the test server."
+            echo "##### Environment Test script completed successfully. Pushing to origin/main... #####"
+	        echo "$SSH_OUTPUT"
         else
-            echo "Packer script failed on the test server. Aborting push."
+            echo "##### Environment Test script failed. Aborting push... #####"
             echo "$SSH_OUTPUT"
             exit 1
         fi
