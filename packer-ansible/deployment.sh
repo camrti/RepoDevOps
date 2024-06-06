@@ -27,6 +27,7 @@ echo "All containers have been removed."
 echo "Starting ansilble palybook..."
 ansible-playbook "packer-ansible/manage_containers_deploy.yml"
 docker ps -a
+
 if [[ $? -eq 0 ]]; then
     echo "Ansible manage_container playbook for deployment completed successfully."
 else
