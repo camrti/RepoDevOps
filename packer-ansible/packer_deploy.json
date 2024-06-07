@@ -1,0 +1,51 @@
+{   
+    "builders": [
+        {
+            "name": "docker_search",
+            "type": "docker",
+            "image": "alpine:3.18"
+        },
+        {
+            "name": "docker_cineca",
+            "type": "docker",
+            "image": "alpine:3.18"
+        },
+        {
+            "name": "docker_scholar",
+            "type": "docker",
+            "image": "alpine:3.18"
+        },
+        {
+            "name": "docker_scopus",
+            "type": "docker",
+            "image": "alpine:3.18"
+        }
+        
+    ],
+    "post-processors": [
+        {
+            "type": "docker-tag",
+            "only": ["docker_search"],
+            "repository": "my-search-image",
+            "tag": "latest"
+        },
+        {
+            "type": "docker-tag",
+            "only": ["docker_cineca"],
+            "repository": "my-cineca-image",
+            "tag": "latest"
+        },
+        {
+            "type": "docker-tag",
+            "only": ["docker_scopus"],
+            "repository": "my-scopus-image",
+            "tags": "latest"
+        },
+        {
+            "type": "docker-tag",
+            "only": ["docker_scholar"],
+            "repository": "my-scholar-image",
+            "tag": "latest"
+        }
+    ]
+}

@@ -12,8 +12,8 @@ echo "All test containers have been removed."
 ansible-playbook "packer-ansible/delete_images.yml"
 echo "All test images have been removed."
 
-echo "Starting packer_builds.json..."
-packer build "packer-ansible/packer_builds.json" 
+echo "Building packer test images..."
+packer build "packer-ansible/packer_testing.json" 
 packer_status=$?
 
 if [[ $packer_status -eq 0 ]]; then

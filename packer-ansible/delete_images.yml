@@ -5,7 +5,7 @@
         name: "{{ item }}"
         state: absent
       loop:
-        - my-scopus-image
-        - my-scholar-image
-        - my-cineca-image
-        - my-search-image
+        - my-scopus-image:test
+        - my-scholar-image:test
+        - my-cineca-image:test
+        - my-search-image:test

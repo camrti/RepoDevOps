@@ -6,6 +6,8 @@ cd "${BASE_PATH}"
 
 ### 1) Delete all containers
 
+##### THIS SHOULD BE PERFORMED WITH ANSIBLE
+
 # Array of container names to stop
 containers=("my-search-container" "my-cineca-container" "my-scholar-container" "my-scopus-container")
 
@@ -25,6 +27,19 @@ do
 done
 echo "All containers have been removed."
 
+#####
+
+echo "Building packer deploy images..."
+packer build "packer-ansible/packer_deploy.json" 
+packer_status=$?
+
+if [[ $packer_status -eq 0 ]]; then
+    echo "Packer build script completed successfully."
+else
+    echo "Packer build script failed. Aborting push."
+    exit 1
+fi
+
 echo "Starting ansible playbook..."
 ansible-playbook "packer-ansible/manage_containers_deploy.yml"
 
@@ -35,4 +50,5 @@ else
     exit 1
 fi
 
+docker rmi $(docker images -f "dangling=true" -q)
 exit 0
