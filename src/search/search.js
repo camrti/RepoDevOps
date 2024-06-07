@@ -4,7 +4,7 @@ const axios = require('axios');
 const Cineca = require('../model/cinecaModel');
 const Scholar = require('../model/scholarModel');
 const Scopus = require('../model/scopusModel'); 
-
+const validator = require('validator');
 /**
  * REQs: [R2] - [HLD2.2]
  * 
