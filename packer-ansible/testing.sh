@@ -50,7 +50,8 @@ else
     exit 1
 fi
 
-docker network create --driver=bridge --subnet=192.168.100.0/24 devops-net
+# Create the docker test net
+docker network create --driver=bridge --subnet=192.168.100.0/24 devops-test-net
 
 echo "Starting ansible manage_container playbook..."
 ansible-playbook "packer-ansible/manage_containers_test.yml"
