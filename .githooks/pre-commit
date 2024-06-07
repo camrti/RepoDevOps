@@ -20,14 +20,14 @@ echo "Running unit tests with npm..."
 
 # [UNIT TESTING]
 # Run npm test
-# if ! npm test; then
-#     # Optionally: Unstash changes if tests fail
-#     echo "Restoring unstaged changes..."
-#     git stash pop -q
+if ! npm test; then
+    # Optionally: Unstash changes if tests fail
+    echo "Restoring unstaged changes..."
+    git stash pop -q
 
-#     echo "Unit tests failed."
-#     exit 1
-# fi
+    echo "Unit tests failed."
+    exit 1
+fi
 
 # Unstash changes after tests pass
 echo "Restoring unstaged changes..."
