@@ -1,7 +1,20 @@
+// Scopus Route
+
 const express = require('express');
 const router = express.Router();
 const scopus = require('./scopus.js');
 
+/**
+ * REQs: [R3] - [HLD3.6]
+ *       [R4] - [HLD4.6]
+ * 
+ * Route to retrieve author details from the Scopus API.
+ *
+ * @param {string} req.query.name - The name of the author.
+ * @param {string} req.query.surname - The surname of the author.
+ * @param {string} req.query.affiliation - The affiliation of the author.
+ * @returns {void} Responds with author details or an error message.
+ */
 router.get('/scopus', async (req, res)=>{
     const name = req.query.name;
     const surname = req.query.surname;
@@ -21,4 +34,5 @@ router.get('/scopus', async (req, res)=>{
     }
 })
 
+// Export Scopur Route
 module.exports = router;

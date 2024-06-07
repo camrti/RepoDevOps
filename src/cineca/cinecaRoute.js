@@ -1,9 +1,17 @@
+// Cineca Route
+
 require('dotenv').config();
 const express = require('express');
 const cineca = require('./cineca.js');
 const router = express.Router();
 
-// Route to search researchers
+/**
+ * REQs: [R2] - [HLD2.2]
+ * Route to search researchers by their name.
+ *
+ * @param {string} req.query.researcherName - The name of the researcher.
+ * @returns {void} Responds with a JSON array of researchers or an error message.
+ */
 router.get('/search', async (req, res) => {
   
   const { researcherName } = req.query;
@@ -26,6 +34,7 @@ router.get('/search', async (req, res) => {
   }
 });
 
+// Export Cineca Route
 module.exports = router;
 
 

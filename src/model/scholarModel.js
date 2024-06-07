@@ -1,5 +1,10 @@
+// Scholar Model
+
 const mongoose = require('mongoose');
 
+/**
+ * Defines the schema for the Scholar collection in the MongoDB database.
+ */
 const scholarSchema = new mongoose.Schema({
     hIndex: {
         type: String
@@ -31,6 +36,8 @@ const scholarSchema = new mongoose.Schema({
     ]
 });
 
-
+// Represents the Scholar model in the MongoDB database.
 const Scholar = mongoose.model('Scholar', scholarSchema);
+
+// Export the Scholar model
 module.exports = Scholar

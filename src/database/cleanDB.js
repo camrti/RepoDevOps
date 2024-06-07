@@ -1,9 +1,16 @@
-//Restore DB
-const { MongoClient } = require('mongodb');
+//Utility restore DB function
 
+const { MongoClient } = require('mongodb');
 const dbName = "researcherDB";
 const dbUri = "mongodb://172.16.174.108:27017";
 
+/**
+ * Deletes all documents from all collections in a MongoDB database.
+ *
+ * @param {string} uri - The URI of the MongoDB database.
+ * @param {string} dbName - The name of the database.
+ * @returns {void}
+ */
 async function deleteAllDocuments(uri, dbName) {
     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 

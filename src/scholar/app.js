@@ -1,18 +1,20 @@
+// Scholar Service
+
 const path = require('path');
 require('dotenv').config({ path: require('find-config')('.env') })
 const express = require('express');
 const scholarRoute = require('./scholarRoute.js');
 
+// Create the Express application
 const app = express();
 
+// Set the port number
+const PORT = process.env.SCHOLAR_PORT || 8002;
+
+// Use the Scholar route
 app.use('/', scholarRoute);
 
-const PORT = process.env.SCHOLAR_PORT || 8002;
-// Avvia il server
+// Start Scholar Service
 app.listen(PORT, () => {
-  console.log(`\ Scholar service avviato sulla porta ${PORT}`);
+  console.log(`\nScholar service started on port ${PORT}`);
 });
-
-// To test the route http://localhost:8002/parse?ateneo=Catania&name=Giovanni&surname=Russo
-
-// TEST GIT

@@ -1,7 +1,17 @@
+// DB coonection functions
+
 require('dotenv').config();
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 
+/**
+ * Opens a connection to a MongoDB database.
+ *
+ * @param {string} dbName - The name of the database.
+ * @param {string} dbUri - The URI of the database.
+ * @returns {Promise<mongoose.Connection>} A promise that resolves to the database connection.
+ * @throws {Error} If there is an error establishing the database connection.
+ */
 async function openConnection(dbName, dbUri) {
     try {
         const uri = `${dbUri}/${dbName}`;
@@ -17,6 +27,12 @@ async function openConnection(dbName, dbUri) {
     }
 }
 
+/**
+ * Closes the connection to the MongoDB database.
+ *
+ * @returns {void}
+ * @throws {Error} If there is an error closing the database connection.
+ */
 async function closeConnection() {
     try {
         await mongoose.disconnect();
@@ -27,6 +43,7 @@ async function closeConnection() {
     }
 }
 
+// Export connection functions
 module.exports = {
     openConnection,
     closeConnection,

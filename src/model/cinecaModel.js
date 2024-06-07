@@ -1,5 +1,10 @@
+// Cineca Model
+
 const mongoose = require('mongoose');
 
+/**
+ * Defines the schema for the Cineca collection in the MongoDB database.
+ */
 const cinecaSchema = new mongoose.Schema({
     grade: {
         type: String,
@@ -41,5 +46,8 @@ const cinecaSchema = new mongoose.Schema({
     }]
 });
 
+// Represents the Cineca model in the MongoDB database.
 const Cineca = mongoose.model('Cineca', cinecaSchema);
+
+// Export the Cineca model
 module.exports = Cineca

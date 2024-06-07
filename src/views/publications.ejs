@@ -11,6 +11,8 @@
 </head>
 <body>
     <div class="container">
+
+        <!-- REQs: [R3] - [HLD3.10] -->
         <h1 class="text-left mb-4">Publications of <strong><%= researcherName + " " + researcherSurname%></strong></h1>
         <h6 class="text-left"><strong>University and Department: </strong><%= uni_and_dep %></h6>
         <h6 class="text-left"><strong>Role: </strong><%= researcherGrade %></h6>
@@ -18,6 +20,8 @@
         <h6 class="text-left"><strong>Total Publications: </strong><%= numberOfPublications %></h6>
         <h6 class="text-left"><strong>H-index: </strong><%= hIndex %></h6>
         <h6 class="text-left"><strong>Total citations: </strong><%= citations %></h6>
+        
+        <!-- REQs: [R4] - [HLD4.10] -->
         <div id="publications">
             <% if (publications.length > 0) { %>
                 <% publications.forEach(publication => { %>
