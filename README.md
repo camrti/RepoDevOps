@@ -14,3 +14,8 @@ To correctly work with repository, follow these steps:
 * If you want run the application in local, execute the scripts: 
     * to start ```./start_all_services.sh``` 
     * to stop ```./stop_all_services.sh```
+
+* NEVER COMMIT or PUSH directly on PRODUCTION/MAIN branch
+    * Always work on DEVELOP branch
+    * If you want to push in the PRODUCTION/MAIN, MERGE first with DEVELOP and then PUSH
+       
