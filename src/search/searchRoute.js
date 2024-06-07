@@ -1,7 +1,8 @@
 // Search Route 
 
 require('dotenv').config();
-const DB = require('../database/connection')
+const mongoose = require('mongoose');
+const DB = require('../database/connection');
 const express = require('express');
 const search = require('./search.js');
 const router = express.Router();
@@ -39,6 +40,8 @@ router.get('/search_researchers', async (req, res) => {
     } catch (error){
         console.error('Error:', error);
         res.status(500);
+        res.render('error');
+        return;
     }
    
     try {
@@ -63,7 +66,9 @@ router.get('/search_researchers', async (req, res) => {
       console.log('Researchers Data retrieved from getReserarchers by SearchRoute')    
     } catch (error) {
         console.error('Error:', error);
-        res.status(500);
+        res.status(400);
+        res.render('error');
+        return;
     }
   });
   
@@ -85,6 +90,11 @@ router.get('/search_publications', async (req, res) => {
     let scholarInfo = {};
     let scopusInfo = {};
 
+    if(!mongoose.Types.ObjectId.isValid(cinecaID)){
+        res.status(400);
+        res.render('error');
+        return;
+    }
     cinecaInfo = await search.getByIDCinecaInfoFromDB(cinecaID);
 
     scholarInfo = await search.getByIDScholarInfoFromDB(cinecaInfo.scholarID);
@@ -128,6 +138,8 @@ router.get('/search_publications', async (req, res) => {
     } catch (error) {
         console.error('Error:', error);
         res.status(500);
+        res.render('error');
+        return;
     }
   });
 

@@ -80,13 +80,22 @@ async function getScopusInfo(researcherAteneo, researcherSurname, researcherName
  * @param {string} researcherLastName - The last name of the researcher.
  * @returns {Promise<Array>} A promise that resolves to an array of researcher data objects matching the provided names.
  */
-async function getByNameCinecaInfoFromDB(researcherFirstName, researcherLastName) {
+ async function getByNameCinecaInfoFromDB(researcherFirstName, researcherLastName) {
+  const ignoreChars = ' \'';
+  if (
+    !validator.isAlpha(researcherFirstName,"it-IT", { ignore: ignoreChars }) || 
+    !validator.isAlpha(researcherLastName,"it-IT", { ignore: ignoreChars })
+  ) {
+    throw new Error('Invalid input');
+  }
+
   let cinecaInfo = await Cineca.find({
     firstName: new RegExp(`^${researcherFirstName}$`, 'i'),
     lastName: new RegExp(`^${researcherLastName}$`, 'i')
   });
   return cinecaInfo;
 }
+   
 
 /**
  * REQs: [R3] - [HLD3.3]
