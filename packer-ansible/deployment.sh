@@ -4,9 +4,10 @@
 BASE_PATH="/home/devops/RepoDevOps"
 cd "${BASE_PATH}"
 
+### 1) Delete all containers
+
 # Array of container names to stop
 containers=("my-search-container" "my-cineca-container" "my-scholar-container" "my-scopus-container")
-
 
 # Loop through the array and stop each container
 for container in "${containers[@]}"
@@ -24,9 +25,8 @@ do
 done
 echo "All containers have been removed."
 
-echo "Starting ansible palybook..."
+echo "Starting ansible playbook..."
 ansible-playbook "packer-ansible/manage_containers_deploy.yml"
-docker ps -a
 
 if [[ $? -eq 0 ]]; then
     echo "Ansible manage_container playbook for deployment completed successfully."

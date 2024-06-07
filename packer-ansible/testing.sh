@@ -41,8 +41,9 @@ echo "All images have been removed."
 
 echo "Starting packer_builds.json..."
 packer build "packer-ansible/packer_builds.json" 
+packer_status=$?
 
-if [[ $? -eq 0 ]]; then
+if [[ $packer_status -eq 0 ]]; then
     echo "Packer build script completed successfully."
 else
     echo "Packer build script failed. Aborting push."
