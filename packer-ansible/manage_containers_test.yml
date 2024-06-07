@@ -19,7 +19,7 @@
         volumes:
           - /home/devops/db_devops:/data/db
         networks:
-          - name: "devops-net"
+          - name: "devops-test-net"
             ipv4_address: 192.168.100.200
             aliases: "database-service"
         ports:
@@ -31,7 +31,7 @@
         image: my-scopus-image
         state: started
         networks:
-          - name: "devops-net"
+          - name: "devops-test-net"
             ipv4_address: 192.168.100.103
             aliases: "scopus-service"
         ports:
@@ -43,7 +43,7 @@
         image: my-scholar-image
         state: started
         networks:
-          - name: "devops-net"
+          - name: "devops-test-net"
             ipv4_address: 192.168.100.102
             aliases: "scholar-service"
         ports:
@@ -55,7 +55,7 @@
         image: my-cineca-image
         state: started
         networks:
-          - name: "devops-net"
+          - name: "devops-test-net"
             ipv4_address: 192.168.100.101
             aliases: "cineca-service"
         ports:
@@ -67,7 +67,7 @@
         image: my-search-image
         state: started
         networks:
-          - name: "devops-net"
+          - name: "devops-test-net"
             ipv4_address: 192.168.100.100
             aliases: "search-service"
         ports:
