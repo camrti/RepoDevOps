@@ -3,6 +3,7 @@
   hosts: localhost
   collections:
     - community.docker
+    - community.general.docker_network
 
   tasks:
     - name: Ensure Docker is running
@@ -10,6 +11,13 @@
         name: docker
         state: started
         enabled: true
+
+    - name: Create docker test network
+      community.docker.docker_network:
+        name: devops-test-net
+        state: present
+        ipam_config:
+          - subnet: 192.168.100.0/24
 
     - name: Create and start the DB container
       docker_container:

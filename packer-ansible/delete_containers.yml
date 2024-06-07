@@ -1,6 +1,6 @@
 - hosts: localhost
   tasks:
-    - name: Cleanup test containers after test passed
+    - name: Remove test containers
       docker_container:
         name: "{{ item }}"
         state: absent

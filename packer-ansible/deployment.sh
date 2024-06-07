@@ -25,9 +25,6 @@ do
 done
 echo "All containers have been removed."
 
-# Create the docker production net
-docker network create --driver=bridge --subnet=192.168.200.0/24 devops-net
-
 echo "Starting ansible playbook..."
 ansible-playbook "packer-ansible/manage_containers_deploy.yml"
 

@@ -1,0 +1,11 @@
+- hosts: localhost
+  tasks:
+    - name: Cleanup image 
+      community.docker.docker_image:
+        name: "{{ item }}"
+        state: absent
+      loop:
+        - my-scopus-image
+        - my-scholar-image
+        - my-cineca-image
+        - my-search-image

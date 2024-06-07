@@ -11,6 +11,13 @@
         state: started
         enabled: true
 
+    - name: Create docker production network
+      community.docker.docker_network:
+        name: devops-net
+        state: present
+        ipam_config:
+          - subnet: 192.168.200.0/24
+
     - name: Create and start the DB container
       docker_container:
         name: my-mongodb-container
