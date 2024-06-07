@@ -3,22 +3,26 @@
         {
             "name": "docker_search",
             "type": "docker",
-            "image": "alpine:3.18"
+            "image": "my-search-image:test",
+            "commit": true
         },
         {
             "name": "docker_cineca",
             "type": "docker",
-            "image": "alpine:3.18"
+            "image": "my-cineca-image:test",
+            "commit": true
         },
         {
             "name": "docker_scholar",
             "type": "docker",
-            "image": "alpine:3.18"
+            "image": "my-scholar-image:test",
+            "commit": true
         },
         {
             "name": "docker_scopus",
             "type": "docker",
-            "image": "alpine:3.18"
+            "image": "my-scopus-image:test",
+            "commit": true
         }
         
     ],
