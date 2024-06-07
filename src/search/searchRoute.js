@@ -1,4 +1,4 @@
-// the client app must interact only with the search module, see the architecture diagram
+// Search Service 
 
 require('dotenv').config();
 
@@ -10,23 +10,44 @@ const router = express.Router();
 const dbName = process.env.MONGO_DB || "researcherDB";
 const dbUri = process.env.MONGO_URI || "mongodb://database-service:27017";
 
+/**
+ * Opens a connection to the specified database.
+ */
 DB.openConnection(dbName, dbUri);
 
+/**
+ * Route to render the index page.
+ *
+ * @returns {void} Responds with a rendered HTML page.
+ */
 router.get('/', async (req, res) => {
     res.status(200);
     res.render('index');
 });
 
-// Route to search researchers
+/**
+ * REQs: [R2] - [HLD2.1, HLD2.2, HLD2.3, HLD2.4]
+ *
+ * Route to search researchers by their first and last names.
+ * @param {string} req.query.researcherFirstName - The first name of the researcher.
+ * @param {string} req.query.researcherLastName - The last name of the researcher.
+ * @returns {void} Responds with a rendered HTML page displaying researcher information or an error message.
+ */
 router.get('/search_researchers', async (req, res) => {
     let { researcherFirstName, researcherLastName } = req.query;
-    researcherFirstName = researcherFirstName.trim();
-    researcherLastName = researcherLastName.trim();
+    try {
+        researcherFirstName = researcherFirstName.trim();
+        researcherLastName = researcherLastName.trim();
+    } catch (error){
+        console.error('Error:', error);
+        res.status(500);
+    }
+   
     try {
       let cinecaInfo = [];
-      // Try to retrieve data from DB
+
       cinecaInfo = await search.getByNameCinecaInfoFromDB(researcherFirstName, researcherLastName);
-      //console.log("Researcher cineca info retrived from DB by name");
+
       if (cinecaInfo.length === 0){
           const researcherFullName = researcherFirstName + ' ' + researcherLastName;
           cinecaInfo = await search.getCinecaInfo(researcherFullName);
