@@ -1,4 +1,4 @@
-### For developer
+### For Developer
 To correctly work with repository, follow these steps:
 * Install dependencies executing ```npm install```
 * Append to your file ```/etc/hosts```  :
