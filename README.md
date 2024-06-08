@@ -1,8 +1,10 @@
 # Search Researcher Devops Project
 
-# Search Researcher Devops Project
+Search Researcher is a system designed to provide comprehensive information about Italian researchers and their publications. 
 
-Search Researcher is a system designed to provide comprehensive information about Italian researchers and their publications. It integrates with Cineca, Scholar, and Scopus services and exposes two APIs: `search_researchers` and `search_publications`.
+It integrates with Cineca, Scholar, and Scopus services and exposes two APIs: 
+* `search_researchers` 
+* `search_publications`
 
 ## Developer Setup
 
@@ -31,10 +33,15 @@ Follow these steps to set up your development environment:
 
 Follow these steps to set up your production environment:
 
-1. **Install Ansible Collections**: Install the required Ansible collections by running the following commands:
-    - `ansible-galaxy collection install prometheus.prometheus`
-    - `ansible-galaxy collection install community.docker`
+1. **Install Docker**
+2. **Install Packer**
+3. **Install Ansible**
+4. **Install Ansible Collections**: `community.docker` and `prometheus.prometheus`
+5. **Install Newman**
+6. **Install Monitoring tools**: `ansible-playbook -b "packer-ansible/monitoring.yml" --ask-become-pass`
 
 ## Production 
 
 The application is live at http://172.16.174.108:8000/
+
+The dashboard is live at http://172.16.174.108:3000/
