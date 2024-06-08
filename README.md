@@ -45,3 +45,6 @@ Follow these steps to set up your production environment:
 The application is live at http://172.16.174.108:8000/
 
 The dashboard is live at http://172.16.174.108:3000/
+
+## Note on remote files folder
+- This folder was added only for completeness. The two utils files are on the production server while the hooks are on the git server

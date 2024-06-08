@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Define the SSH connection parameters
+SSH_USER="devops"
+SSH_HOST="172.16.174.108"
+
+# Define the remote script to execute
+REMOTE_SCRIPT="/home/devops/.pre-receive-utils.sh"
+
+# Read the standard input to get the old and new revisions and the ref name
+while read oldrev newrev refname
+do
+    # Check if the refname is the production branch
+    if [[ "$refname" == "refs/heads/main" ]]; then
+        echo "Production branch is being updated."
+
+        SSH_OUTPUT=$(ssh -p 2222 "$SSH_USER@$SSH_HOST" "$REMOTE_SCRIPT")
+        SSH_STATUS=$?
+
+        # Check if the SSH command succeeded
+        if [[ $SSH_STATUS -eq 0 ]]; then
+            echo "##### Environment Test script completed successfully. Pushing to origin/main... #####"
+                echo "$SSH_OUTPUT"
+        else
+            echo "##### Environment Test script failed. Aborting push... #####"
+            echo "$SSH_OUTPUT"
+            exit 1
+        fi
+    fi
+done
