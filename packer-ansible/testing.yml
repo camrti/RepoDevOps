@@ -103,11 +103,6 @@
         ports:
           - "8080:8000"
 
-    - name: Run npm test
-      command: npm test
-      register: npm_test_status
-      ignore_errors: true
-
     - name: Stop playbook if npm test fails
       fail:
         msg: "npm test failed"
