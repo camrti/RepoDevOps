@@ -2,6 +2,7 @@
     "search": {
         "getCinecaInfo": [
             {
+                "id": "UTC26",
                 "desc": "Search info from Cineca Service",
                 "name": "Francesco_Moscato",
                 "expectedResult": [
@@ -23,6 +24,7 @@
 
         "getScholarInfo": [
             {
+                "id": "UTC27",
                 "desc": "Search info from Scholar Service",
                 "researcherAteneo": "Salerno",
                 "researcherName": "Francesco",
@@ -198,6 +200,7 @@
         
         "getScopusInfo":[
             {
+                "id": "UTC28",
                 "desc": "Search info from Scopus Service",
                 "name": "Francesco",
                 "surname": "Moscato",
@@ -214,6 +217,7 @@
 
         "getByNameCinecaInfoFromDB-writeCinecaInfoToDB": [
             {
+                "id": "UTC29",
                 "desc": "Search Cineca info from test DB by name",
                 "name": "Francesco",
                 "surname": "Moscato",
@@ -234,6 +238,7 @@
 
         "getByIDCinecaInfoFromDB": [
             {
+                "id": "UTC30",
                 "desc": "Search Cineca info from test DB by ID",
                 "expectedResult": [{
                     "university": "SALERNO",
@@ -252,6 +257,7 @@
 
         "getByIDScholarInfoFromDB-writeScholarInfoToDB": [
             {
+                "id": "UTC31",
                 "desc": "Search Cineca info from test DB by name",
                 "cinecaInfo": [{
                     "university": "SALERNO",
@@ -435,6 +441,7 @@
 
         "getByIDScopusInfoFromDB-writeScopusInfoToDB": [
             {
+                "id": "UTC32",
                 "desc": "Search Cineca info from test DB by name",
                 "cinecaInfo": [{
                     "university": "SALERNO",
