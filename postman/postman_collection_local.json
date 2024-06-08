@@ -1,0 +1,235 @@
+{
+	"info": {
+		"_postman_id": "4ee381a1-7ce0-41a8-bbab-7bb1483830cd",
+		"name": "postman_test_project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34157748",
+		"_collection_link": "https://devops-9911.postman.co/workspace/DevOps-Workspace~3860822d-ce9a-4e41-8631-3b2c4b9242aa/collection/34157779-4ee381a1-7ce0-41a8-bbab-7bb1483830cd?action=share&source=collection_link&creator=34157748"
+	},
+	"item": [
+		{
+			"name": "search_researchers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is as expected\", function () {",
+							"    const status_code = pm.variables.get('status_code');",
+							"    pm.response.to.have.status(status_code);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 1000ms\", function () {",
+							"    console.log(pm.response.responseTime);",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response contains expected values\", function () {",
+							"    // Load the HTML response to $",
+							"    const $ = cheerio.load(pm.response.text());",
+							"",
+							"    // Get the expected results from the iteration data",
+							"    const expectedResults = pm.variables.get('expectedResult');",
+							"    if(pm.response.text().includes(\"Error\")) {",
+							"        pm.expect(expectedResults.message).to.equal(\"Error\")",
+							"    }",
+							"    // Check if the response body contains \"Nessun ricercatore trovato\"",
+							"    else if (pm.response.text().includes(\"No Researcher Found\")) {",
+							"        // If the response body contains \"Nessun ricercatore trovato\", the expected result should be \"Nessun ricercatore trovato\"",
+							"        pm.expect(expectedResults.message).to.equal(\"No Researcher Found\");",
+							"    } else {",
+							"        // If the response body does not contain \"Nessun ricercatore trovato\", proceed with extracting the researchers' details",
+							"",
+							"        // Define an array to store the researchers' details",
+							"        let researchers = [];",
+							"",
+							"        // Extract the researchers' details from the HTML response",
+							"        $('.list-group-item').each(function(i, elem) {",
+							"            let researcher = {};",
+							"            researcher.surname = $(this).find('strong:contains(\"Surname:\")').get(0).nextSibling.nodeValue.trim().replace(/  +/g, ' ');",
+							"            researcher.name = $(this).find('strong:contains(\"Name:\")').get(0).nextSibling.nodeValue.trim().replace(/  +/g, ' ');",
+							"            researcher.universityAndDepartment = $(this).find('strong:contains(\"University and Department:\")').get(0).nextSibling.nodeValue.trim().replace(/  +/g, ' ');",
+							"            researcher.role = $(this).find('strong:contains(\"Role:\")').get(0).nextSibling.nodeValue.trim().replace(/  +/g, ' ');",
+							"            researcher.ssd = $(this).find('strong:contains(\"S.S.D.:\")').get(0).nextSibling.nodeValue.trim().replace(/  +/g, ' ');",
+							"            researchers.push(researcher);",
+							"        });",
+							"",
+							"        // Log the researchers details and expected results for debugging",
+							"        console.log('Researchers:', researchers);",
+							"        console.log('Expected Results:', expectedResults);",
+							"",
+							"        // Compare the researchers' details with the expected results",
+							"        pm.expect(researchers).to.eql(expectedResults);",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/search_researchers?researcherFirstName={{researcherFirstName}}&researcherLastName={{researcherLastName}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"search_researchers"
+					],
+					"query": [
+						{
+							"key": "researcherFirstName",
+							"value": "{{researcherFirstName}}"
+						},
+						{
+							"key": "researcherLastName",
+							"value": "{{researcherLastName}}"
+						}
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "search_publications",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is as expected\", function () {\r",
+							"    const status_code = pm.variables.get('status_code');\r",
+							"    pm.response.to.have.status(status_code);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    console.log(pm.response.responseTime);\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains expected values\", function () {\r",
+							"    // Load the HTML response to $\r",
+							"    const $ = cheerio.load(pm.response.text());\r",
+							"\r",
+							"    // Get the expected results from the iteration data\r",
+							"    const expectedResults = pm.variables.get('expectedResult');\r",
+							"    if(pm.response.text().includes(\"Error\")) {\r",
+							"        pm.expect(expectedResults.message).to.equal(\"Error\")\r",
+							"    }\r",
+							"    else if (pm.response.text().includes(\"No publication found\")) {\r",
+							"        // If the response body contains \"Nessun ricercatore trovato\", the expected result should be \"Nessun ricercatore trovato\"\r",
+							"    pm.expect(expectedResults.message).to.equal(\"No publication found\");\r",
+							"    }\r",
+							"    else{\r",
+							"            // Extract the researcher's details from the HTML response\r",
+							"    let researcher = {};\r",
+							"    researcher.universityAndDepartment = $('h6:contains(\"University and Department:\")').text().split(': ')[1];\r",
+							"    researcher.role = $('h6:contains(\"Role:\")').text().split(': ')[1];\r",
+							"    researcher.ssd = $('h6:contains(\"SSD:\")').text().split(': ')[1];\r",
+							"    researcher.total_publications = $('h6:contains(\"Total Publications:\")').text().split(': ')[1];\r",
+							"    researcher.h_index = $('h6:contains(\"H-index:\")').text().split(': ')[1];\r",
+							"    researcher.total_citations = $('h6:contains(\"Total citations:\")').text().split(': ')[1];\r",
+							"    // Extract the publication details from the HTML response\r",
+							"    let publications = [];\r",
+							"    $('.publication').each(function(i, elem) {\r",
+							"        let publication = {};\r",
+							"        publication.title = $(this).find('.title a').text().trim();\r",
+							"        publication.authors = $(this).find('.authors').text().split(': ')[1];\r",
+							"        publication.year = $(this).find('.year').text().split(': ')[1];\r",
+							"        publication.citations = $(this).find('.citation-count').text().split(': ')[1];\r",
+							"        publication.type = $(this).find('.paper-type').text().split(': ')[1];\r",
+							"        publications.push(publication);\r",
+							"    });\r",
+							"     // Log the researcher and publication details for debugging\r",
+							"    console.log('Researcher:', researcher);\r",
+							"    console.log(expectedResults.researcher);\r",
+							"    console.log('Publications:', publications);\r",
+							"    console.log(expectedResults.publications)\r",
+							"\r",
+							"    // Compare the researcher's details with the expected results\r",
+							"    pm.expect(researcher).to.eql(expectedResults.researcher);\r",
+							"    pm.expect(publications).to.eql(expectedResults.publications)\r",
+							"    }\r",
+							"\r",
+							"\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const requestType = pm.iterationData.get('requestType');\r",
+							"\r",
+							"if (requestType !== 'publication') {\r",
+							"    // Salta questa richiesta se il tipo non è 'publication'\r",
+							"    postman.setNextRequest(null); // Oppure puoi specificare la richiesta successiva\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/search_publications?cinecaID={{cinecaID}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"search_publications"
+					],
+					"query": [
+						{
+							"key": "cinecaID",
+							"value": "{{cinecaID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://172.16.174.108:8080",
+			"type": "string"
+		}
+	]
+}
