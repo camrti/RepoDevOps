@@ -107,8 +107,6 @@
       block:
         - name: Set PATH
           shell: echo "Starting newman tests..."
-          environment:
-            PATH: /home/devops/.nvm/versions/node/v20.14.0/bin:$PATH
 
         - name: Run Newman tests
           shell:
@@ -135,6 +133,11 @@
         - name: Print test failure message
           debug:
             msg: "Tests failed. Stopping containers."
+          when: newman_status_first.rc != 0 or newman_status_second.rc != 0
+
+        - name: Fail the playbook
+          fail:
+            msg: "Tests failed. Exiting with error code 1."
           when: newman_status_first.rc != 0 or newman_status_second.rc != 0
 
       always:
