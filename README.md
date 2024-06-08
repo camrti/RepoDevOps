@@ -15,7 +15,11 @@ To correctly work with repository, follow these steps:
     * to start ```./start_all_services.sh``` 
     * to stop ```./stop_all_services.sh```
 
-* NEVER COMMIT or PUSH directly on PRODUCTION/MAIN branch
+* **NEVER COMMIT** or **PUSH** directly on **PRODUCTION/MAIN** branch
     * Always work on DEVELOP branch
-    * If you want to push in the PRODUCTION/MAIN, MERGE first with DEVELOP and then PUSH
-       
+    * If you want to push in the **PRODUCTION/MAIN**, **MERGE** first with **DEVELOP** and then **PUSH**
+
+
+## Production 
+* The application is up at the following address http://172.16.174.108:8000/
+
