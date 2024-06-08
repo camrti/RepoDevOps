@@ -1,7 +1,18 @@
-### For Developer
-To correctly work with repository, follow these steps:
-* Install dependencies executing ```npm install```
-* Append to your file ```/etc/hosts```  :
+# Search Researcher Devops Project
+
+Search Researcher is a system designed to provide comprehensive information about Italian researchers and their publications. 
+
+It integrates with Cineca, Scholar, and Scopus services and exposes two APIs: 
+* `search_researchers` 
+* `search_publications`
+
+## Developer Setup
+
+Follow these steps to set up your development environment:
+
+1. **Install Dependencies**: Run `npm install` to install all necessary dependencies.
+
+2. **Update Hosts File**: Add the following entries to your `/etc/hosts` file:
     ```
     127.0.0.1   scopus-service
     127.0.0.1   scholar-service
@@ -9,17 +20,31 @@ To correctly work with repository, follow these steps:
     127.0.0.1   search-service
     172.16.174.108  database-service
     ```
-* Execute the script: ```./setup-hooks.sh```
-* If you want perform a unit testing, execute: ```npm test```
-* If you want run the application in local, execute the scripts: 
-    * to start ```./start_all_services.sh``` 
-    * to stop ```./stop_all_services.sh```
 
-* **NEVER COMMIT** or **PUSH** directly on **PRODUCTION/MAIN** branch
-    * Always work on DEVELOP branch
-    * If you want to push in the **PRODUCTION/MAIN**, **MERGE** first with **DEVELOP** and then **PUSH**
+3. **Setup Hooks**: Run the script `./setup-hooks.sh`.
 
+## Developer Guidelines
+
+- Never commit or push directly to the `PRODUCTION/MAIN` branch.
+- Always work on the `DEVELOP` branch.
+- If you want to push to the `PRODUCTION/MAIN` branch, merge first with `DEVELOP` and then push.
+
+## Production Setup
+
+Follow these steps to set up your production environment:
+
+1. **Install Docker**
+2. **Install Packer**
+3. **Install Ansible**
+4. **Install Ansible Collections**: `community.docker` and `prometheus.prometheus`
+5. **Install Newman**
+6. **Install Monitoring tools**: `ansible-playbook -b "packer-ansible/monitoring.yml" --ask-become-pass`
 
 ## Production 
-* The application is up at the following address http://172.16.174.108:8000/
 
+The application is live at http://172.16.174.108:8000/
+
+The dashboard is live at http://172.16.174.108:3000/
+
+## Note on remote files folder
+- This folder was added only for completeness. The two utils files are on the production server while the hooks are on the git server
