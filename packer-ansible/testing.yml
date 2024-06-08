@@ -1,0 +1,165 @@
+---
+- name: TEST - Manage Docker containers
+  hosts: localhost
+  collections:
+    - community.docker
+    - community.general.docker_network
+
+  tasks:
+    - name: Build new images with packer and check output
+      block:
+        - name: Build new images with packer
+          shell: | 
+            echo "Building packer test images..."
+            packer build {{ playbook_dir }}/packer_build_images.json
+          register: packer_status
+
+        - name: Check of packer script
+          fail: 
+            msg: "Packer build failed"
+          when: packer_status.rc != 0
+
+        - name: Check of packer script
+          debug:
+            msg: "Packer build success"
+          when: packer_status.rc == 0
+
+    - name: Ensure Docker is running
+      service:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Create docker test network
+      community.docker.docker_network:
+        name: devops-test-net
+        state: present
+        ipam_config:
+          - subnet: 192.168.100.0/24
+
+    - name: Create and start the DB container
+      docker_container:
+        name: my-mongodb-container
+        image: mongo:4.4.9
+        state: started
+        volumes:
+          - /home/devops/db_devops:/data/db
+        networks:
+          - name: "devops-test-net"
+            ipv4_address: 192.168.100.200
+            aliases: "database-service"
+        ports:
+          - "27017:27017"
+
+    - name: Create and start the my-scopus container
+      docker_container:
+        name: my-scopus-container-test
+        image: my-scopus-image:test
+        state: started
+        recreate: true
+        networks:
+          - name: "devops-test-net"
+            ipv4_address: 192.168.100.103
+            aliases: "scopus-service"
+        ports:
+          - "8083:8003"
+
+    - name: Create and start the my-scholar container
+      docker_container:
+        name: my-scholar-container-test
+        image: my-scholar-image:test
+        state: started
+        recreate: true
+        networks:
+          - name: "devops-test-net"
+            ipv4_address: 192.168.100.102
+            aliases: "scholar-service"
+        ports:
+          - "8082:8002"
+        
+    - name: Create and start the my-cineca container
+      docker_container:
+        name: my-cineca-container-test
+        image: my-cineca-image:test
+        state: started
+        recreate: true
+        networks:
+          - name: "devops-test-net"
+            ipv4_address: 192.168.100.101
+            aliases: "cineca-service"
+        ports:
+          - "8081:8001"
+        
+    - name: Create and start the my-search container
+      docker_container:
+        name: my-search-container-test
+        image: my-search-image:test
+        state: started
+        recreate: true
+        networks:
+          - name: "devops-test-net"
+            ipv4_address: 192.168.100.100
+            aliases: "search-service"
+        ports:
+          - "8080:8000"
+
+    - name: Run npm test
+      command: npm test
+      register: npm_test_status
+      ignore_errors: true
+
+    - name: Stop playbook if npm test fails
+      fail:
+        msg: "npm test failed"
+      when: npm_test_status.rc != 0
+    
+    - name: Run Newman tests
+      block:
+        - name: Set PATH
+          shell: echo "Starting newman tests..."
+          environment:
+            PATH: /home/devops/.nvm/versions/node/v20.14.0/bin:$PATH
+
+        - name: Run Newman tests
+          shell:
+            newman run "../postman/postman_collection.json" -d "../postman/researchers_test.json" -r json --reporter-json-export "../postman/output_researcher.json" --folder search_researchers
+          register: newman_status_first
+
+        - name: Run Newman tests
+          shell:
+            newman run "../postman/postman_collection.json" -d "../postman/publications_test.json" -r json --reporter-json-export "../postman/output_publication.json" --folder search_publications
+          register: newman_status_second
+
+      rescue:
+        - name: Stop test containers 
+          docker_container:
+            name: "{{ item }}"
+            state: stopped
+          loop:
+            - my-scopus-container-test
+            - my-scholar-container-test
+            - my-cineca-container-test
+            - my-search-container-test
+          when: newman_status_first.rc != 0 or newman_status_second.rc != 0
+
+        - name: Print test failure message
+          debug:
+            msg: "Tests failed. Stopping containers."
+          when: newman_status_first.rc != 0 or newman_status_second.rc != 0
+
+      always:
+        - name: Remove test containers
+          docker_container:
+            name: "{{ item }}"
+            state: absent
+          loop:
+            - my-scopus-container-test
+            - my-scholar-container-test
+            - my-cineca-container-test
+            - my-search-container-test
+          when: newman_status_first.rc == 0 and newman_status_second.rc == 0
+
+        - name: Print test success message
+          debug:
+            msg: "Tests passed. Removing containers."
+          when: newman_status_first.rc == 0 and newman_status_second.rc == 0
