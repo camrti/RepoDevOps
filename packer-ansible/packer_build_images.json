@@ -70,69 +70,64 @@
         },
         {
             "type" : "file",
-            "source" : "src/search",
+            "source" : "../src/search",
             "destination" : "/app/src/",
             "only" : ["docker_search"]
         },
         {   
             "type" : "file",
-            "source" : "src/views",
+            "source" : "../src/views",
             "destination" : "app/src/",
             "only" : ["docker_search"]
         },
         {
             "type" : "file",
-            "source" : "src/database",
+            "source" : "../src/database",
             "destination" : "/app/src/",
             "only" : ["docker_search"]
         },
         {
             "type" : "file",
-            "source" : "src/model",
+            "source" : "../src/model",
             "destination" : "/app/src/",
             "only" : ["docker_search"]
         },
         {
             "type" : "file",
-            "source" : "src/cineca",
+            "source" : "../src/cineca",
             "destination" : "/app/src/",
             "only" : ["docker_cineca"]
         },
         {
             "type" : "file",
-            "source" : "src/scholar",
+            "source" : "../src/scholar",
             "destination" : "/app/src/",
             "only" : ["docker_scholar"]
         },
         {
             "type" : "file",
-            "source" : "src/scopus",
+            "source" : "../src/scopus",
             "destination" : "/app/src/",
             "only" : ["docker_scopus"]
         },
         {   
             "type" : "file",
-            "source" : "public",
+            "source" : "../public",
             "destination" : "/app/"
         },
         {   
             "type" : "file",
-            "source" : "./package-lock.json",
+            "source" : "../package-lock.json",
             "destination" : "app/package-lock.json"
         },
         {   
             "type" : "file",
-            "source" : "./package.json",
+            "source" : "../package.json",
             "destination" : "app/package.json"
         },
         {   
             "type" : "file",
-            "source" : "./.env",
-            "destination" : "app/.env"
-        },
-        {   
-            "type" : "file",
-            "source" : "src/views",
+            "source" : "../src/views",
             "destination" : "app/src/",
             "only" : ["docker_search"]
         },

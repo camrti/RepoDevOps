@@ -1,0 +1,50 @@
+---
+# This playbook should be runned only one time, 
+# it will install and configure the monitoring tools.
+# Run the playbook with --ask-become-pass and insert the password.
+- name: Require sudo password
+  hosts: localhost
+  become: yes
+
+- name: Install and start cAdvisor on host
+  hosts: localhost
+  roles:
+    - role: prometheus.prometheus.cadvisor
+      cadvisor_port: "8888"
+
+- name: Install and start promotheus
+  hosts: localhost
+  roles:
+    - role: prometheus.prometheus.prometheus
+      prometheus_scrape_configs:
+      - job_name: cadvisor
+        static_configs:
+          - targets: ['localhost:8888']
+
+- name: Deploy grafana
+  hosts: localhost
+  roles:
+    - role: grafana.grafana.grafana
+      grafana_security:
+        admin_user: admin
+        admin_password: admin
+
+      grafana_auth:
+        anonymous:
+          org_name: "DevOps Project"
+          org_role: Viewer
+      grafana_metrics:
+        enabled: true
+
+      grafana_datasources:
+        - name: "Prometheus"
+          type: "prometheus"
+          access: "proxy"
+          url: "http://localhost:9090"
+          isDefault: true
+
+      grafana_dashboards: []
+      # Create manually the dashboard inserting the query of prometheus
+      # e.g: container_cpu_usage_seconds_total{name="my-search-container"}
+
+      grafana_alerting: {}
