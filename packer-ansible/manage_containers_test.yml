@@ -38,6 +38,7 @@
         name: my-scopus-container-test
         image: my-scopus-image:test
         state: started
+        recreate: true
         networks:
           - name: "devops-test-net"
             ipv4_address: 192.168.100.103
@@ -50,6 +51,7 @@
         name: my-scholar-container-test
         image: my-scholar-image:test
         state: started
+        recreate: true
         networks:
           - name: "devops-test-net"
             ipv4_address: 192.168.100.102
@@ -62,6 +64,7 @@
         name: my-cineca-container-test
         image: my-cineca-image:test
         state: started
+        recreate: true
         networks:
           - name: "devops-test-net"
             ipv4_address: 192.168.100.101
@@ -74,6 +77,7 @@
         name: my-search-container-test
         image: my-search-image:test
         state: started
+        recreate: true
         networks:
           - name: "devops-test-net"
             ipv4_address: 192.168.100.100
