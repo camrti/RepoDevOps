@@ -31,7 +31,7 @@ fi
 # Run Newman tests
 echo "Starting newman tests..."
 PATH=/home/devops/.nvm/versions/node/v20.14.0/bin:$PATH
-newman run "postman/postman_collection_test.json" -d "postman/researchers_test.json" -r json --reporter-json-export "postman/output_researcher.json" --folder search_researchers
+newman run "postman/postman_collection.json" -d "postman/researchers_test.json" -r json --reporter-json-export "postman/output_researcher.json" --folder search_researchers
 newman_status1=$?
 newman run "postman/postman_collection.json" -d "postman/publications_test.json" -r json --reporter-json-export "postman/output_publication.json" --folder search_publications
 newman_status2=$?
