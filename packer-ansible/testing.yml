@@ -1,8 +1,6 @@
 ---
 - name: TEST - Manage Docker containers
   hosts: localhost
-  environment:
-    PATH: /home/devops/.nvm/versions/node/v20.14.0/bin:$PATH
   collections:
     - community.docker
     - community.general.docker_network
