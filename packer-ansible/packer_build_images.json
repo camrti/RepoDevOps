@@ -148,22 +148,26 @@
         {
             "type": "docker-tag",
             "only": ["docker_search"],
-            "repository": "my-search-image"
+            "repository": "my-search-image",
+            "tag": "test"
         },
         {
             "type": "docker-tag",
             "only": ["docker_cineca"],
-            "repository": "my-cineca-image"
+            "repository": "my-cineca-image",
+            "tag": "test"
         },
         {
             "type": "docker-tag",
             "only": ["docker_scopus"],
-            "repository": "my-scopus-image"
+            "repository": "my-scopus-image",
+            "tags": "test"
         },
         {
             "type": "docker-tag",
             "only": ["docker_scholar"],
-            "repository": "my-scholar-image"
+            "repository": "my-scholar-image",
+            "tag": "test"
         }
     ]
 }

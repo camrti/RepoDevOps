@@ -1,6 +1,7 @@
 {
     "cineca": [
         {
+            "id": "UTC01",
             "desc": "Cineca Single Researcher Found",
             "name": "Francesco_Moscato",
             "expectedResult": [
@@ -16,11 +17,10 @@
                     "ssd": "ING-INF/05",
                     "structure": "INGEGNERIA DELL'INFORMAZIONE ED ELETTRICA E MATEMATICA APPLICATA"
                 }
-            ],
-            "expectedLength": 1,
-            "expectedStatusCode": 200
+            ]
         },
         {
+            "id": "UTC02",
             "desc": "Cineca Multiple Researcher Found",
             "name": "Giovanni_Russo",
             "expectedResult": [
@@ -72,18 +72,16 @@
                     "structure": "SCIENZE DEL SUOLO, DELLA PIANTA E DEGLI ALIMENTI (DI.S.S.P.A.)",
                     "otherUniversityService": ""
                 }
-            ],
-            "expectedLength": 4,
-            "expectedStatusCode": 200
+            ]
         },
         {
+            "id": "UTC03",
             "desc": "Cineca No Researcher Found",
             "name": "Pasquale_Caggiano",
-            "expectedResult": [],
-            "expectedLength": 0,
-            "expectedStatusCode": 404
+            "expectedResult": []
         },
         {
+            "id": "UTC04",
             "desc": "Cineca Search Researcher Only By Name",
             "name": "Genoveffa",
             "expectedResult": [
@@ -111,11 +109,10 @@
                     "structure": "INFORMATICA",
                     "otherUniversityService": ""
                 }
-            ],
-            "expectedLength": 2,
-            "expectedStatusCode": 200
+            ]
         },
         {
+            "id": "UTC05",
             "desc": "Cineca Search Researcher Only By a Surname composed of two word",
             "name": "Del Vento",
             "expectedResult": [
@@ -131,13 +128,12 @@
                     "structure": "STUDI UMANISTICI",
                     "otherUniversityService": ""
                 }
-            ],
-            "expectedLength": 1,
-            "expectedStatusCode": 200
+            ]
         }
     ],
     "cinecaRoute": [
         {
+            "id": "UTC06",
             "name": "Francesco_Moscato",
             "expectedStatusCode": 200,
             "expectedResult": [
@@ -156,11 +152,13 @@
             ]
         },
         {
+            "id": "UTC07",
             "name": "Pasquale_Caggiano",
             "expectedStatusCode": 404,
             "expectedResult": {}
         },
         {
+            "id": "UTC08",
             "name": "Genoveffa",
             "expectedStatusCode": 200,
             "expectedResult": [
@@ -191,6 +189,7 @@
             ]
         },
         {
+            "id": "UTC09",
             "name": "Del Vento",
             "expectedStatusCode": 200,
             "expectedResult": [

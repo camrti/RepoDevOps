@@ -1,60 +1,80 @@
+// Scholar functions
+
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-// Create a map to store the Ateneo translation
+// Create a map to store the Ateneo translations
 const translationMap = new Map();
-
 translationMap.set('NAPOLI', 'NAPLES');
 
+/**
+ * Cleans non-ASCII characters from a given text.
+ *
+ * @param {string} text - The text to clean.
+ * @returns {string} The cleaned text with only ASCII characters.
+ */
 const cleanText = (text) => {
   return text.replace(/[^\x00-\x7F]/g, '');
 };
 
+/**
+ * Cleans the input string by removing double quotes and extracts the last word.
+ *
+ * @param {string} input - The input string to clean and extract the last word from.
+ * @returns {string} The last word extracted from the cleaned input string.
+ */
 function cleanAndExtractLastWord(input) {
-  // Remove all double quotes from the string
   const cleanedString = input.replace(/"/g, '');
 
-  // Split the cleaned string into an array of words
   const words = cleanedString.split(/\s+/);
 
-  // Return the last word
   return words[words.length - 1];
 }
 
+/**
+ * REQs: [R3] - [HLD3.5]
+ *       [R4] - [HLD4.5]
+ * 
+ * Parses a link to a Google Scholar profile based on the provided search query.
+ *
+ * @param {string} searchQuery - The search query used to find the profile.
+ * @returns {Promise<string|null>} A promise that resolves to the parsed profile link or null if no link is found.
+ * @throws {Error} If there is an error fetching or parsing the page.
+ */
 async function parseLinkToProfile(searchQuery) {
   try {
-    // Construct the URL with the search query
     const url = `https://scholar.google.it/citations?hl=it&view_op=search_authors&mauthors=${encodeURIComponent(searchQuery)}&btnG=`;
-    // Fetch the HTML of the page
     const { data } = await axios.get(url);
 
-    // Load the HTML into cheerio
     const $ = cheerio.load(data);
-
-    // Find the first occurrence of the h3 element with class "gs_ai_name"
     const h3Element = $('h3.gs_ai_name').first();
-
-    // Get the href attribute of the a element within the h3
     const link = h3Element.find('a').attr('href');
     
     console.log('Link parsed from Google Scholar by Publication');
-    // Return the link
+
     return link ? `https://scholar.google.it${link}` : null;
+
   } catch (error) {
-    console.error('Error (parseLinkToProfile) fetching or parsing the page:', error);
-    throw error;
+      console.error('Error (parseLinkToProfile) fetching or parsing the page:', error);
+      throw error;
   }
 }
 
+/**
+ * REQs: [R3] - [HLD3.5]
+ *       [R4] - [HLD4.5]
+ * 
+ * Parses publications from a Google Scholar profile page.
+ *
+ * @param {string} profileLink - The link to the Google Scholar profile page.
+ * @returns {Promise<{publications: Array, hIndex: string, citations: string}>} A promise that resolves to an object containing parsed publications, h-index, and citation count.
+ * @throws {Error} If there is an error fetching or parsing the page.
+ */
 async function parsePublications(profileLink) {
   try {
-    // Append the required string to sort by publication date
     const url = `${profileLink}&view_op=list_works&sortby=pubdate`;
-
-    // Fetch the HTML of the page
     const { data } = await axios.get(url);
 
-    // Load the HTML into cheerio
     const $ = cheerio.load(data);
 
     const publications = [];
@@ -91,6 +111,7 @@ async function parsePublications(profileLink) {
   }
 }
 
+// Export Scholar functions
 module.exports = {
   parseLinkToProfile,
   parsePublications,

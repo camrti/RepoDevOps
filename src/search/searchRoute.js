@@ -1,21 +1,20 @@
-// Search Service 
+// Search Route 
 
 require('dotenv').config();
-
-const DB = require('../database/connection')
+const mongoose = require('mongoose');
+const DB = require('../database/connection');
 const express = require('express');
 const search = require('./search.js');
 const router = express.Router();
 
+// Set up the database connection.
 const dbName = process.env.MONGO_DB || "researcherDB";
 const dbUri = process.env.MONGO_URI || "mongodb://database-service:27017";
-
-/**
- * Opens a connection to the specified database.
- */
 DB.openConnection(dbName, dbUri);
 
 /**
+ * REQs: [R1] - [HLD1.1, HLD1.2]
+ * 
  * Route to render the index page.
  *
  * @returns {void} Responds with a rendered HTML page.
@@ -41,6 +40,8 @@ router.get('/search_researchers', async (req, res) => {
     } catch (error){
         console.error('Error:', error);
         res.status(500);
+        res.render('error');
+        return;
     }
    
     try {
@@ -65,12 +66,22 @@ router.get('/search_researchers', async (req, res) => {
       console.log('Researchers Data retrieved from getReserarchers by SearchRoute')    
     } catch (error) {
         console.error('Error:', error);
-        res.status(500);
+        res.status(400);
+        res.render('error');
+        return;
     }
   });
   
 
-// Route to search publication
+/**
+ * REQs: [R3] - [HLD3.3, HLD3.4, HLD3.5, HLD3.6, HLD3.7, HLD3.8, HLD3.9]
+ *       [R4] - [HLD4.3, HLD4.4, HLD4.5, HLD4.6, HLD4.7, HLD4.8. HLD4.9]   
+ * 
+ * Route to search publications associated with a researcher.
+ *
+ * @param {string} req.query.cinecaID - The Cineca ID of the researcher.
+ * @returns {void} Responds with a rendered HTML page displaying publication information or an error message.
+ */
 router.get('/search_publications', async (req, res) => {
     const cinecaID = req.query.cinecaID;
 
@@ -78,13 +89,16 @@ router.get('/search_publications', async (req, res) => {
     let cinecaInfo = {};
     let scholarInfo = {};
     let scopusInfo = {};
-    // Get cineca data form DB
+
+    if(!mongoose.Types.ObjectId.isValid(cinecaID)){
+        res.status(400);
+        res.render('error');
+        return;
+    }
     cinecaInfo = await search.getByIDCinecaInfoFromDB(cinecaID);
 
-    // Try to get scholar data from DB
     scholarInfo = await search.getByIDScholarInfoFromDB(cinecaInfo.scholarID);
 
-    // If no data found, get scholar data from API
     if (!scholarInfo){
         scholarInfo = await search.getScholarInfo(cinecaInfo.university, cinecaInfo.lastName, cinecaInfo.firstName);
         scholarInfo = await search.writeScholarInfoToDB(cinecaID, scholarInfo);
@@ -93,15 +107,13 @@ router.get('/search_publications', async (req, res) => {
         console.log("Researcher scholar info retrived from DB");
     }
 
-    // If no publications found
     if (!scholarInfo.publications) {
         res.status(404).send('No publication found');
         return;
     }
 
-    // Try to get scopus data from DB
     scopusInfo = await search.getByIDScopusInfoFromDB(cinecaInfo.scopusID);
-    // If no data found, get scopus data from API
+
     if (!scopusInfo){
         scopusInfo = await search.getScopusInfo(cinecaInfo.university, cinecaInfo.lastName, cinecaInfo.firstName);
         scopusInfo = await search.writeScopusInfoToDB(cinecaID, scopusInfo);
@@ -126,9 +138,12 @@ router.get('/search_publications', async (req, res) => {
     } catch (error) {
         console.error('Error:', error);
         res.status(500);
+        res.render('error');
+        return;
     }
   });
 
+// Export Search Route
 module.exports = router;
 
 

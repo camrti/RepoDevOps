@@ -3,6 +3,7 @@
     {
         "getAuthorId": [
             {
+                "id": "UTC16",
                 "desc": "Search for an existing scopus authorID",
                 "name": "Francesco",
                 "surname": "Moscato",
@@ -11,6 +12,7 @@
                 "throwError": false
             },
             {
+                "id": "UTC17",
                 "desc": "Search for an non existing scopus authorID",
                 "name": "Pasquale",
                 "surname": "Caggiano",
@@ -19,6 +21,7 @@
                 "throwError": true
             },
             {
+                "id": "UTC18",
                 "desc": "Search for an existing scopus authorID without a name query parameter",
                 "name": "",
                 "surname": "Moscato",
@@ -27,6 +30,7 @@
                 "throwError": true
             },
             {
+                "id": "UTC19",
                 "desc": "Search for an existing scopus authorID without a surname query parameter",
                 "name": "Francesco",
                 "surname": "",
@@ -35,6 +39,7 @@
                 "throwError": true
             },
             {
+                "id": "UTC20",
                 "desc": "Search for an existing scopus authorID without an affilation query parameter",
                 "name": "Francesco",
                 "surname": "Moscato",
@@ -43,6 +48,7 @@
                 "throwError": true
             },
             {
+                "id": "UTC21",
                 "desc": "Search for an existing scopus authorID without any query parameters",
                 "name": "",
                 "surname": "",
@@ -54,6 +60,7 @@
         ],
         "getAuthorDetails": [
             {
+                "id": "UTC22",
                 "desc": "Search detail with an existing scopus authorID",
                 "authorId": "13405037300",
                 "expectedResult":  {
@@ -66,6 +73,7 @@
                 "throwError": false
             },
             {
+                "id": "UTC23",
                 "desc": "Search detail with an non existing scopus authorID",
                 "authorId": "",
                 "expectedResult":  null,
@@ -75,6 +83,7 @@
     },
     "scopusRoute": [
             {
+                "id": "UTC24",
                 "desc": "/GET for an existing scopus author",
                 "name": "Francesco",
                 "surname": "Moscato",
@@ -89,6 +98,7 @@
                 "expectedStatusCode": 200
             },
             {
+                "id": "UTC25",
                 "desc": "/GET for an non existing scopus author",
                 "name": "Pasquale",
                 "surname": "Caggiano",

@@ -1,12 +1,28 @@
+// Cineca functions
+
 const axios = require('axios');
 const cheerio = require('cheerio');
 
+/**
+ * Cleans and formats a field object into a string.
+ *
+ * @param {object} field - A field of a table.
+ * @returns {string} - The cleaned and formatted string, or an empty string if the input is "Non disponibile".
+ */
 function cleanField(field) {
     let str = field.text().replace(/\s+/g, ' ').trim();
     if (str === 'Non disponibile') return "";
     return str.toUpperCase(); 
 }
 
+/**
+ * Cleans and separates a field containing a name and surname.
+ *
+ * @param {object} field - The field object containing the text to clean and split.
+ * @returns {object} An object containing the separated and cleaned name and surname in uppercase.
+ * @returns {string} return.name - The cleaned and uppercase name.
+ * @returns {string} return.surname - The cleaned and uppercase surname.
+ */
 function cleanNameSurnameField(field) {
     let name = "";
     let surname = "";
@@ -23,6 +39,14 @@ function cleanNameSurnameField(field) {
     return {"name": name.toUpperCase(), "surname": surname.toUpperCase()};
 };
 
+/**
+ * REQs: [R2] - [HLD2.2]
+ * 
+ * Fetches data of researchers from the Cineca website based on the provided name.
+ *
+ * @param {string} name - The name of the researcher to search for.
+ * @returns {Promise<Array>} A promise that resolves to an array of researcher data objects or an empty array if an error occurs.
+ */
 async function getCinecaData(name) {
     const url = `https://cercauniversita.mur.gov.it/php5/docenti/vis_docenti.php?docinput=${encodeURIComponent(name)}&docsubmit=cerca`;
 
@@ -66,6 +90,8 @@ async function getCinecaData(name) {
         return [];
     }
 }
+
+// Export Cineca functions
 module.exports = {
     getCinecaData
 }; 

@@ -3,6 +3,7 @@
   hosts: localhost
   collections:
     - community.docker
+    - community.docker.docker_image
 
   tasks:
     - name: Ensure Docker is running
@@ -10,6 +11,13 @@
         name: docker
         state: started
         enabled: true
+
+    - name: Create docker production network
+      community.docker.docker_network:
+        name: devops-net
+        state: present
+        ipam_config:
+          - subnet: 192.168.200.0/24
 
     - name: Create and start the DB container
       docker_container:
@@ -25,11 +33,18 @@
         ports:
           - "27017:27017"
 
-    - name: Create and start the my-scopus container
+    - name: Change scopus tag from test to latest
+      community.docker.docker_image_tag:
+        name: my-scopus-image:test
+        repository:
+          - my-scopus-image:latest
+
+    - name: Re-Create and start the my-scopus container
       docker_container:
         name: my-scopus-container
         image: my-scopus-image
         state: started
+        recreate: true
         networks:
           - name: "devops-net"
             ipv4_address: 192.168.200.103
@@ -37,38 +52,71 @@
         ports:
           - "8003:8003"
 
-    - name: Create and start the my-scholar container
+    - name: Change scholar tag from test to latest
+      community.docker.docker_image_tag:
+        name: my-scholar-image:test
+        repository:
+          - my-scholar-image:latest
+
+    - name: Re-Create and start the my-scholar container
       docker_container:
         name: my-scholar-container
         image: my-scholar-image
         state: started
+        recreate: true
         networks:
           - name: "devops-net"
             ipv4_address: 192.168.200.102
             aliases: "scholar-service"
         ports:
           - "8002:8002"
+
+    - name: Change cineca tag from test to latest
+      community.docker.docker_image_tag:
+        name: my-cineca-image:test
+        repository:
+          - my-cineca-image:latest
         
-    - name: Create and start the my-cineca container
+    - name: Re-Create and start the my-cineca container
       docker_container:
         name: my-cineca-container
         image: my-cineca-image
         state: started
+        recreate: true
         networks:
           - name: "devops-net"
             ipv4_address: 192.168.200.101
             aliases: "cineca-service"
         ports:
           - "8001:8001"
+
+    - name: Change search tag from test to latest
+      community.docker.docker_image_tag:
+        name: my-search-image:test
+        repository:
+          - my-search-image:latest
         
-    - name: Create and start the my-search container
+    - name: Re-Create and start the my-search container
       docker_container:
         name: my-search-container
         image: my-search-image
         state: started
+        recreate: true
         networks:
           - name: "devops-net"
             ipv4_address: 192.168.200.100
             aliases: "search-service"
         ports:
           - "8000:8000"
+
+    - name: Cleanup dangling images
+      shell: |
+        oldimage=`docker images | grep '<none>' | awk '{print $3}'`
+        if [ -z "$oldimage" ]
+        then
+        echo "There is no dangling images found!"
+        else
+        docker rmi ${oldimage} -f
+        fi
+
+      ignore_errors: yes

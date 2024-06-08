@@ -1,0 +1,349 @@
+[
+  {
+    "cinecaID": "666165d4e490687a647c7a28",
+    "status_code": 200,
+    "expectedResult": {
+      "researcher": {
+        "universityAndDepartment": "SALERNO,  INGEGNERIA DELL'INFORMAZIONE ED ELETTRICA E MATEMATICA APPLICATA",
+        "role": "ASSOCIATO",
+        "ssd": "ING-INF/05",
+        "total_publications": "N/A",
+        "h_index": "23",
+        "total_citations": "1468"
+      },
+      "publications": [
+        {
+          "title": "PATIENT WITH CHRONIC CORONARY SYNDROME: USE OF MULTIMODAL IMAGING FOR CORRECT DIAGNOSIS AND TREATMENT",
+          "authors": "D Formigli, A Luongo, V Franco, F Moscato, S Cocozza, A Parente, ...",
+          "year": "2024",
+          "citations": "0",
+          "type": "European Heart Journal Supplements 26 (Supplement_2), ii187-ii187, 2024"
+        },
+        {
+          "title": "Unsupervised Anomaly Detection in Predictive Maintenance using Sound Data",
+          "authors": "A Ferraro, A Galli, V La Gatta, V Moscato, M Postiglione, G Sperl, ...",
+          "year": "2023",
+          "citations": "0",
+          "type": "N/A"
+        },
+        {
+          "title": "Towards Semantic Description of Symbology and Heraldry Using Ontologies",
+          "authors": "A Amato, G Cirillo, F Moscato",
+          "year": "2022",
+          "citations": "0",
+          "type": "Computational Intelligence in Security for Information Systems Conference, 2022"
+        },
+        {
+          "title": "C83 USE OF CANGRELOR IN A 63 YEARS OLD MEN SUFFERING FROM ACUTE INFERIOR STELEVATION MYOCARDIAL INFARCTION AND SEVERE IDIOPATHIC THROMBOCYTOPENIC PURPURA: A CASE REPORT",
+          "authors": "S Cocozza, D Formigli, A Parente, E Pirozzi, V Franco, F Moscato, ...",
+          "year": "2022",
+          "citations": "1",
+          "type": "European Heart Journal Supplements 24 (Supplement_C), suac011. 081, 2022"
+        },
+        {
+          "title": "Credit Score Prediction Relying on Machine Learning.",
+          "authors": "F Amato, A Ferraro, A Galli, F Moscato, V Moscato, G Sperl",
+          "year": "2022",
+          "citations": "0",
+          "type": "SEBD, 546-553, 2022"
+        },
+        {
+          "title": "INDICATIONS FOR THE USE OF OPTICAL COHERENCE TOMOGRAPHY (OCT) IN THE CATH LAB",
+          "authors": "D Formigli, V Franco, F Moscato, A Parente, E Pirozzi, S Cocozza, ...",
+          "year": "2021",
+          "citations": "0",
+          "type": "EUROPEAN HEART JOURNAL SUPPLEMENTS 23 (C), C22-C22, 2021"
+        },
+        {
+          "title": "Enhancing random forest classification with NLP in DAMEH: A system for DAta Management in eHealth Domain",
+          "authors": "F Amato, L Coppolino, G Cozzolino, G Mazzeo, F Moscato, R Nardone",
+          "year": "2021",
+          "citations": "15",
+          "type": "Neurocomputing 444, 79-91, 2021"
+        },
+        {
+          "title": "A security and privacy validation methodology for e-health systems",
+          "authors": "F Amato, V Casola, G Cozzolino, A De Benedictis, N Mazzocca, ...",
+          "year": "2021",
+          "citations": "16",
+          "type": "ACM Transactions on Multimedia Computing, Communications, and Applications, 2021"
+        },
+        {
+          "title": "A model for verification and validation of law compliance of smart contracts in IoT environment",
+          "authors": "F Amato, G Cozzolino, F Moscato, V Moscato, F Xhafa",
+          "year": "2021",
+          "citations": "23",
+          "type": "IEEE Transactions on Industrial Informatics 17 (11), 7752-7759, 2021"
+        },
+        {
+          "title": "Can-bus attack detection with deep learning",
+          "authors": "F Amato, L Coppolino, F Mercaldo, F Moscato, R Nardone, A Santone",
+          "year": "2021",
+          "citations": "52",
+          "type": "IEEE Transactions on Intelligent Transportation Systems 22 (8), 5081-5090, 2021"
+        },
+        {
+          "title": "Smart Conversational User Interface for recommending Cultural Heritage Points of Interest",
+          "authors": "F Amato, F Moscato, V Moscato, G Sperl",
+          "year": "2021",
+          "citations": "1",
+          "type": "CEUR Workshop Proceedings, 2994, 2021"
+        },
+        {
+          "title": "Cognitive analysis in social networks for viral marketing",
+          "authors": "A Castiglione, G Cozzolino, F Moscato, V Moscato",
+          "year": "2020",
+          "citations": "19",
+          "type": "IEEE Transactions on Industrial Informatics 17 (9), 6162-6169, 2020"
+        },
+        {
+          "title": "An abstract reasoning architecture for privacy policies monitoring",
+          "authors": "F Amato, L Coppolino, S DAntonio, N Mazzocca, F Moscato, L Sgaglione",
+          "year": "2020",
+          "citations": "6",
+          "type": "Future Generation Computer Systems 106, 393-400, 2020"
+        },
+        {
+          "title": "Web, artificial intelligence and network applications: proceedings of the workshops of the 34th international conference on advanced information networking and applications",
+          "authors": "L Barolli, F Amato, F Moscato, T Enokido, M Takizawa",
+          "year": "2020",
+          "citations": "5",
+          "type": "Springer Nature, 2020"
+        },
+        {
+          "title": "An agent-based approach for recommending cultural tours",
+          "authors": "F Amato, F Moscato, V Moscato, F Pascale, A Picariello",
+          "year": "2020",
+          "citations": "30",
+          "type": "Pattern Recognition Letters 131, 341-347, 2020"
+        },
+        {
+          "title": "Privacy-aware design for E-Health Information Systems.",
+          "authors": "F Amato, G Cozzolino, F Moscato, V Moscato, A Picariello, G Sperl",
+          "year": "2020",
+          "citations": "0",
+          "type": "SEBD, 175-185, 2020"
+        },
+        {
+          "title": "Enabling Accountable Collaboration in Distributed, Autonomous Systems by Intelligent Agents",
+          "authors": "F Amato, P Femia, F Moscato",
+          "year": "2020",
+          "citations": "2",
+          "type": "Complex, Intelligent, and Software Intensive Systems"
+        },
+        {
+          "title": "Analysis of consumers perceptions of food safety risk in social networks",
+          "authors": "A Amato, W Balzano, G Cozzolino, F Moscato",
+          "year": "2020",
+          "citations": "14",
+          "type": "Advanced Information Networking and Applications"
+        },
+        {
+          "title": "Exploiting workflow languages and semantics for validation of security policies in IoT composite services",
+          "authors": "F Amato, V Casola, G Cozzolino, A De Benedictis, F Moscato",
+          "year": "2019",
+          "citations": "18",
+          "type": "IEEE Internet of Things Journal 7 (5), 4655-4665, 2019"
+        },
+        {
+          "title": "Generation of game contents by social media analysis and mas planning",
+          "authors": "F Amato, F Moscato, F Xhafa",
+          "year": "2019",
+          "citations": "5",
+          "type": "Computers in Human Behavior 100, 286-294, 2019"
+        }
+      ]
+    }
+  },
+  {
+    "cinecaID": "666165d4e490687a647c7a28",
+    "status_code": 200,
+    "expectedResult": {
+      "researcher": {
+        "universityAndDepartment": "SALERNO,  INGEGNERIA DELL'INFORMAZIONE ED ELETTRICA E MATEMATICA APPLICATA",
+        "role": "ASSOCIATO",
+        "ssd": "ING-INF/05",
+        "total_publications": "N/A",
+        "h_index": "23",
+        "total_citations": "1468"
+      },
+      "publications": [
+        {
+          "title": "PATIENT WITH CHRONIC CORONARY SYNDROME: USE OF MULTIMODAL IMAGING FOR CORRECT DIAGNOSIS AND TREATMENT",
+          "authors": "D Formigli, A Luongo, V Franco, F Moscato, S Cocozza, A Parente, ...",
+          "year": "2024",
+          "citations": "0",
+          "type": "European Heart Journal Supplements 26 (Supplement_2), ii187-ii187, 2024"
+        },
+        {
+          "title": "Unsupervised Anomaly Detection in Predictive Maintenance using Sound Data",
+          "authors": "A Ferraro, A Galli, V La Gatta, V Moscato, M Postiglione, G Sperl, ...",
+          "year": "2023",
+          "citations": "0",
+          "type": "N/A"
+        },
+        {
+          "title": "Towards Semantic Description of Symbology and Heraldry Using Ontologies",
+          "authors": "A Amato, G Cirillo, F Moscato",
+          "year": "2022",
+          "citations": "0",
+          "type": "Computational Intelligence in Security for Information Systems Conference, 2022"
+        },
+        {
+          "title": "C83 USE OF CANGRELOR IN A 63 YEARS OLD MEN SUFFERING FROM ACUTE INFERIOR STELEVATION MYOCARDIAL INFARCTION AND SEVERE IDIOPATHIC THROMBOCYTOPENIC PURPURA: A CASE REPORT",
+          "authors": "S Cocozza, D Formigli, A Parente, E Pirozzi, V Franco, F Moscato, ...",
+          "year": "2022",
+          "citations": "1",
+          "type": "European Heart Journal Supplements 24 (Supplement_C), suac011. 081, 2022"
+        },
+        {
+          "title": "Credit Score Prediction Relying on Machine Learning.",
+          "authors": "F Amato, A Ferraro, A Galli, F Moscato, V Moscato, G Sperl",
+          "year": "2022",
+          "citations": "0",
+          "type": "SEBD, 546-553, 2022"
+        },
+        {
+          "title": "INDICATIONS FOR THE USE OF OPTICAL COHERENCE TOMOGRAPHY (OCT) IN THE CATH LAB",
+          "authors": "D Formigli, V Franco, F Moscato, A Parente, E Pirozzi, S Cocozza, ...",
+          "year": "2021",
+          "citations": "0",
+          "type": "EUROPEAN HEART JOURNAL SUPPLEMENTS 23 (C), C22-C22, 2021"
+        },
+        {
+          "title": "Enhancing random forest classification with NLP in DAMEH: A system for DAta Management in eHealth Domain",
+          "authors": "F Amato, L Coppolino, G Cozzolino, G Mazzeo, F Moscato, R Nardone",
+          "year": "2021",
+          "citations": "15",
+          "type": "Neurocomputing 444, 79-91, 2021"
+        },
+        {
+          "title": "A security and privacy validation methodology for e-health systems",
+          "authors": "F Amato, V Casola, G Cozzolino, A De Benedictis, N Mazzocca, ...",
+          "year": "2021",
+          "citations": "16",
+          "type": "ACM Transactions on Multimedia Computing, Communications, and Applications, 2021"
+        },
+        {
+          "title": "A model for verification and validation of law compliance of smart contracts in IoT environment",
+          "authors": "F Amato, G Cozzolino, F Moscato, V Moscato, F Xhafa",
+          "year": "2021",
+          "citations": "23",
+          "type": "IEEE Transactions on Industrial Informatics 17 (11), 7752-7759, 2021"
+        },
+        {
+          "title": "Can-bus attack detection with deep learning",
+          "authors": "F Amato, L Coppolino, F Mercaldo, F Moscato, R Nardone, A Santone",
+          "year": "2021",
+          "citations": "52",
+          "type": "IEEE Transactions on Intelligent Transportation Systems 22 (8), 5081-5090, 2021"
+        },
+        {
+          "title": "Smart Conversational User Interface for recommending Cultural Heritage Points of Interest",
+          "authors": "F Amato, F Moscato, V Moscato, G Sperl",
+          "year": "2021",
+          "citations": "1",
+          "type": "CEUR Workshop Proceedings, 2994, 2021"
+        },
+        {
+          "title": "Cognitive analysis in social networks for viral marketing",
+          "authors": "A Castiglione, G Cozzolino, F Moscato, V Moscato",
+          "year": "2020",
+          "citations": "19",
+          "type": "IEEE Transactions on Industrial Informatics 17 (9), 6162-6169, 2020"
+        },
+        {
+          "title": "An abstract reasoning architecture for privacy policies monitoring",
+          "authors": "F Amato, L Coppolino, S DAntonio, N Mazzocca, F Moscato, L Sgaglione",
+          "year": "2020",
+          "citations": "6",
+          "type": "Future Generation Computer Systems 106, 393-400, 2020"
+        },
+        {
+          "title": "Web, artificial intelligence and network applications: proceedings of the workshops of the 34th international conference on advanced information networking and applications",
+          "authors": "L Barolli, F Amato, F Moscato, T Enokido, M Takizawa",
+          "year": "2020",
+          "citations": "5",
+          "type": "Springer Nature, 2020"
+        },
+        {
+          "title": "An agent-based approach for recommending cultural tours",
+          "authors": "F Amato, F Moscato, V Moscato, F Pascale, A Picariello",
+          "year": "2020",
+          "citations": "30",
+          "type": "Pattern Recognition Letters 131, 341-347, 2020"
+        },
+        {
+          "title": "Privacy-aware design for E-Health Information Systems.",
+          "authors": "F Amato, G Cozzolino, F Moscato, V Moscato, A Picariello, G Sperl",
+          "year": "2020",
+          "citations": "0",
+          "type": "SEBD, 175-185, 2020"
+        },
+        {
+          "title": "Enabling Accountable Collaboration in Distributed, Autonomous Systems by Intelligent Agents",
+          "authors": "F Amato, P Femia, F Moscato",
+          "year": "2020",
+          "citations": "2",
+          "type": "Complex, Intelligent, and Software Intensive Systems"
+        },
+        {
+          "title": "Analysis of consumers perceptions of food safety risk in social networks",
+          "authors": "A Amato, W Balzano, G Cozzolino, F Moscato",
+          "year": "2020",
+          "citations": "14",
+          "type": "Advanced Information Networking and Applications"
+        },
+        {
+          "title": "Exploiting workflow languages and semantics for validation of security policies in IoT composite services",
+          "authors": "F Amato, V Casola, G Cozzolino, A De Benedictis, F Moscato",
+          "year": "2019",
+          "citations": "18",
+          "type": "IEEE Internet of Things Journal 7 (5), 4655-4665, 2019"
+        },
+        {
+          "title": "Generation of game contents by social media analysis and mas planning",
+          "authors": "F Amato, F Moscato, F Xhafa",
+          "year": "2019",
+          "citations": "5",
+          "type": "Computers in Human Behavior 100, 286-294, 2019"
+        }
+      ]
+    }
+  },
+  {
+    "cinecaID":"66618429d3842c20ff896321",
+    "status_code": 200,
+    "expectedResult": {
+        "message": "No publication found"
+      }
+  },
+  {
+    "cinecaID":"doefoewfbi",
+    "status_code": 400,
+    "expectedResult": {
+        "message": "Error"
+      }
+  },
+  {
+    "cinecaID":"123456",
+    "status_code": 400,
+    "expectedResult": {
+        "message": "Error"
+      }
+  },
+  {
+    "cinecaID":"",
+    "status_code": 400,
+    "expectedResult": {
+        "message": "Error"
+      }
+  },
+  {
+    "cinecaID":"66618429d3842c20ff896320",
+    "status_code": 500,
+    "expectedResult": {
+        "message": "Error"
+      }
+  }
+]

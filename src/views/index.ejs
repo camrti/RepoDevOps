@@ -3,24 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ricerca Ricercatori</title>
+    <title>Search Researchers</title>
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Include your custom CSS file -->
+    <!-- Include the custom CSS file -->
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
-    <div class="container"> <!-- Use Bootstrap container for better layout -->
+    <div class="container"> 
         <h1 class="text-center mb-4">Search Researcher</h1> <!-- Center the heading -->
+
+        <!-- REQs: [R1] - [HLD1.1, HLD1.2] -->
         <form action="/search_researchers" method="get">
-            <div class="form-group"> <!-- Use Bootstrap form-group for better styling -->
+            <div class="form-group"> 
                 <text for="researcherFirstName">Name:</text>
                 <input type="text" class="form-control form-control-lg" id="researcherFirstName" name="researcherFirstName" required>
                 
                 <text for="researcherLastName">Surname:</text>
                 <input type="text" class="form-control form-control-lg" id="researcherLastName" name="researcherLastName" required>
             </div>
-            <button class="btn btn-primary" type="submit">Search</button> <!-- Use Bootstrap btn classes -->
+            <button class="btn btn-primary" type="submit">Search</button> 
         </form>
     </div>
 </body>

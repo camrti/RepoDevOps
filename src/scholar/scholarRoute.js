@@ -1,7 +1,20 @@
+//Scholar Route
+
 const express = require('express');
 const scholar = require('./scholar.js');
 const router = express.Router();
 
+/**
+ * REQs: [R3] - [HLD3.5]
+ *       [R4] - [HLD4.5]
+ * 
+ * Route to parse publications from a researcher's Google Scholar profile.
+ *
+ * @param {string} req.query.name - The name of the researcher.
+ * @param {string} req.query.surname - The surname of the researcher.
+ * @param {string} req.query.ateneo - The institution of the researcher.
+ * @returns {void} Responds with parsed publication data or an error message.
+ */
 router.get('/parse', async (req, res) => {
   const researcherName = req.query.name;
   const researcherSurname = req.query.surname;
@@ -42,4 +55,5 @@ router.get('/parse', async (req, res) => {
   }
 });
 
+// Export Scholar Route
 module.exports = router;

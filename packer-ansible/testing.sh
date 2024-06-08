@@ -4,43 +4,9 @@
 BASE_PATH="/home/devops/RepoDevOps"
 cd "${BASE_PATH}"
 
-### 1) Delete all containers and images
-
-# Array of container names to stop
-containers=("my-search-container-test" "my-cineca-container-test" "my-scholar-container-test" "my-scopus-container-test")
-
-# Loop through the array and stop each container
-for container in "${containers[@]}"
-do
-    echo "Stopping container: $container"
-    docker stop "$container"
-done
-echo "All containers have been stopped."
-
-
-# Loop through the array and remove each container
-for container in "${containers[@]}"
-do
-    echo "Removing container: $container"
-    docker rm "$container"
-done
-echo "All containers have been removed."
-
-### 2)
-
-# Array of container images to remove
-images=("my-search-image" "my-cineca-image" "my-scholar-image" "my-scopus-image")
-
-# Loop through the array and remove each image
-for image in "${images[@]}"
-do
-    echo "Removing image: $image"
-    docker rmi "$image"
-done
-echo "All images have been removed."
-
-echo "Starting packer_builds.json..."
-packer build "packer-ansible/packer_builds.json" 
+# Build new versions of images
+echo "Building packer test images..."
+packer build "packer-ansible/packer_build_images.json" 
 packer_status=$?
 
 if [[ $packer_status -eq 0 ]]; then
@@ -50,9 +16,7 @@ else
     exit 1
 fi
 
-# Create the docker test net
-docker network create --driver=bridge --subnet=192.168.100.0/24 devops-test-net
-
+# Start and manage new test containers
 echo "Starting ansible manage_container playbook..."
 ansible-playbook "packer-ansible/manage_containers_test.yml"
 ansible_status=$?
@@ -67,18 +31,21 @@ fi
 # Run Newman tests
 echo "Starting newman tests..."
 PATH=/home/devops/.nvm/versions/node/v20.14.0/bin:$PATH
-newman run "postman/postman_collection.json" -d "postman/reasearcher.json" -r json --reporter-json-export "postman/output.json"
-newman_status=$?
+newman run "postman/postman_collection.json" -d "postman/researchers_test.json" -r json --reporter-json-export "postman/output_researcher.json" --folder search_researchers
+newman_status1=$?
+newman run "postman/postman_collection.json" -d "postman/publications_test.json" -r json --reporter-json-export "postman/output_publication.json" --folder search_publications
+newman_status2=$?
 
-if [[ $newman_status -eq 0 ]]; then
+if [[ $newman_status1 -eq 0 && $newman_status2 -eq 0 ]]; then
     echo "Newman tests completed successfully. Pushing to origin/main..."
-    rm -f "postman/output.json"
+    rm -f "postman/output_researcher.json" 
+    rm -f "postman/output_publication.json"
     echo "Starting ansible delete_containers playbook..."
-    ansible-playbook "packer-ansible/delete_containers.yml"
+    ansible-playbook "packer-ansible/delete_test_containers.yml"
 else
     echo "Newman tests failed. Aborting push."
     echo "Starting ansible stop_containers playbook..."
-    ansible-playbook "packer-ansible/stop_containers.yml"
+    ansible-playbook "packer-ansible/stop_test_containers.yml"
     exit 1
 fi
 

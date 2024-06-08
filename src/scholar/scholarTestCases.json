@@ -3,11 +3,13 @@
     {
         "parseLinkToProfile": [
             {
+                "id": "UTC10",
                 "desc": "Valid search query with profile link",
                 "searchQuery": "Salerno Francesco Moscato",
                 "expectedResult": "https://scholar.google.it/citations?hl=it&user=brSCK-YAAAAJ"
             },
             {
+                "id": "UTC11",
                 "desc": "Valid search query without profile link",
                 "searchQuery": "Camilla_Murati",
                 "expectedResult": null
@@ -15,6 +17,7 @@
         ],
         "parsePublications": [
             {
+                "id": "UTC12",
                 "desc": "Valid profile link with publications",
                 "profileLink": "https://scholar.google.com/citations?user=brSCK-YAAAAJ",
                 "expectedResult": [
@@ -184,6 +187,7 @@
     },
     "scholarRoute": [
         {   
+            "id": "UTC13",
             "desc": "/GET for a researcher with publications",
             "query": { "name": "Francesco", "surname": "Moscato", "ateneo": "Salerno"},
             "expectedStatusCode": 200,
@@ -354,12 +358,14 @@
                 "researcherName": "Francesco"}
         },
         {   
+            "id": "UTC14",
             "desc": "/GET with missing 'value' parameter",
             "query": { "name": "Giovanni", "surname": "Russo" },
             "expectedStatusCode": 400,
             "expectedResult": {}
         },
         {   
+            "id": "UTC15",
             "desc": "/GET with no profile link found",
             "query": { "ateneo": "Londra", "name": "Ettore", "surname": "Napoli"},
             "expectedStatusCode": 404,

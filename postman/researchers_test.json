@@ -1,0 +1,74 @@
+[
+    {
+        "researcherFirstName": "Francesco",
+        "researcherLastName": "Moscato",
+        "status_code": 200,
+        "expectedResult": [
+            {
+                "surname": "MOSCATO",
+                "name": "FRANCESCO",
+                "universityAndDepartment": "SALERNO, INGEGNERIA DELL'INFORMAZIONE ED ELETTRICA E MATEMATICA APPLICATA",
+                "role": "ASSOCIATO",
+                "ssd": "ING-INF/05"
+            }
+        ]
+    },
+    {
+        "researcherFirstName": "Francesco",
+        "researcherLastName": "Moscato",
+        "status_code": 200,
+        "expectedResult": [
+            {
+                "surname": "MOSCATO",
+                "name": "FRANCESCO",
+                "universityAndDepartment": "SALERNO, INGEGNERIA DELL'INFORMAZIONE ED ELETTRICA E MATEMATICA APPLICATA",
+                "role": "ASSOCIATO",
+                "ssd": "ING-INF/05"
+            }
+        ]
+    },
+    {
+        "researcherFirstName": "Francescoooooo",
+        "researcherLastName": "Moscatooooooo",
+        "status_code": 200,
+        "expectedResult": 
+        {
+            "message": "No Researcher Found"
+        }
+    },
+    {
+        "researcherFirstName": "Francesco",
+        "researcherLastName": "",
+        "status_code": 400,
+        "expectedResult": 
+        {
+            "message": "Error"
+        }
+    },
+    {
+        "researcherFirstName": "{ \"$ne\": \"\" }",
+        "researcherLastName": "{ \"$ne\": \"\" }",
+        "status_code": 400,
+        "expectedResult" : 
+        {
+            "message": "Error"
+        }
+    },
+    {
+        "researcherFirstName": ".*",
+        "researcherLastName": ".*",
+        "status_code": 400,
+        "expectedResult": 
+        {
+            "message": "Error"
+        }
+    },
+    {
+        "researcherFirstName": "Francesco",
+        "status_code": 400,
+        "expectedResult": 
+        {
+            "message": "Error"
+        }
+    }
+]

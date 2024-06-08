@@ -6,22 +6,26 @@
     <title>Ricerca ricercatori</title>
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Include your custom CSS file -->
+    <!-- Include the custom CSS file -->
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
     <div class="container">
         <h1 class="text-center mb-4">Search Researcher</h1>
+
+        <!-- REQs: [R1] - [HLD1.1, HLD1.2] -->
         <form action="/search_researchers" method="get">
-            <div class="form-group"> <!-- Use Bootstrap form-group for better styling -->
+            <div class="form-group"> 
                 <text for="researcherFirstName">Name:</text>
                 <input type="text" class="form-control form-control-lg" id="researcherFirstName" name="researcherFirstName" required>
                 
                 <text for="researcherLastName">Surname:</text>
                 <input type="text" class="form-control form-control-lg" id="researcherLastName" name="researcherLastName" required>
             </div>
-            <button class="btn btn-primary" type="submit">Search</button> <!-- Use Bootstrap btn classes -->
+            <button class="btn btn-primary" type="submit">Search</button>
         </form>
+
+        <!-- REQs: [R2] - [HLD2.5] -->
         <% if (researchers && researchers.length > 0) { %>
             <h2>Results:</h2>
             <ul class="list-group">
@@ -32,6 +36,9 @@
                         <strong>University and Department:</strong> <%= researcher.university + ", " + researcher.faculty + " " + researcher.structure %><br>
                         <strong>Role:</strong> <%= researcher.grade %><br>
                         <strong>S.S.D.:</strong> <%= researcher.ssd %><br>
+
+                        <!-- REQs: [R3] - [HLD3.1, HLD3.2] -->
+                        <!-- REQs: [R4] - [HLD4.1, HLD4.2] -->
                         <form action="/search_publications" method="GET">
                             <input type="hidden" name="cinecaID" value="<%= researcher._id %>">
 
@@ -41,7 +48,7 @@
                 <% }) %>
             </ul>
         <% } else if (researchers && researchers.length === 0) { %>
-            <p>Nessun ricercatore trovato.</p>
+            <p>No Researcher Found.</p>
         <% } %>
     </div>
 </body>

@@ -1,5 +1,10 @@
+// Scopus Model
+
 const mongoose = require('mongoose');
 
+/**
+ * Defines the schema for the Scopus collection in the MongoDB database.
+ */
 const scopusSchema = new mongoose.Schema({
     surname: {
         type: String
@@ -18,5 +23,8 @@ const scopusSchema = new mongoose.Schema({
     }
 });
 
+// Represents the Scopus model in the MongoDB database.
 const Scopus = mongoose.model('Scopus', scopusSchema);
+
+// Export the Scopus model
 module.exports = Scopus

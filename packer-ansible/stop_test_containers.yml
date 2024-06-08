@@ -1,9 +1,9 @@
 - hosts: localhost
   tasks:
-    - name: Cleanup test containers after test passed
+    - name: Stop test containers 
       docker_container:
         name: "{{ item }}"
-        state: absent
+        state: stopped
       loop:
         - my-scopus-container-test
         - my-scholar-container-test
