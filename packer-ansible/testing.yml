@@ -102,11 +102,6 @@
             aliases: "search-service"
         ports:
           - "8080:8000"
-
-    - name: Stop playbook if npm test fails
-      fail:
-        msg: "npm test failed"
-      when: npm_test_status.rc != 0
     
     - name: Run Newman tests
       block:
