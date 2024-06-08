@@ -102,6 +102,7 @@
             aliases: "search-service"
         ports:
           - "8080:8000"
+
     - name: Run npm test
       command: npm test
       register: npm_test_status
@@ -121,12 +122,12 @@
 
         - name: Run Newman tests
           shell:
-            newman run "../postman/postman_collection_local.json" -d "../postman/researchers_test.json" -r json --reporter-json-export "../postman/output_researcher.json" --folder search_researchers
+            newman run "../postman/postman_collection.json" -d "../postman/researchers_test.json" -r json --reporter-json-export "../postman/output_researcher.json" --folder search_researchers
           register: newman_status_first
 
         - name: Run Newman tests
           shell:
-            newman run "../postman/postman_collection_local.json" -d "../postman/publications_test.json" -r json --reporter-json-export "../postman/output_publication.json" --folder search_publications
+            newman run "../postman/postman_collection.json" -d "../postman/publications_test.json" -r json --reporter-json-export "../postman/output_publication.json" --folder search_publications
           register: newman_status_second
 
       rescue:
