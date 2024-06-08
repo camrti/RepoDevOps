@@ -1,0 +1,11 @@
+---
+- name: Install and start cAdvisor on host
+  hosts: localhost
+  roles:
+#    - role: ome.cadvisor
+    - role: prometheus.prometheus.cadvisor
+    - role: prometheus.prometheus.prometheus
+      prometheus_scrape_configs:
+      - job_name: cadvisor
+        static_configs:
+          - targets: ['localhost:8080']
