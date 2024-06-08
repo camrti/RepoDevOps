@@ -28,6 +28,26 @@
     ],
     "post-processors": [
         {
+            "type": "docker-import",
+            "repository": "my-search-image",
+            "tag": "test"
+        },
+        {
+            "type": "docker-import",
+            "repository": "my-cineca-image",
+            "tag": "test"
+        },
+        {
+            "type": "docker-import",
+            "repository": "my-scholar-image",
+            "tag": "test"
+        },
+        {
+            "type": "docker-import",
+            "repository": "my-scopus-image",
+            "tag": "test"
+        },
+        {
             "type": "docker-tag",
             "only": ["docker_search"],
             "repository": "my-search-image",
