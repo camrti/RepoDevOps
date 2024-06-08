@@ -4,27 +4,7 @@
 BASE_PATH="/home/devops/RepoDevOps"
 cd "${BASE_PATH}"
 
-### 1) Delete all containers
-
-# Array of container names to stop
-containers=("my-search-container" "my-cineca-container" "my-scholar-container" "my-scopus-container")
-
-# Loop through the array and stop each container
-for container in "${containers[@]}"
-do
-    echo "Stopping container: $container"
-    docker stop "$container"
-done
-echo "All containers have been stopped."
-
-# Loop through the array and remove each container
-for container in "${containers[@]}"
-do
-    echo "Removing container: $container"
-    docker rm "$container"
-done
-echo "All containers have been removed."
-
+# Re-Create, start and manage new deployment containers
 echo "Starting ansible playbook..."
 ansible-playbook "packer-ansible/manage_containers_deploy.yml"
 

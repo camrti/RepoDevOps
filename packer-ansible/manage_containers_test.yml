@@ -36,8 +36,9 @@
     - name: Create and start the my-scopus container
       docker_container:
         name: my-scopus-container-test
-        image: my-scopus-image
+        image: my-scopus-image:test
         state: started
+        recreate: true
         networks:
           - name: "devops-test-net"
             ipv4_address: 192.168.100.103
@@ -48,8 +49,9 @@
     - name: Create and start the my-scholar container
       docker_container:
         name: my-scholar-container-test
-        image: my-scholar-image
+        image: my-scholar-image:test
         state: started
+        recreate: true
         networks:
           - name: "devops-test-net"
             ipv4_address: 192.168.100.102
@@ -60,8 +62,9 @@
     - name: Create and start the my-cineca container
       docker_container:
         name: my-cineca-container-test
-        image: my-cineca-image
+        image: my-cineca-image:test
         state: started
+        recreate: true
         networks:
           - name: "devops-test-net"
             ipv4_address: 192.168.100.101
@@ -72,8 +75,9 @@
     - name: Create and start the my-search container
       docker_container:
         name: my-search-container-test
-        image: my-search-image
+        image: my-search-image:test
         state: started
+        recreate: true
         networks:
           - name: "devops-test-net"
             ipv4_address: 192.168.100.100
